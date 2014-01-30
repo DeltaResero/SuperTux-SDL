@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: timer.cpp 1081 2004-05-10 20:00:22Z tobgle $
 // 
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
 
-#include "SDL.h"
+#include <SDL/SDL.h>
 #include "defines.h"
 #include "timer.h"
 

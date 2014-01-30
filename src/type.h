@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: type.h 1026 2004-05-07 20:48:22Z tobgle $
 //
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -22,7 +22,7 @@
 #define SUPERTUX_TYPE_H
 
 #include <string>
-#include "SDL.h"
+#include <SDL/SDL.h>
 #include "scene.h"
 
 /* 'Base' type for game objects */

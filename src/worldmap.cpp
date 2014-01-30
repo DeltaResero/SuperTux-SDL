@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: worldmap.cpp 2702 2005-07-08 12:18:16Z wansti $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2004 Ingo Ruhnke <grumbel@gmx.de>
@@ -90,7 +90,7 @@ TileManager::TileManager()
 {
   std::string stwt_filename = datadir +  "/images/worldmap/antarctica.stwt";
   lisp_object_t* root_obj = lisp_read_from_file(stwt_filename);
- 
+
   if (!root_obj)
     st_abort("Couldn't load file", stwt_filename);
 
@@ -107,14 +107,14 @@ TileManager::TileManager()
               int id = 0;
               std::string filename = "<invalid>";
 
-              Tile* tile = new Tile;             
+              Tile* tile = new Tile;
               tile->north = true;
               tile->east  = true;
               tile->south = true;
               tile->west  = true;
               tile->stop  = true;
               tile->auto_walk = false;
-  
+
               LispReader reader(lisp_cdr(element));
               reader.read_int("id",  &id);
               reader.read_bool("north", &tile->north);
@@ -141,7 +141,7 @@ TileManager::TileManager()
                 }
 
               tile->sprite = new Surface(
-                           datadir +  "/images/worldmap/" + filename, 
+                           datadir +  "/images/worldmap/" + filename,
                            USE_ALPHA);
 
               if (id >= int(tiles.size()))
@@ -209,15 +209,15 @@ Tux::draw(const Point& offset)
   switch (player_status.bonus)
     {
     case PlayerStatus::GROWUP_BONUS:
-      largetux_sprite->draw(pos.x + offset.x, 
+      largetux_sprite->draw(pos.x + offset.x,
                             pos.y + offset.y - 10);
       break;
     case PlayerStatus::FLOWER_BONUS:
-      firetux_sprite->draw(pos.x + offset.x, 
+      firetux_sprite->draw(pos.x + offset.x,
                            pos.y + offset.y - 10);
       break;
     case PlayerStatus::NO_BONUS:
-      smalltux_sprite->draw(pos.x + offset.x, 
+      smalltux_sprite->draw(pos.x + offset.x,
                             pos.y + offset.y - 10);
       break;
     }
@@ -247,8 +247,8 @@ Tux::get_pos()
     case D_NONE:
       break;
     }
-  
-  return Point((int)x, (int)y); 
+
+  return Point((int)x, (int)y);
 }
 
 void
@@ -265,7 +265,7 @@ Tux::update(float delta)
   if (!moving)
     {
       if (input_direction != D_NONE)
-        { 
+        {
           WorldMapNS::WorldMap::Level* level = worldmap->at_level();
 
           // We got a new direction, so lets start walking when possible
@@ -322,7 +322,7 @@ Tux::update(float delta)
                 { // Turn to a new direction
                   Tile* tile = worldmap->at(tile_pos);
                   Direction dir = D_NONE;
-                  
+
                   if (tile->north && back_direction != D_NORTH)
                     dir = D_NORTH;
                   else if (tile->south && back_direction != D_SOUTH)
@@ -378,7 +378,7 @@ WorldMap::WorldMap()
 
   width  = 20;
   height = 15;
-  
+
   start_x = 4;
   start_y = 5;
 
@@ -388,9 +388,9 @@ WorldMap::WorldMap()
   leveldot_green = new Surface(datadir +  "/images/worldmap/leveldot_green.png", USE_ALPHA);
   leveldot_red = new Surface(datadir +  "/images/worldmap/leveldot_red.png", USE_ALPHA);
   leveldot_teleporter = new Surface(datadir +  "/images/worldmap/teleporter.png", USE_ALPHA);
-  
+
   map_file = datadir + "/levels/worldmaps/world1.stwm";
-  
+
   input_direction = D_NONE;
   enter_level = false;
 
@@ -421,7 +421,7 @@ WorldMap::load_map()
   lisp_object_t* root_obj = lisp_read_from_file(map_file);
   if (!root_obj)
     st_abort("Couldn't load file", map_file);
-  
+
   if (strcmp(lisp_symbol(lisp_car(root_obj)), "supertux-worldmap") == 0)
     {
       lisp_object_t* cur = lisp_cdr(root_obj);
@@ -448,17 +448,17 @@ WorldMap::load_map()
           else if (strcmp(lisp_symbol(lisp_car(element)), "levels") == 0)
             {
               lisp_object_t* cur = lisp_cdr(element);
-              
+
               while(!lisp_nil_p(cur))
                 {
                   lisp_object_t* element = lisp_car(cur);
-                  
+
                   if (strcmp(lisp_symbol(lisp_car(element)), "level") == 0)
                     {
                       Level level;
                       LispReader reader(lisp_cdr(element));
                       level.solved = false;
-                      
+
                       level.north = true;
                       level.east  = true;
                       level.south = true;
@@ -473,14 +473,14 @@ WorldMap::load_map()
                       reader.read_bool("auto-path", &level.auto_path);
                       level.passive_message = true;
                       reader.read_bool("passive-message", &level.passive_message);
-							 
+
 							 level.invisible_teleporter = false;
 							 level.teleport_dest_x = level.teleport_dest_y = -1;
 							 reader.read_int("dest_x", &level.teleport_dest_x);
 							 reader.read_int("dest_y", &level.teleport_dest_y);
 							 reader.read_string("teleport-message", &level.teleport_message);
 							 reader.read_bool("invisible-teleporter", &level.invisible_teleporter);
-                      
+
 							 level.apply_action_north = level.apply_action_south =
                             level.apply_action_east = level.apply_action_west = true;
                       reader.read_bool("apply-action-up", &level.apply_action_north);
@@ -493,20 +493,20 @@ WorldMap::load_map()
 
                       levels.push_back(level);
                     }
-                  
-                  cur = lisp_cdr(cur);      
+
+                  cur = lisp_cdr(cur);
                 }
             }
           else
             {
-              
+
             }
-          
+
           cur = lisp_cdr(cur);
         }
     }
 
-    lisp_free(root_obj);   
+    lisp_free(root_obj);
     tux = new Tux(this);
 }
 
@@ -549,9 +549,9 @@ WorldMap::on_escape_press()
 {
   // Show or hide the menu
   if(!Menu::current())
-    Menu::set_current(worldmap_menu); 
+    Menu::set_current(worldmap_menu);
   else
-    Menu::set_current(0); 
+    Menu::set_current(0);
 }
 
 void
@@ -559,7 +559,7 @@ WorldMap::get_input()
 {
   enter_level = false;
   input_direction = D_NONE;
-   
+
   SDL_Event event;
   while (SDL_PollEvent(&event))
     {
@@ -574,13 +574,15 @@ WorldMap::get_input()
             case SDL_QUIT:
               st_abort("Received window close", "");
               break;
-          
+
             case SDL_KEYDOWN:
               switch(event.key.keysym.sym)
                 {
                 case SDLK_ESCAPE:
                   on_escape_press();
                   break;
+
+                case SDLK_SPACE: // added for wii mote
                 case SDLK_LCTRL:
                 case SDLK_RETURN:
                   enter_level = true;
@@ -589,7 +591,7 @@ WorldMap::get_input()
                   break;
                 }
               break;
-          
+
             case SDL_JOYAXISMOTION:
               if (event.jaxis.axis == joystick_keymap.x_axis)
                 {
@@ -634,7 +636,7 @@ WorldMap::get_input()
   if (!Menu::current())
     {
       Uint8 *keystate = SDL_GetKeyState(NULL);
-  
+
       if (keystate[SDLK_LEFT])
         input_direction = D_WEST;
       else if (keystate[SDLK_RIGHT])
@@ -719,7 +721,7 @@ WorldMap::update(float delta)
       Level* level = at_level();
       if (level && !level->name.empty())
         {
-          if (level->x == tux->get_tile_pos().x && 
+          if (level->x == tux->get_tile_pos().x &&
               level->y == tux->get_tile_pos().y)
             {
               std::cout << "Enter the current level: " << level->name << std::endl;;
@@ -744,7 +746,7 @@ WorldMap::update(float delta)
                       { // Try to detect the next direction to which we should walk
                         // FIXME: Mostly a hack
                         Direction dir = D_NONE;
-                    
+
                         Tile* tile = at(tux->get_tile_pos());
 
                         if (tile->north && tux->back_direction != D_NORTH)
@@ -766,7 +768,7 @@ WorldMap::update(float delta)
                       }
 
                     if (!level->extro_filename.empty())
-                      { 
+                      {
                         MusicRef theme =
                           music_manager->load_music(datadir + "/music/theme.mod");
                         MusicRef credits = music_manager->load_music(datadir + "/music/credits.ogg");
@@ -797,7 +799,7 @@ WorldMap::update(float delta)
                   player_status.reset();
                   break;
                 case GameSession::ES_NONE:
-                  // Should never be reached 
+                  // Should never be reached
                   break;
                 }
 
@@ -809,7 +811,7 @@ WorldMap::update(float delta)
             }
         }
       else if (level && level->teleport_dest_x != -1 && level->teleport_dest_y != -1) {
-			if (level->x == tux->get_tile_pos().x && 
+			if (level->x == tux->get_tile_pos().x &&
               level->y == tux->get_tile_pos().y)
 				{
 					play_sound(sounds[SND_TELEPORT], SOUND_CENTER_SPEAKER);
@@ -829,7 +831,7 @@ WorldMap::update(float delta)
       tux->update(delta);
       tux->set_direction(input_direction);
     }
-  
+
   Menu* menu = Menu::current();
   if(menu)
     {
@@ -856,7 +858,7 @@ WorldMap::update(float delta)
 Tile*
 WorldMap::at(Point p)
 {
-  assert(p.x >= 0 
+  assert(p.x >= 0
          && p.x < width
          && p.y >= 0
          && p.y < height);
@@ -869,9 +871,9 @@ WorldMap::at_level()
 {
   for(Levels::iterator i = levels.begin(); i != levels.end(); ++i)
     {
-      if (i->x == tux->get_tile_pos().x && 
+      if (i->x == tux->get_tile_pos().x &&
           i->y == tux->get_tile_pos().y)
-        return &*i; 
+        return &*i;
     }
 
   return 0;
@@ -888,23 +890,23 @@ WorldMap::draw(const Point& offset)
         tile->sprite->draw(x*32 + offset.x,
                            y*32 + offset.y);
       }
-  
+
   for(Levels::iterator i = levels.begin(); i != levels.end(); ++i)
     {
       if(i->name.empty()) {
       	if ((i->teleport_dest_x != -1) && !i->invisible_teleporter) {
-				leveldot_teleporter->draw(i->x*32 + offset.x, 
+				leveldot_teleporter->draw(i->x*32 + offset.x,
                              i->y*32 + offset.y);
 			}
 			else continue;
 		}
 
       else if (i->solved)
-        leveldot_green->draw(i->x*32 + offset.x, 
+        leveldot_green->draw(i->x*32 + offset.x,
                              i->y*32 + offset.y);
       else
-        leveldot_red->draw(i->x*32 + offset.x, 
-                           i->y*32 + offset.y);        
+        leveldot_red->draw(i->x*32 + offset.x,
+                           i->y*32 + offset.y);
     }
 
   tux->draw(offset);
@@ -940,7 +942,7 @@ WorldMap::draw_status()
     {
       for(Levels::iterator i = levels.begin(); i != levels.end(); ++i)
         {
-          if (i->x == tux->get_tile_pos().x && 
+          if (i->x == tux->get_tile_pos().x &&
               i->y == tux->get_tile_pos().y)
             {
               if(!i->name.empty())
@@ -990,7 +992,7 @@ WorldMap::display()
 
       if (delta > 10.0f)
         delta = .3f;
-      
+
       last_update_time = update_time;
       update_time      = st_get_ticks();
 
@@ -1005,7 +1007,7 @@ WorldMap::display()
 
           if (offset.x < screen->w - width*32) offset.x = screen->w - width*32;
           if (offset.y < screen->h - height*32) offset.y = screen->h - height*32;
-        } 
+        }
 
       draw(offset);
       get_input();
@@ -1045,7 +1047,7 @@ WorldMap::savegame(const std::string& filename)
       << "       (back \"" << direction_to_string(tux->back_direction) << "\")\n"
       << "       (bonus \"" << bonus_to_string(player_status.bonus) <<  "\"))\n"
       << "  (levels\n";
-  
+
   for(Levels::iterator i = levels.begin(); i != levels.end(); ++i)
     {
       if (i->solved && !i->name.empty())
@@ -1053,7 +1055,7 @@ WorldMap::savegame(const std::string& filename)
           out << "     (level (name \"" << i->name << "\")\n"
               << "            (solved #t))\n";
         }
-    }  
+    }
 
   out << "   )\n"
       << " )\n\n;; EOF ;;" << std::endl;
@@ -1065,9 +1067,9 @@ WorldMap::loadgame(const std::string& filename)
   std::cout << "loadgame: " << filename << std::endl;
   savegame_file = filename;
 
-  if (access(filename.c_str(), F_OK) != 0)
-    return;
-  
+//  if (access(filename.c_str(), F_OK) != 0)
+//    return;
+
   lisp_object_t* savegame = lisp_read_from_file(filename);
   if (!savegame)
     {
@@ -1102,9 +1104,9 @@ WorldMap::loadgame(const std::string& filename)
       tux_reader.read_int("y", &p.y);
       tux_reader.read_string("back", &back_str);
       tux_reader.read_string("bonus", &bonus_str);
-      
+
       player_status.bonus = string_to_bonus(bonus_str);
-      tux->back_direction = string_to_direction(back_str);      
+      tux->back_direction = string_to_direction(back_str);
       tux->set_tile_pos(p);
     }
 
@@ -1135,7 +1137,7 @@ WorldMap::loadgame(const std::string& filename)
           level_cur = lisp_cdr(level_cur);
         }
     }
- 
+
   lisp_free(savegame);
 }
 

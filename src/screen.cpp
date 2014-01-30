@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: screen.cpp 888 2004-05-01 11:25:45Z rmcruz $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -23,8 +23,8 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 #ifndef WIN32
 #include <sys/types.h>
@@ -199,7 +199,7 @@ void drawpixel(int x, int y, Uint32 pixel)
       SDL_UnlockSurface(screen);
     }
   /* Update just the part of the display that we've changed */
-  SDL_UpdateRect(screen, x, y, 1, 1);
+  SDL_Flip(screen);//SDL_UpdateRect(screen, x, y, 1, 1);
 }
 
 void drawline(int x1, int y1, int x2, int y2, int r, int g, int b, int a)
@@ -346,7 +346,7 @@ void updatescreen(void)
   if(use_gl)  /*clearscreen(0,0,0);*/
     SDL_GL_SwapBuffers();
   else
-    SDL_UpdateRect(screen, 0, 0, screen->w, screen->h);
+    SDL_Flip(screen);//SDL_UpdateRect(screen, 0, 0, screen->w, screen->h);
 }
 
 void flipscreen(void)
@@ -367,6 +367,6 @@ void fadeout()
 void update_rect(SDL_Surface *scr, Sint32 x, Sint32 y, Sint32 w, Sint32 h)
 {
   if(!use_gl)
-    SDL_UpdateRect(scr, x, y, w, h);
+    SDL_Flip(screen);//SDL_UpdateRect(scr, x, y, w, h);
 }
 

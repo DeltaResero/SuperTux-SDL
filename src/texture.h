@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: texture.h 1053 2004-05-09 18:08:02Z tobgle $
 // 
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -21,7 +21,7 @@
 #ifndef SUPERTUX_TEXTURE_H
 #define SUPERTUX_TEXTURE_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <string>
 #ifndef NOOPENGL
 #include <SDL_opengl.h>

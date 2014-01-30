@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: world.h 1696 2004-08-03 18:47:15Z rmcruz $
 // 
 //  SuperTux
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -23,7 +23,7 @@
 #define SUPERTUX_WORLD_H
 
 #include <vector>
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include "type.h"
 #include "scene.h"
 #include "special.h"

@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: title.cpp 2702 2005-07-08 12:18:16Z wansti $
 // 
 //  SuperTux
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -25,8 +25,8 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 #ifndef WIN32
 #include <sys/types.h>

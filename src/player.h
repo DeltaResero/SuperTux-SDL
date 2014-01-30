@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: player.h 2620 2005-06-18 12:12:10Z matzebraun $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2003 Tobias Glaesser <tobi.web@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SUPERTUX_PLAYER_H
 #define SUPERTUX_PLAYER_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include "bitmask.h"
 #include "type.h"
 #include "timer.h"

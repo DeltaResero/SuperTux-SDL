@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: special.cpp 1812 2004-08-18 21:27:29Z rmcruz $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2003 Tobias Glaesser <tobi.web@gmx.de>
@@ -19,7 +19,7 @@
 
 #include <assert.h>
 #include <iostream>
-#include "SDL.h"
+#include <SDL/SDL.h>
 #include "defines.h"
 #include "special.h"
 #include "gameloop.h"

@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: badguy.h 1048 2004-05-08 23:46:43Z rmcruz $
 // 
 //  SuperTux
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -23,7 +23,7 @@
 #ifndef SUPERTUX_BADGUY_H
 #define SUPERTUX_BADGUY_H
 
-#include "SDL.h"
+#include <SDL/SDL.h>
 #include "defines.h"
 #include "bitmask.h"
 #include "type.h"

@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: music_manager.h 827 2004-04-29 00:15:11Z grumbel $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -20,7 +20,7 @@
 #ifndef HEADER_MUSIC_MANAGER_H
 #define HEADER_MUSIC_MANAGER_H
 
-#include <SDL_mixer.h>
+#include <SDL/SDL_mixer.h>
 #include <string>
 #include <map>
 

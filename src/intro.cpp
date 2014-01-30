@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: intro.cpp 917 2004-05-02 14:56:04Z rmcruz $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -23,8 +23,8 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 #include "defines.h"
 #include "globals.h"

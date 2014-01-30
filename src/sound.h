@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: sound.h 1741 2004-08-10 22:50:39Z rmcruz $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -72,7 +72,7 @@ enum {
 extern char* soundfilenames[NUM_SOUNDS];
 
 #include <string>
-#include <SDL_mixer.h>
+#include <SDL/SDL_mixer.h>
 
 /* variables for stocking the sound and music */
 extern Mix_Chunk* sounds[NUM_SOUNDS];

@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: menu.h 1053 2004-05-09 18:08:02Z tobgle $
 // 
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SUPERTUX_MENU_H
 #define SUPERTUX_MENU_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <vector>
 #include "texture.h"
 #include "timer.h"
@@ -207,7 +207,8 @@ public:
 
   bool isToggled(int id);
 
-  void Menu::get_controlfield_key_into_input(MenuItem *item);
+  //void Menu::get_controlfield_key_into_input(MenuItem *item);
+  void get_controlfield_key_into_input(MenuItem *item);
 
   void draw   ();
   void draw_item(int index, int menu_width, int menu_height);

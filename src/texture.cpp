@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: texture.cpp 1053 2004-05-09 18:08:02Z tobgle $
 //
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -21,8 +21,8 @@
 #include <assert.h>
 #include <iostream>
 #include <algorithm>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #include "texture.h"
 #include "globals.h"
 #include "setup.h"
@@ -301,7 +301,7 @@ Surface* Surface::CaptureScreen()
 
   }
 #endif
-  
+
 return cap_screen;
 }
 
@@ -719,7 +719,7 @@ SurfaceSDL::draw(float x, float y, Uint8 alpha, bool update)
     int ret = SDL_BlitSurface(sdl_surface_copy, NULL, screen, &dest);
 
     if (update == UPDATE)
-      SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
+      SDL_Flip(screen);//SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
 
     SDL_FreeSurface (sdl_surface_copy);
     return ret;
@@ -728,7 +728,7 @@ SurfaceSDL::draw(float x, float y, Uint8 alpha, bool update)
   int ret = SDL_BlitSurface(sdl_surface, NULL, screen, &dest);
 
   if (update == UPDATE)
-    SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
+    SDL_Flip(screen);//SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
 
   return ret;
 }
@@ -766,7 +766,7 @@ SurfaceSDL::draw_bg(Uint8 alpha, bool update)
     int ret = SDL_BlitSurface(sdl_surface_copy, NULL, screen, &dest);
 
     if (update == UPDATE)
-      SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
+      SDL_Flip(screen);//SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
 
     SDL_FreeSurface (sdl_surface_copy);
     return ret;
@@ -775,7 +775,7 @@ SurfaceSDL::draw_bg(Uint8 alpha, bool update)
   int ret = SDL_SoftStretch(sdl_surface, NULL, screen, &dest);
 
   if (update == UPDATE)
-    SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
+    SDL_Flip(screen);//SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
 
   return ret;
 }
@@ -818,7 +818,7 @@ SurfaceSDL::draw_part(float sx, float sy, float x, float y, float w, float h, Ui
     int ret = SDL_BlitSurface(sdl_surface_copy, NULL, screen, &dest);
 
     if (update == UPDATE)
-      SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
+      SDL_Flip(screen);//SDL_UpdateRect(screen, dest.x, dest.y, dest.w, dest.h);
 
     SDL_FreeSurface (sdl_surface_copy);
     return ret;

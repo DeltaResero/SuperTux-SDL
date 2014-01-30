@@ -1,5 +1,5 @@
-//  $Id$
-// 
+//  $Id: supertux.cpp 997 2004-05-05 16:07:20Z rmcruz $
+//
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
 //
@@ -12,7 +12,7 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
@@ -33,12 +33,20 @@
 #include "resources.h"
 #include "texture.h"
 #include "tile.h"
-
+#include <wiiuse/wpad.h>
+#include <ogc/lwp_watchdog.h>
+#include <fat.h>
 int main(int argc, char * argv[])
 {
+
+  // wii stuff
+  fatInitDefault();
+  printf("\n\n\n\n\n\nSuperTux is Loading!\nYes this takes some time :)");
+  ////
+
   st_directory_setup();
   parseargs(argc, argv);
-  
+
   st_audio_setup();
   st_video_setup();
   st_joystick_setup();
@@ -56,10 +64,10 @@ int main(int argc, char * argv[])
       session.run();
     }
   else
-    {  
+    {
       title();
     }
-  
+
   clearscreen(0, 0, 0);
   updatescreen();
 
@@ -70,6 +78,6 @@ int main(int argc, char * argv[])
   Surface::debug_check();
 #endif
   st_shutdown();
-  
+
   return 0;
 }

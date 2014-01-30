@@ -1,4 +1,4 @@
-//  $Id$
+//  $Id: screen.h 883 2004-05-01 10:59:52Z rmcruz $
 //
 //  SuperTux -  A Jump'n Run
 //  Copyright (C) 2000 Bill Kendrick <bill@newbreedsoftware.com>
@@ -20,7 +20,7 @@
 #ifndef SUPERTUX_SCREEN_H
 #define SUPERTUX_SCREEN_H
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #ifndef NOOPENGL
 #include <SDL_opengl.h>
 #endif
