@@ -440,22 +440,17 @@ GameSession::process_events()
                   break;
 
                 case SDL_JOYBUTTONDOWN:
-                  if (event.jbutton.button == 2 /* (1) */|| //joystick_keymap.b_button)
-                  event.jbutton.button == 7 /* (z) */ ||
-                  event.jbutton.button == 9 /* (cc a) */ )
+                  if (event.jbutton.button == 3 /* (1) */)
                     tux.input.up = DOWN;
-                  else if (event.jbutton.button == 3 /* (2) */ || //joystick_keymap.b_button)
-                           event.jbutton.button == 8 /* (c) */ ||
-                           event.jbutton.button == 10 /* (cc b) */ )
+                  else if (event.jbutton.button == 2 /* (2) */)
                     tux.input.fire = DOWN;
-                  else if (event.jbutton.button == 6 /*mote home */ || //joystick_keymap.start_button)
-                           event.jbutton.button == 19 /* cc home */ )
+                  else if (event.jbutton.button == 6 /*mote home */)
                     on_escape_press();
                   break;
                 case SDL_JOYBUTTONUP:
-                  if (event.jbutton.button == 2)//joystick_keymap.a_button)
+                  if (event.jbutton.button == 3)//joystick_keymap.a_button)
                     tux.input.up = UP;
-                  else if (event.jbutton.button == 3)//joystick_keymap.b_button)
+                  else if (event.jbutton.button == 2)//joystick_keymap.b_button)
                     tux.input.fire = UP;
                   break;
 
@@ -716,8 +711,8 @@ GameSession::drawstatus()
   char str[60];
 
   sprintf(str, "%d", player_status.score);
-  white_text->draw("SCORE", 0, 0, 1);
-  gold_text->draw(str, 96, 0, 1);
+  white_text->draw("SCORE", 20, 40, 1);
+  gold_text->draw(str, 116, 40, 1);
 
   if(st_gl_mode == ST_GL_TEST)
     {
@@ -725,28 +720,28 @@ GameSession::drawstatus()
     }
 
   if(!time_left.check()) {
-    white_text->draw("TIME'S UP", 224, 0, 1);
+    white_text->draw("TIME'S UP", 320-42, 40, 1);
   } else if (time_left.get_left() > TIME_WARNING || (global_frame_counter % 10) < 5) {
     sprintf(str, "%d", time_left.get_left() / 1000 );
-    white_text->draw("TIME", 224, 0, 1);
-    gold_text->draw(str, 304, 0, 1);
+    white_text->draw("TIME", 320-42, 40, 1);
+    gold_text->draw(str, 320+42, 40, 1);
   }
 
   sprintf(str, "%d", player_status.distros);
-  white_text->draw("COINS", screen->h, 0, 1);
-  gold_text->draw(str, 608, 0, 1);
+  white_text->draw("COINS", 480, 40, 1);
+  gold_text->draw(str, 575, 40, 1);
 
-  white_text->draw("LIVES", 480, 20);
+  white_text->draw("LIVES", 480, 60);
   if (player_status.lives >= 5)
     {
       sprintf(str, "%dx", player_status.lives);
-      gold_text->draw_align(str, 617, 20, A_RIGHT, A_TOP);
-      tux_life->draw(565+(18*3), 20);
+      gold_text->draw_align(str, 617, 60, A_RIGHT, A_TOP);
+      tux_life->draw(565+(18*3), 60);
     }
   else
     {
       for(int i= 0; i < player_status.lives; ++i)
-        tux_life->draw(565+(18*i),20);
+        tux_life->draw(565+(18*i),60);
     }
 
   if(show_fps)

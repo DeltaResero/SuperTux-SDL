@@ -621,13 +621,9 @@ WorldMap::get_input()
 	      break;
 
             case SDL_JOYBUTTONDOWN:
-              if (event.jbutton.button == 2 /* (1) */|| //joystick_keymap.b_button)
-                  event.jbutton.button == 7 /* (z) */ ||
-                  event.jbutton.button == 9 /* (cc a) */ )
-
+              if (event.jbutton.button == 3 /* (2) */)
                 enter_level = true;
-              else if (event.jbutton.button == 6 /* mote home */ ||//joystick_keymap.start_button)
-                       event.jbutton.button == 19 /* cc home */ )
+              else if (event.jbutton.button == 6 /* mote home */)
                 on_escape_press();
               break;
 
@@ -728,7 +724,7 @@ WorldMap::update(float delta)
           if (level->x == tux->get_tile_pos().x &&
               level->y == tux->get_tile_pos().y)
             {
-              std::cout << "Enter the current level: " << level->name << std::endl;;
+              //std::cout << "Enter the current level: " << level->name << std::endl;;
               GameSession session(datadir +  "/levels/" + level->name,
                                   1, ST_GL_LOAD_LEVEL_FILE);
 
@@ -768,7 +764,7 @@ WorldMap::update(float delta)
                             //tux->update(delta);
                           }
 
-                        std::cout << "Walk to dir: " << dir << std::endl;
+                        //std::cout << "Walk to dir: " << dir << std::endl;
                       }
 
                     if (!level->extro_filename.empty())
@@ -922,24 +918,24 @@ WorldMap::draw_status()
 {
   char str[80];
   sprintf(str, "%d", player_status.score);
-  white_text->draw("SCORE", 0, 0);
-  gold_text->draw(str, 96, 0);
+  white_text->draw("SCORE", 20, 40);
+  gold_text->draw(str, 116, 40);
 
   sprintf(str, "%d", player_status.distros);
-  white_text->draw_align("COINS", 320-64, 0,  A_LEFT, A_TOP);
-  gold_text->draw_align(str, 320+64, 0, A_RIGHT, A_TOP);
+  white_text->draw_align("COINS", 320-64, 40,  A_LEFT, A_TOP);
+  gold_text->draw_align(str, 320+64, 40, A_RIGHT, A_TOP);
 
-  white_text->draw("LIVES", 480, 0);
+  white_text->draw("LIVES", 480, 40);
   if (player_status.lives >= 5)
     {
       sprintf(str, "%dx", player_status.lives);
-      gold_text->draw_align(str, 617, 0, A_RIGHT, A_TOP);
-      tux_life->draw(565+(18*3), 0);
+      gold_text->draw_align(str, 617, 40, A_RIGHT, A_TOP);
+      tux_life->draw(565+(18*3), 40);
     }
   else
     {
       for(int i= 0; i < player_status.lives; ++i)
-        tux_life->draw(565+(18*i),0);
+        tux_life->draw(565+(18*i),40);
     }
 
   if (!tux->is_moving())
@@ -1031,7 +1027,7 @@ WorldMap::display()
 void
 WorldMap::savegame(const std::string& filename)
 {
-  std::cout << "savegame: " << filename << std::endl;
+  //std::cout << "savegame: " << filename << std::endl;
   std::ofstream out(filename.c_str());
 
   int nb_solved_levels = 0;
@@ -1068,7 +1064,7 @@ WorldMap::savegame(const std::string& filename)
 void
 WorldMap::loadgame(const std::string& filename)
 {
-  std::cout << "loadgame: " << filename << std::endl;
+  //std::cout << "loadgame: " << filename << std::endl;
   savegame_file = filename;
 
 //  if (access(filename.c_str(), F_OK) != 0)
@@ -1077,7 +1073,7 @@ WorldMap::loadgame(const std::string& filename)
   lisp_object_t* savegame = lisp_read_from_file(filename);
   if (!savegame)
     {
-      std::cout << "WorldMap:loadgame: File not found: " << filename << std::endl;
+      //std::cout << "WorldMap:loadgame: File not found: " << filename << std::endl;
       return;
     }
 
