@@ -38,6 +38,7 @@ static void defaults ()
   audio_device = true;
 
   use_fullscreen = true;
+
   show_fps = false;
   use_gl = false;
 
@@ -47,6 +48,7 @@ static void defaults ()
 
 void loadconfig(void)
 {
+
   FILE * file = NULL;
 
   defaults();

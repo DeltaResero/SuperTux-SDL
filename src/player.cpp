@@ -104,6 +104,7 @@ Player::init()
 int
 Player::key_event(SDLKey key, int state)
 {
+
   if(key == keymap.right)
     {
       input.right = state;
@@ -548,7 +549,7 @@ Player::draw()
         }
       else
         {
-          PlayerSprite* sprite;
+          PlayerSprite* sprite = 0;
 
           if (size == SMALL)
             sprite = &smalltux;

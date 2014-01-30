@@ -52,7 +52,7 @@ char * soundfilenames[NUM_SOUNDS] = {
                                     };
 
 
-#include <SDL_mixer.h>
+#include <SDL/SDL_mixer.h>
 
 Mix_Chunk * sounds[NUM_SOUNDS];
 
@@ -66,7 +66,7 @@ int open_audio (int frequency, Uint16 format, int channels, int chunksize)
   // allocate 16 channels for mixing
   if (Mix_AllocateChannels(8)  != 8)
     return -2;
-  
+
   /* reserve some channels and register panning effects */
   if (Mix_ReserveChannels(SOUND_RESERVED_CHANNELS) != SOUND_RESERVED_CHANNELS)
     return -3;
@@ -96,7 +96,7 @@ Mix_Chunk* load_sound(const std::string& file)
 {
   if(!audio_device)
     return 0;
-  
+
   Mix_Chunk* snd = Mix_LoadWAV(file.c_str());
 
   if (snd == 0)

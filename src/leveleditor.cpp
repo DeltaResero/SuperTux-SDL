@@ -25,8 +25,8 @@
 #include <math.h>
 #include <errno.h>
 #include <unistd.h>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #include "leveleditor.h"
 
 #include "screen.h"
@@ -1488,7 +1488,7 @@ void le_checkevents()
 	    else if(le_current.IsObject())
 	    {
             cursor_base.x = cursor_x + pos_x;
-            cursor_base.y = cursor_y + pos_x;	    
+            cursor_base.y = cursor_y + pos_x;
 	    }
             cursor_base.width = 32;
             cursor_base.height = 32;
@@ -1527,7 +1527,7 @@ void le_checkevents()
               }
             }
           }
-	  
+
           le_mouse_clicked[LEFT] = false;
 
         }

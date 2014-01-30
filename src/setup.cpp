@@ -300,17 +300,20 @@ void free_strings(char **strings, int num)
     free(strings[i]);
 }
 
+#ifdef _WII_
+
 /* --- SETUP --- */
 /* Set SuperTux configuration and save directories */
 void st_directory_setup(void)
 {
+
   char home[] = {"sd:/apps/supertux"};
   char str[1024];
- 
+
   st_dir = (char *) malloc(255);
-  
+
   strcpy(st_dir, home);
-  
+
   st_save_dir = (char *) malloc(255);
 
   strcpy(st_save_dir,st_dir);
@@ -325,11 +328,79 @@ void st_directory_setup(void)
 
   // User has not that a datadir, so we try some magic
  // if (datadir.empty())
-datadir = "sd:/apps/supertux/data";
+  datadir = "sd:/apps/supertux/data";
+}
+#else
 
+/* Set SuperTux configuration and save directories */
+void st_directory_setup(void)
+{
+  char *home;
+  char str[1024];
+  /* Get home directory (from $HOME variable)... if we can't determine it,
+     use the current directory ("."): */
+  if (getenv("HOME") != NULL)
+    home = getenv("HOME");
+  else
+    home = ".";
 
+  st_dir = (char *) malloc(sizeof(char) * (strlen(home) +
+                                           strlen("/.supertux") + 1));
+  strcpy(st_dir, home);
+  strcat(st_dir, "/.supertux");
+
+  /* Remove .supertux config-file from old SuperTux versions */
+  if(faccessible(st_dir))
+    {
+      remove
+        (st_dir);
+    }
+
+  st_save_dir = (char *) malloc(sizeof(char) * (strlen(st_dir) + strlen("/save") + 1));
+
+  strcpy(st_save_dir,st_dir);
+  strcat(st_save_dir,"/save");
+
+  /* Create them. In the case they exist they won't destroy anything. */
+  mkdir(st_dir, 0755);
+  mkdir(st_save_dir, 0755);
+
+  sprintf(str, "%s/levels", st_dir);
+  mkdir(str, 0755);
+
+  // User has not that a datadir, so we try some magic
+  if (datadir.empty())
+    {
+#ifndef WIN32
+      // Detect datadir
+      char exe_file[PATH_MAX];
+      if (readlink("/proc/self/exe", exe_file, PATH_MAX) < 0)
+        {
+          puts("Couldn't read /proc/self/exe, using default path: " DATA_PREFIX);
+          datadir = DATA_PREFIX;
+        }
+      else
+        {
+          std::string exedir = std::string(dirname(exe_file)) + "/";
+
+          datadir = exedir + "../data"; // SuperTux run from source dir
+          if (access(datadir.c_str(), F_OK) != 0)
+            {
+              datadir = exedir + "../share/supertux"; // SuperTux run from PATH
+              if (access(datadir.c_str(), F_OK) != 0)
+                { // If all fails, fall back to compiled path
+                  datadir = DATA_PREFIX;
+                }
+            }
+        }
+#else
+  datadir = "data";//DATA_PREFIX;
+#endif
+    }
+  printf("Datadir: %s\n", datadir.c_str());
 }
 
+#endif //def _WII_
 /* Create and setup menus. */
 void st_menu(void)
 {
@@ -379,7 +450,7 @@ void st_menu(void)
 
   options_menu->additem(MN_HL,"",0,0);
   options_menu->additem(MN_BACK,"Back",0,0);
-  
+
   options_keys_menu->additem(MN_LABEL,"Key Setup",0,0);
   options_keys_menu->additem(MN_HL,"",0,0);
   options_keys_menu->additem(MN_CONTROLFIELD,"Left move", 0,0, 0,&keymap.left);
@@ -403,7 +474,7 @@ void st_menu(void)
     options_joystick_menu->additem(MN_HL,"",0,0);
     options_joystick_menu->additem(MN_BACK,"Back",0,0);
     }
-  
+
   load_game_menu->additem(MN_LABEL,"Start Game",0,0);
   load_game_menu->additem(MN_HL,"",0,0);
   load_game_menu->additem(MN_DEACTIVE,"Slot 1",0,0, 1);
@@ -469,16 +540,16 @@ bool process_load_game_menu()
 
       fadeout();
       WorldMapNS::WorldMap worldmap;
-      
+
       //TODO: Define the circumstances under which BonusIsland is chosen
       worldmap.set_map_file("world1.stwm");
       worldmap.load_map();
-     
+
       // Load the game or at least set the savegame_file variable
       worldmap.loadgame(slotfile);
 
       worldmap.display();
-      
+
       Menu::set_current(main_menu);
 
       st_pause_ticks_stop();
@@ -568,7 +639,7 @@ void st_general_setup(void)
   /* Load the mouse-cursor */
   mouse_cursor = new MouseCursor( datadir + "/images/status/mousecursor.png",1);
   MouseCursor::set_current(mouse_cursor);
-  
+
 }
 
 void st_general_free(void)
@@ -595,7 +666,7 @@ void st_general_free(void)
 
   /* Free mouse-cursor */
   delete mouse_cursor;
-  
+
   /* Free menus */
   delete main_menu;
   delete game_menu;
@@ -631,6 +702,7 @@ void st_video_setup(void)
 
 void st_video_setup_sdl(void)
 {
+
   if (use_fullscreen)
     {
       screen = SDL_SetVideoMode(SCREEN_W, SCREEN_H, 0, SDL_FULLSCREEN ) ; /* | SDL_HWSURFACE); */
@@ -919,11 +991,11 @@ void parseargs(int argc, char * argv[])
         {
           assert(i+1 < argc);
           if (sscanf(argv[++i],
-                     "%d:%d:%d:%d:%d", 
-                     &joystick_keymap.x_axis, 
-                     &joystick_keymap.y_axis, 
-                     &joystick_keymap.a_button, 
-                     &joystick_keymap.b_button, 
+                     "%d:%d:%d:%d:%d",
+                     &joystick_keymap.x_axis,
+                     &joystick_keymap.y_axis,
+                     &joystick_keymap.a_button,
+                     &joystick_keymap.b_button,
                      &joystick_keymap.start_button) != 5)
             {
               puts("Warning: Invalid or incomplete joymap, should be: 'XAXIS:YAXIS:A:B:START'");
@@ -942,7 +1014,7 @@ void parseargs(int argc, char * argv[])
         {
           launch_leveleditor_mode = true;
         }
-      else if (strcmp(argv[i], "--datadir") == 0 
+      else if (strcmp(argv[i], "--datadir") == 0
                || strcmp(argv[i], "-d") == 0 )
         {
           assert(i+1 < argc);
@@ -1015,7 +1087,7 @@ void parseargs(int argc, char * argv[])
                "  --disable-music     Like above, but this will disable music.\n"
                "\n"
                "Misc Options:\n"
-               "  -j, --joystick NUM  Use joystick NUM (default: 0)\n" 
+               "  -j, --joystick NUM  Use joystick NUM (default: 0)\n"
                "  --joymap XAXIS:YAXIS:A:B:START\n"
                "  --leveleditor       Opens the leveleditor in a file. (Only works when a file is provided.)\n"
                "                      Define how joystick buttons and axis should be mapped\n"
