@@ -947,11 +947,11 @@ WorldMap::draw_status()
             {
               if(!i->name.empty())
                 {
-              white_text->draw_align(i->title.c_str(), screen->w/2, screen->h,  A_HMIDDLE, A_BOTTOM);
+              white_text->draw_align(i->title.c_str(), screen->w/2, screen->h - 100,  A_HMIDDLE, A_BOTTOM);
                 }
 				  else if (i->teleport_dest_x != -1) {
 				  	if(!i->teleport_message.empty())
-               	 gold_text->draw_align(i->teleport_message.c_str(), screen->w/2, screen->h,  A_HMIDDLE, A_BOTTOM);
+               	 gold_text->draw_align(i->teleport_message.c_str(), screen->w/2, screen->h - 100,  A_HMIDDLE, A_BOTTOM);
 				  }
 
               /* Display a message in the map, if any as been selected */
