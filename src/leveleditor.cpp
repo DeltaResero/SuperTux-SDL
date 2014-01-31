@@ -1736,7 +1736,7 @@ void le_showhelp()
 
   SDL_Event event;
   unsigned int i, done_;
-  char *text[] = {
+  const char *text[] = {
 
                    " - Supertux level editor tutorial - ",
                    "",
@@ -1760,7 +1760,7 @@ void le_showhelp()
                    "his adventures.",
                  };
 
-  char *text2[] = {
+  const char *text2[] = {
 
                     " - Supertux level editor tutorial - ",
                     "",
@@ -1783,7 +1783,7 @@ void le_showhelp()
                     "and more."
                   };
 
-  char *text3[] = {
+  const char *text3[] = {
 
                     " - Supertux level editor tutorial - ",
                     "",
