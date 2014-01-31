@@ -405,7 +405,7 @@ void title(void)
 
       /* Pause: */
       frame++;
-      SDL_Delay(25);
+      SDL_Delay(10);
     }
   /* Free surfaces: */
 
