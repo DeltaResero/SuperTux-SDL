@@ -23,6 +23,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 #include <ctype.h>
 #include <errno.h>
 
