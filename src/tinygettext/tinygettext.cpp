@@ -705,15 +705,16 @@ public:
         switch(state)
           {
           case READ_KEYWORD:
-            if (c == '#')
+            // Read a new token
+            token = Token();
+
+            if (c == '#' || c == '\n' || c == '\r')
               {
                 state = SKIP_COMMENT;
+                in.unget();
               }
             else
               {
-                // Read a new token
-                token = Token();
-
                 do { // Read keyword
                   token.keyword += c;
                 } while((c = getchar(in)) != EOF && !isspace(c));
