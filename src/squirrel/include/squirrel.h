@@ -42,16 +42,19 @@ extern "C" {
 #ifdef _SQ64
 #ifdef _MSC_VER
 typedef __int64 SQInteger;
+#define _SC_INT_FMT "%Id"
 typedef unsigned __int64 SQUnsignedInteger;
 typedef unsigned __int64 SQHash; /*should be the same size of a pointer*/
 #else
 typedef long SQInteger;
+#define _SC_INT_FMT "%ld"
 typedef unsigned long SQUnsignedInteger;
 typedef unsigned long SQHash; /*should be the same size of a pointer*/
 #endif
 typedef int SQInt32; 
 #else 
 typedef int SQInteger;
+#define _SC_INT_FMT "%d"
 typedef int SQInt32; /*must be 32 bits(also on 64bits processors)*/
 typedef unsigned int SQUnsignedInteger;
 typedef unsigned int SQHash; /*should be the same size of a pointer*/

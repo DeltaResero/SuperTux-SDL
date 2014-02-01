@@ -231,7 +231,7 @@ void SQVM::ToString(const SQObjectPtr &o,SQObjectPtr &res)
 		scsprintf(_sp(rsl(NUMBER_MAX_CHAR+1)),_SC("%g"),_float(o));
 		break;
 	case OT_INTEGER:
-		scsprintf(_sp(rsl(NUMBER_MAX_CHAR+1)),_SC("%d"),_integer(o));
+		scsprintf(_sp(rsl(NUMBER_MAX_CHAR+1)),_SC(_SC_INT_FMT),_integer(o));
 		break;
 	case OT_BOOL:
 		scsprintf(_sp(rsl(6)),_integer(o)?_SC("true"):_SC("false"));
@@ -645,7 +645,7 @@ bool SQVM::IsEqual(SQObjectPtr &o1,SQObjectPtr &o2,bool &res)
 
 bool SQVM::IsFalse(SQObjectPtr &o)
 {
-	if((type(o) & SQOBJECT_CANBEFALSE) && ( (type(o) == OT_FLOAT) && (_float(o) == SQFloat(0.0)) )
+	if(((type(o) & SQOBJECT_CANBEFALSE) && ( (type(o) == OT_FLOAT) && (_float(o) == SQFloat(0.0)) ))
 		|| (_integer(o) == 0) ) { //OT_NULL|OT_INTEGER|OT_BOOL
 		return true;
 	}

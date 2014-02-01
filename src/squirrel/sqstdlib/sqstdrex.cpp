@@ -483,7 +483,7 @@ static const SQChar *sqstd_rex_matchnode(SQRex* exp,SQRexNode *node,const SQChar
 			return cur;
 	}				 
 	case OP_WB:
-		if(str == exp->_bol && !isspace(*str)
+		if((str == exp->_bol && !isspace(*str))
 		 || (str == exp->_eol && !isspace(*(str-1)))
 		 || (!isspace(*str) && isspace(*(str+1)))
 		 || (isspace(*str) && !isspace(*(str+1))) ) {

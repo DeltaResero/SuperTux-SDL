@@ -25,6 +25,7 @@
 #include <physfs.h>
 #include <sys/stat.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "addon_manager.hpp"
 #include "config.h"
 #include "log.hpp"
