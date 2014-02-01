@@ -347,6 +347,7 @@ Console::addLine(std::string s)
   // output line to stderr
   std::cerr << s << std::endl;
 
+#if 0
   // wrap long lines
   std::string overflow;
   unsigned int line_count = 0;
@@ -373,6 +374,7 @@ Console::addLine(std::string s)
   // increase time that console stays open
   if(stayOpen < 6)
     stayOpen += 1.5;
+#endif
 }
 
 void
