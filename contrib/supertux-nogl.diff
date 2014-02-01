@@ -193,7 +193,7 @@ index 5936bad..874b78d 100644
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
    // logical resolution here not real monitor resolution
--  glOrtho(0, 800, 600, 0, -1.0, 1.0);
+-  glOrtho(0, 640, 480, 0, -1.0, 1.0);
 +  glOrtho(0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, -1.0, 1.0);
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();

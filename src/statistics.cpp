@@ -77,10 +77,10 @@ Statistics::write(lisp::Writer& writer)
 #define TOTAL_DISPLAY_TIME  5
 #define FADING_TIME         1
 
-const float WMAP_INFO_LEFT_X = (800 - 320) + 32;
-const float WMAP_INFO_RIGHT_X = 800 - 32;
-const float WMAP_INFO_TOP_Y1 = 600 - 128 - 16;
-const float WMAP_INFO_TOP_Y2 = 600 - 128;
+const float WMAP_INFO_LEFT_X = (640 - 256) + 26;
+const float WMAP_INFO_RIGHT_X = 640 - 26;
+const float WMAP_INFO_TOP_Y1 = 480 - 103 - 13;
+const float WMAP_INFO_TOP_Y2 = 480 - 103;
 
 void
 Statistics::draw_worldmap_info(DrawingContext& context)
