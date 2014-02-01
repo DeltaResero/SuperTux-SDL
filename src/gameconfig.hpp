@@ -19,6 +19,8 @@
 #ifndef SUPERTUX_CONFIG_H
 #define SUPERTUX_CONFIG_H
 
+#include <config.h>
+
 #include <string>
 
 class Config
@@ -38,6 +40,9 @@ public:
   int screenheight;
 
   bool use_fullscreen;
+#ifdef HAVE_OPENGL
+  bool use_opengl;
+#endif
   bool show_fps;
   bool sound_enabled;
   bool music_enabled;

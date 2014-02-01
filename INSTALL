@@ -45,6 +45,9 @@ REQUIREMENTS
 * SDL_image (any version)
     http://www.libsdl.org/projects/SDL_image
 
+* SDL_gfx (2.0.13 or later)
+    http://www.ferzkopp.net/Software/SDL_gfx-2.0/
+
 * PhysicsFS (1.0.0, the development branch 1.1.x is buggy and does not work,
              1.2.0 and later should work when it is released)
     http://www.icculus.org/physfs

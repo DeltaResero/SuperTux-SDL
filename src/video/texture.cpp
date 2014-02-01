@@ -20,53 +20,76 @@
 #include <config.h>
 
 #include "texture.hpp"
+#include "gameconfig.hpp"
 
-#include <GL/gl.h>
 #include <assert.h>
 #include "glutil.hpp"
+#include <stdexcept>
 
 static inline bool is_power_of_2(int v)
 {
   return (v & (v-1)) == 0;
 }
 
+#ifdef HAVE_OPENGL
 Texture::Texture(unsigned int w, unsigned int h, GLenum glformat)
+#else
+Texture::Texture(unsigned int w, unsigned int h, GLenum)
+#endif
 {
   assert(is_power_of_2(w));
   assert(is_power_of_2(h));
+#ifdef HAVE_OPENGL
+  use_opengl = config->use_opengl;
 
-  this->width = w;
-  this->height = h;
+  if(use_opengl)
+{
+  surface.opengl.width = w;
+  surface.opengl.height = h;
 
   assert_gl("before creating texture");
-  glGenTextures(1, &handle);
+  glGenTextures(1, &surface.opengl.handle);
 
   try {
-    glBindTexture(GL_TEXTURE_2D, handle);
+    glBindTexture(GL_TEXTURE_2D, surface.opengl.handle);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, glformat, width, height, 0, GL_RGBA,
-                 GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, glformat, surface.opengl.width,
+                 surface.opengl.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     set_texture_params();
   } catch(...) {
-    glDeleteTextures(1, &handle);
+    glDeleteTextures(1, &surface.opengl.handle);
     throw;
   }
 }
+else
+#endif
+{
+  surface.sdl = 0;
+}
+}
 
+#ifdef HAVE_OPENGL
 Texture::Texture(SDL_Surface* image, GLenum glformat)
+#else
+Texture::Texture(SDL_Surface* image, GLenum)
+#endif
 {
   const SDL_PixelFormat* format = image->format;
   if(!is_power_of_2(image->w) || !is_power_of_2(image->h))
-    throw std::runtime_error("image has no power of 2 size");
+    throw std::runtime_error("image does not have power of 2 size");
   if(format->BitsPerPixel != 24 && format->BitsPerPixel != 32)
-    throw std::runtime_error("image has no 24 or 32 bit color depth");
+    throw std::runtime_error("image does not have 24 or 32 bit color depth");
+#ifdef HAVE_OPENGL
+  use_opengl = config->use_opengl;
 
-  this->width = image->w;
-  this->height = image->h;
+  if(use_opengl)
+{
+  surface.opengl.width = image->w;
+  surface.opengl.height = image->h;
 
   assert_gl("before creating texture");
-  glGenTextures(1, &handle);
+  glGenTextures(1, &surface.opengl.handle);
 
   try {
     GLenum sdl_format;
@@ -77,28 +100,47 @@ Texture::Texture(SDL_Surface* image, GLenum glformat)
     else
       assert(false);
 
-    glBindTexture(GL_TEXTURE_2D, handle);
+    glBindTexture(GL_TEXTURE_2D, surface.opengl.handle);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glPixelStorei(GL_UNPACK_ROW_LENGTH, image->pitch/format->BytesPerPixel);
-    glTexImage2D(GL_TEXTURE_2D, 0, glformat, width, height, 0, sdl_format,
+    glTexImage2D(GL_TEXTURE_2D, 0, glformat, surface.opengl.width,
+            surface.opengl.height, 0, sdl_format,
             GL_UNSIGNED_BYTE, image->pixels);
 
     assert_gl("creating texture");
 
     set_texture_params();
   } catch(...) {
-    glDeleteTextures(1, &handle);
+    glDeleteTextures(1, &surface.opengl.handle);
     throw;
   }
+}
+else
+#endif
+{
+  surface.sdl = SDL_DisplayFormatAlpha(image);
+}
 }
 
 Texture::~Texture()
 {
-  glDeleteTextures(1, &handle);
+#ifdef HAVE_OPENGL
+  if(use_opengl)
+  {
+    glDeleteTextures(1, &surface.opengl.handle);
+  }
+  else
+#endif
+  {
+    SDL_FreeSurface(surface.sdl);
+  }
 }
 
 void
 Texture::set_texture_params()
+{
+#ifdef HAVE_OPENGL
+  if(use_opengl)
 {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -106,4 +148,6 @@ Texture::set_texture_params()
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
   assert_gl("set texture params");
+}
+#endif
 }

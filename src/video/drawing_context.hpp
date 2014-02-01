@@ -24,9 +24,9 @@
 #include <string>
 #include <stdint.h>
 
-#include <GL/gl.h>
 #include <SDL.h>
 #include <stdint.h>
+#include "glutil.hpp"
 #include <memory>
 
 #include "math/vector.hpp"

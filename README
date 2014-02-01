@@ -69,10 +69,14 @@ RUNNING THE GAME
   Also, notice that SuperTux saves the options, so it's often enough to
   specify them once.
 
-  The game uses OpenGL to render the graphics. You will either need a CPU
+  The game used OpenGL by default to render the graphics, but this required a CPU
   with about 10 GHz or an accelerated video card with the vendor's drivers.
   (On Linux, the team recommends using cards from NVidia with the proprietary
-  drivers, but ATI or another verndor should do.)
+  drivers, but ATI or another vendor should do.)
+
+  Now modified, this game can now use SDL in place of OpenGL again to render
+  graphics if configured so prior to compiling would in past versions.  You will
+  either need a CPU with about 1GHz or use the original version which used OpenGL.
 
 
 PLAYING THE GAME

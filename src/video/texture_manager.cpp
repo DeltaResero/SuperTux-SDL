@@ -24,14 +24,13 @@
 #include <assert.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <GL/gl.h>
-#include <GL/glext.h>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include "physfs/physfs_sdl.hpp"
 #include "image_texture.hpp"
 #include "glutil.hpp"
+#include "gameconfig.hpp"
 #include "file_system.hpp"
 #include "log.hpp"
 
@@ -145,12 +144,16 @@ TextureManager::create_image_texture(const std::string& filename)
 void
 TextureManager::save_textures()
 {
+#ifdef HAVE_OPENGL
+if(config->use_opengl) {
   glPixelStorei(GL_PACK_ROW_LENGTH, 0);
   glPixelStorei(GL_PACK_IMAGE_HEIGHT, 0);
   glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
   glPixelStorei(GL_PACK_SKIP_ROWS, 0);
   glPixelStorei(GL_PACK_SKIP_IMAGES, 0);
   glPixelStorei(GL_PACK_ALIGNMENT, 1);
+}
+#endif
   for(Textures::iterator i = textures.begin(); i != textures.end(); ++i) {
     save_texture(*i);
   }
@@ -165,6 +168,8 @@ TextureManager::save_texture(Texture* texture)
 {
   SavedTexture saved_texture;
   saved_texture.texture = texture;
+#ifdef HAVE_OPENGL
+if(config->use_opengl) {
   glBindTexture(GL_TEXTURE_2D, texture->get_handle());
   glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH,
                            &saved_texture.width);
@@ -180,24 +185,36 @@ TextureManager::save_texture(Texture* texture)
                       &saved_texture.wrap_s);
   glGetTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
                       &saved_texture.wrap_t);
+}
+#endif
 
   size_t pixelssize = saved_texture.width * saved_texture.height * 4;
   saved_texture.pixels = new char[pixelssize];
 
+#ifdef HAVE_OPENGL
+if(config->use_opengl) {
   glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE,
                 saved_texture.pixels);
+}
+#endif
 
   saved_textures.push_back(saved_texture);
 
-  glDeleteTextures(1, &(texture->handle));
-  texture->handle = 0;
+#ifdef HAVE_OPENGL
+if(config->use_opengl) {
+  glDeleteTextures(1, &(texture->get_handle()));
+  texture->set_handle(0);
 
   assert_gl("retrieving texture for save");
+}
+#endif
 }
 
 void
 TextureManager::reload_textures()
 {
+#ifdef HAVE_OPENGL
+if(config->use_opengl) {
   glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
   glPixelStorei(GL_UNPACK_IMAGE_HEIGHT, 0);
   glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
@@ -231,8 +248,10 @@ TextureManager::reload_textures()
                     saved_texture.wrap_t);
 
     assert_gl("setting texture_params");
-    saved_texture.texture->handle = handle;
+    saved_texture.texture->set_handle(handle);
   }
+}
+#endif
 
   saved_textures.clear();
 }

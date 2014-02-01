@@ -20,7 +20,11 @@
 #ifndef __SURFACE_HPP__
 #define __SURFACE_HPP__
 
+#include <config.h>
+
 #include <string>
+#include <SDL.h>
+#include "gameconfig.hpp"
 #include "math/vector.hpp"
 
 class Color;
@@ -30,11 +34,12 @@ class ImageTexture;
 /// bitset for drawing effects
 enum DrawingEffect {
   /** Don't apply anything */
-  NO_EFFECT       = 0x0000,
+  NO_EFFECT,
   /** Draw the Surface upside down */
-  VERTICAL_FLIP     = 0x0001,
+  VERTICAL_FLIP,
   /** Draw the Surface from left to down */
-  HORIZONTAL_FLIP   = 0x0002,
+  HORIZONTAL_FLIP,
+  NUM_EFFECTS
 };
 
 /**
@@ -47,12 +52,6 @@ class Surface
 private:
   friend class DrawingContext;
   friend class Font;
-  ImageTexture* texture;
-
-  float uv_left;
-  float uv_top;
-  float uv_right;
-  float uv_bottom;
 
   void draw(float x, float y, float alpha, float angle, const Color& color, const Blend& blend, DrawingEffect effect) const;
   void draw(float x, float y, float alpha, DrawingEffect effect) const;
@@ -60,8 +59,36 @@ private:
                  float width, float height,
                  float alpha, DrawingEffect effect) const;
 
-  float width;
-  float height;
+  ImageTexture* texture;
+#ifdef HAVE_OPENGL
+  bool use_opengl;
+  union
+  {
+    struct
+    {
+      float uv_left;
+      float uv_top;
+      float uv_right;
+      float uv_bottom;
+
+      float width;
+      float height;
+    } opengl;
+#else
+  struct
+  {
+#endif
+    struct
+    {
+      bool flipx;
+      int offsetx; /**< Region in ::surface to be used for blitting */
+      int offsety; /**< Region in ::surface to be used for blitting */
+      int width;   /**< Region in ::surface to be used for blitting */
+      int height;  /**< Region in ::surface to be used for blitting */
+    } sdl;
+  } surface;
+  mutable SDL_Surface *transforms[NUM_EFFECTS]; /**< Cache for pre-transformed surfaces */
+
 public:
   Surface(const std::string& file);
   Surface(const std::string& file, int x, int y, int w, int h);
@@ -75,12 +102,30 @@ public:
 
   float get_width() const
   {
-    return width;
+#ifdef HAVE_OPENGL
+    if(use_opengl)
+    {
+      return surface.opengl.width;
+    }
+    else
+#endif
+    {
+      return surface.sdl.width;
+    }
   }
 
   float get_height() const
   {
-    return height;
+#ifdef HAVE_OPENGL
+    if(use_opengl)
+    {
+      return surface.opengl.height;
+    }
+    else
+#endif
+    {
+      return surface.sdl.height;
+    }
   }
 
   /**

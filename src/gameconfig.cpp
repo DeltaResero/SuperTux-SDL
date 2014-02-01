@@ -37,6 +37,9 @@ Config* config = 0;
 Config::Config()
 {
   use_fullscreen = true;
+#ifdef HAVE_OPENGL
+  use_opengl = true;
+#endif
   show_fps = false;
   sound_enabled = true;
   music_enabled = true;
@@ -69,6 +72,9 @@ Config::load()
   const lisp::Lisp* config_video_lisp = config_lisp->get_lisp("video");
   if(config_video_lisp) {
     config_video_lisp->get("fullscreen", use_fullscreen);
+#ifdef HAVE_OPENGL
+    config_video_lisp->get("opengl", use_opengl);
+#endif
     config_video_lisp->get("width", screenwidth);
     config_video_lisp->get("height", screenheight);
   }
@@ -97,6 +103,9 @@ Config::save()
 
   writer.start_list("video");
   writer.write_bool("fullscreen", use_fullscreen);
+#ifdef HAVE_OPENGL
+  writer.write_bool("opengl", use_opengl);
+#endif
   writer.write_int("width", screenwidth);
   writer.write_int("height", screenheight);
   writer.end_list("video");

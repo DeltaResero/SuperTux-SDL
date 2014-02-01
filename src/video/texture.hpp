@@ -20,8 +20,14 @@
 #ifndef __TEXTURE_HPP__
 #define __TEXTURE_HPP__
 
+#include <config.h>
+
+#include <assert.h>
+
 #include <SDL.h>
-#include <GL/gl.h>
+
+#include "gameconfig.hpp"
+#include "glutil.hpp"
 
 /**
  * This class is a wrapper around a texture handle. It stores the texture width
@@ -31,29 +37,82 @@
 class Texture
 {
 protected:
-  friend class TextureManager;
+#ifdef HAVE_OPENGL
+bool use_opengl;
+union
+{
+struct
+{
   GLuint handle;
   unsigned int width;
   unsigned int height;
+} opengl;
+#else
+struct
+{
+#endif
+  SDL_Surface *sdl;
+} surface;
 
 public:
   Texture(unsigned int width, unsigned int height, GLenum glformat);
-  Texture(SDL_Surface* surface, GLenum glformat);
+  Texture(SDL_Surface* sdlsurface, GLenum glformat);
   virtual ~Texture();
 
-  GLuint get_handle() const
+#ifdef HAVE_OPENGL
+  const GLuint &get_handle() const {
+    assert(use_opengl);
+    return surface.opengl.handle;
+  }
+
+  void set_handle(GLuint handle) {
+    assert(use_opengl);
+    surface.opengl.handle = handle;
+  }
+#endif
+
+  SDL_Surface *get_surface() const
   {
-    return handle;
+#ifdef HAVE_OPENGL
+    assert(!use_opengl);
+#endif
+    return surface.sdl;
+  }
+
+  void set_surface(SDL_Surface *sdlsurface)
+  {
+#ifdef HAVE_OPENGL
+    assert(!use_opengl);
+#endif
+    surface.sdl = sdlsurface;
   }
 
   unsigned int get_width() const
   {
-    return width;
+#ifdef HAVE_OPENGL
+    if(use_opengl)
+    {
+      return surface.opengl.width;
+    }
+    else
+#endif
+    {
+      return surface.sdl->w;
+    }
   }
 
   unsigned int get_height() const
   {
-    return height;
+#ifdef HAVE_OPENGL
+    if(use_opengl)
+    {
+      return surface.opengl.height;
+    }
+    else
+#endif
+    {
+      return surface.sdl->h;
+    }
   }
 
 private:

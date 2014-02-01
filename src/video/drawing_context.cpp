@@ -23,7 +23,6 @@
 #include <cassert>
 #include <iostream>
 #include <SDL_image.h>
-#include <GL/gl.h>
 
 #include "drawing_context.hpp"
 #include "surface.hpp"
@@ -49,6 +48,7 @@ DrawingContext::DrawingContext()
 {
   screen = SDL_GetVideoSurface();
 
+#ifdef HAVE_OPENGL
   lightmap_width = screen->w / LIGHTMAP_DIV;
   lightmap_height = screen->h / LIGHTMAP_DIV;
   unsigned int width = next_po2(lightmap_width);
@@ -59,14 +59,17 @@ DrawingContext::DrawingContext()
   lightmap_uv_right = static_cast<float>(lightmap_width) / static_cast<float>(width);
   lightmap_uv_bottom = static_cast<float>(lightmap_height) / static_cast<float>(height);
   texture_manager->register_texture(lightmap);
+#endif
 
   requests = &drawing_requests;
 }
 
 DrawingContext::~DrawingContext()
 {
+#ifdef HAVE_OPENGL
   texture_manager->remove_texture(lightmap);
   delete lightmap;
+#endif
 }
 
 void
@@ -261,6 +264,9 @@ DrawingContext::get_light(DrawingRequest& request)
 {
   GetLightRequest* getlightrequest = (GetLightRequest*) request.request_data;
 
+#ifdef HAVE_OPENGL
+  if(config->use_opengl)
+  {
   float pixels[3];
   for( int i = 0; i<3; i++)
     pixels[i] = 0.0f; //set to black
@@ -269,7 +275,19 @@ DrawingContext::get_light(DrawingRequest& request)
   glReadPixels((GLint) request.pos.x / 4, 600-(GLint)request.pos.y / 4, 1, 1, GL_RGB, GL_FLOAT, pixels);
   *(getlightrequest->color_ptr) = Color( pixels[0], pixels[1], pixels[2]);
   //printf("get_light %f/%f r%f g%f b%f\n", request.pos.x, request.pos.y, pixels[0], pixels[1], pixels[2]);
-
+  }
+  else
+#endif
+  {
+    // FIXME: implement properly for SDL
+    static int i = 0;
+    i += 1; i &= 0xFFFF;
+    if (i & 0x8000) {
+      *(getlightrequest->color_ptr) = Color(0.0f, 0.0f, 0.0f);
+    } else {
+      *(getlightrequest->color_ptr) = Color(1.0f, 1.0f, 1.0f);
+    }
+  }
   delete getlightrequest;
 }
 
@@ -295,6 +313,9 @@ DrawingContext::draw_gradient(DrawingRequest& request)
   const Color& top = gradientrequest->top;
   const Color& bottom = gradientrequest->bottom;
 
+#ifdef HAVE_OPENGL
+if(config->use_opengl)
+{
   glDisable(GL_TEXTURE_2D);
   glBegin(GL_QUADS);
   glColor4f(top.red, top.green, top.blue, top.alpha);
@@ -306,6 +327,36 @@ DrawingContext::draw_gradient(DrawingRequest& request)
   glEnd();
   glEnable(GL_TEXTURE_2D);
 
+}
+else
+#endif
+{
+  for(int y = 0;y < screen->h;++y)
+  {
+    Uint8 r = (Uint8)((((float)(top.red-bottom.red)/(0-screen->h)) * y + top.red) * 255);
+    Uint8 g = (Uint8)((((float)(top.green-bottom.green)/(0-screen->h)) * y + top.green) * 255);
+    Uint8 b = (Uint8)((((float)(top.blue-bottom.blue)/(0-screen->h)) * y + top.blue) * 255);
+    Uint8 a = (Uint8)((((float)(top.alpha-bottom.alpha)/(0-screen->h)) * y + top.alpha) * 255);
+    Uint32 color = SDL_MapRGB(screen->format, r, g, b);
+
+    SDL_Rect rect;
+    rect.x = 0;
+    rect.y = y;
+    rect.w = screen->w;
+    rect.h = 1;
+
+    if(a == SDL_ALPHA_OPAQUE) {
+      SDL_FillRect(screen, &rect, color);
+    } else if(a != SDL_ALPHA_TRANSPARENT) {
+      SDL_Surface *temp = SDL_CreateRGBSurface(screen->flags, rect.w, rect.h, screen->format->BitsPerPixel, screen->format->Rmask, screen->format->Gmask, screen->format->Bmask, screen->format->Amask);
+
+      SDL_FillRect(temp, 0, color);
+      SDL_SetAlpha(temp, SDL_SRCALPHA, a);
+      SDL_BlitSurface(temp, 0, screen, &rect);
+      SDL_FreeSurface(temp);
+    }
+  }
+}
   delete gradientrequest;
 }
 
@@ -325,6 +376,9 @@ DrawingContext::draw_filled_rect(DrawingRequest& request)
 {
   FillRectRequest* fillrectrequest = (FillRectRequest*) request.request_data;
 
+#ifdef HAVE_OPENGL
+if(config->use_opengl)
+{
   float x = request.pos.x;
   float y = request.pos.y;
   float w = fillrectrequest->size.x;
@@ -341,13 +395,57 @@ DrawingContext::draw_filled_rect(DrawingRequest& request)
   glVertex2f(x, y+h);
   glEnd();
   glEnable(GL_TEXTURE_2D);
+}
+else
+#endif
+{
+  float xfactor = (float) config->screenwidth / SCREEN_WIDTH;
+  float yfactor = (float) config->screenheight / SCREEN_HEIGHT;
+  int numerator;
+  int denominator;
+  if(xfactor < yfactor)
+  {
+    numerator = config->screenwidth;
+    denominator = SCREEN_WIDTH;
+  }
+  else
+  {
+    numerator = config->screenheight;
+    denominator = SCREEN_HEIGHT;
+  }
 
+  SDL_Rect rect;
+  rect.x = (Sint16)request.pos.x * numerator / denominator;
+  rect.y = (Sint16)request.pos.y * numerator / denominator;
+  rect.w = (Uint16)fillrectrequest->size.x * numerator / denominator;
+  rect.h = (Uint16)fillrectrequest->size.y * numerator / denominator;
+  Uint8 r = static_cast<Uint8>(fillrectrequest->color.red * 255);
+  Uint8 g = static_cast<Uint8>(fillrectrequest->color.green * 255);
+  Uint8 b = static_cast<Uint8>(fillrectrequest->color.blue * 255);
+  Uint8 a = static_cast<Uint8>(fillrectrequest->color.alpha * 255);
+  Uint32 color = SDL_MapRGB(screen->format, r, g, b);
+  if(a == SDL_ALPHA_OPAQUE) {
+    SDL_FillRect(screen, &rect, color);
+  } else if(a != SDL_ALPHA_TRANSPARENT) {
+    SDL_Surface *temp = SDL_CreateRGBSurface(screen->flags, rect.w, rect.h, screen->format->BitsPerPixel, screen->format->Rmask, screen->format->Gmask, screen->format->Bmask, screen->format->Amask);
+
+    SDL_FillRect(temp, 0, color);
+    SDL_SetAlpha(temp, SDL_SRCALPHA, a);
+    SDL_BlitSurface(temp, 0, screen, &rect);
+    SDL_FreeSurface(temp);
+  }
+}
   delete fillrectrequest;
 }
 
 void
+#ifdef HAVE_OPENGL
 DrawingContext::draw_lightmap(DrawingRequest& request)
+#else
+DrawingContext::draw_lightmap(DrawingRequest&)
+#endif
 {
+#ifdef HAVE_OPENGL
   const Texture* texture = reinterpret_cast<Texture*> (request.request_data);
 
   // multiple the lightmap with the framebuffer
@@ -371,6 +469,7 @@ DrawingContext::draw_lightmap(DrawingRequest& request)
   glEnd();
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+#endif
 }
 
 void
@@ -389,6 +488,9 @@ DrawingContext::do_drawing()
 
   // PART1: create lightmap
   if(use_lightmap) {
+#ifdef HAVE_OPENGL
+  if(config->use_opengl)
+  {
     glViewport(0, screen->h - lightmap_height, lightmap_width, lightmap_height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -412,6 +514,12 @@ DrawingContext::do_drawing()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glEnable(GL_BLEND);
+  }
+  else
+#endif
+  {
+    // FIXME: SDL alternative
+  }
 
     // add a lightmap drawing request into the queue
     DrawingRequest request;
@@ -424,9 +532,23 @@ DrawingContext::do_drawing()
   //glClear(GL_COLOR_BUFFER_BIT);
   handle_drawing_requests(drawing_requests);
   drawing_requests.clear();
-  assert_gl("drawing");
+#ifdef HAVE_OPENGL
+  if(config->use_opengl)
+  {
+    assert_gl("drawing");
+  }
+#endif
 
-  SDL_GL_SwapBuffers();
+#ifdef HAVE_OPENGL
+  if(config->use_opengl)
+  {
+    SDL_GL_SwapBuffers();
+  }
+  else
+#endif
+  {
+    SDL_Flip(screen);
+  }
 }
 
 void

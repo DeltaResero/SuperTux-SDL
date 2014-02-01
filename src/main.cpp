@@ -35,7 +35,6 @@
 #include <physfs.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <GL/gl.h>
 
 #include "gameconfig.hpp"
 #include "resources.hpp"
@@ -334,7 +333,11 @@ void init_video()
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
   SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
 
-  int flags = SDL_OPENGL;
+#ifdef HAVE_OPENGL
+  int flags = config->use_opengl ? SDL_OPENGL : SDL_SWSURFACE;
+#else
+  int flags = SDL_SWSURFACE;
+#endif
   if(config->use_fullscreen)
     flags |= SDL_FULLSCREEN;
   int width = config->screenwidth;
@@ -364,6 +367,9 @@ void init_video()
   }
 #endif
 
+#ifdef HAVE_OPENGL
+if(config->use_opengl)
+{
   // setup opengl state and transform
   glDisable(GL_DEPTH_TEST);
   glDisable(GL_CULL_FACE);
@@ -375,12 +381,14 @@ void init_video()
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   // logical resolution here not real monitor resolution
-  glOrtho(0, 800, 600, 0, -1.0, 1.0);
+  glOrtho(0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, -1.0, 1.0);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glTranslatef(0, 0, 0);
 
   check_gl_error("Setting up view matrices");
+}
+#endif
 
   if(texture_manager != NULL)
     texture_manager->reload_textures();
