@@ -20,6 +20,7 @@
 #define __MAINLOOP_HPP__
 
 #include <memory>
+#include <cstddef>
 #include <vector>
 #include "scripting/thread_queue.hpp"
 
