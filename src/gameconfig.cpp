@@ -44,8 +44,8 @@ Config::Config()
   console_enabled = false;
   random_seed = 0;          // set by time(), by default (unless in config)
 
-  screenwidth = 800;
-  screenheight = 600;
+  screenwidth = 640;
+  screenheight = 480;
   aspect_ratio = -1;       // autodetect
 
   enable_script_debugger = false;

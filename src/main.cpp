@@ -414,7 +414,7 @@ void init_video()
     }
 */
   }
-
+#if 0
   // use aspect ratio to calculate logical resolution
   if (aspect_ratio > 1) {
     SCREEN_WIDTH  = static_cast<int> (600 * aspect_ratio + 0.5);
@@ -423,6 +423,9 @@ void init_video()
     SCREEN_WIDTH  = 600;
     SCREEN_HEIGHT = static_cast<int> (600 * 1/aspect_ratio + 0.5);
   }
+#endif
+  SCREEN_WIDTH = 640;
+  SCREEN_HEIGHT = 480;
 
   context_pointer->init_renderer();
   screen = SDL_GetVideoSurface();
