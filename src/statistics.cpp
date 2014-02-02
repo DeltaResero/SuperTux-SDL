@@ -152,15 +152,15 @@ Statistics::draw_worldmap_info(DrawingContext& context)
   switch (display_stat)
   {
     case 0:
-      snprintf(caption_buf, sizeof(caption_buf), _("Max coins collected:"));
+      snprintf(caption_buf, sizeof(caption_buf), "%s", _("Max coins collected:"));
       snprintf(stat_buf, sizeof(stat_buf), "%d/%d", coins, total_coins);
       break;
     case 1:
-      snprintf(caption_buf, sizeof(caption_buf), _("Max fragging:"));
+      snprintf(caption_buf, sizeof(caption_buf), "%s", _("Max fragging:"));
       snprintf(stat_buf, sizeof(stat_buf), "%d/%d", badguys, total_badguys);
       break;
     case 2:
-      snprintf(caption_buf, sizeof(caption_buf), _("Min time needed:"));
+      snprintf(caption_buf, sizeof(caption_buf),"%s", _("Min time needed:"));
       {
 	int csecs = (int)(time * 100);
 	int mins = (int)(csecs / 6000);
@@ -169,7 +169,7 @@ Statistics::draw_worldmap_info(DrawingContext& context)
       }
       break;
     case 3:
-      snprintf(caption_buf, sizeof(caption_buf), _("Max secrets found:"));
+      snprintf(caption_buf, sizeof(caption_buf), "%s", _("Max secrets found:"));
       snprintf(stat_buf, sizeof(stat_buf), "%d/%d", secrets, total_secrets);
       break;
     default:
