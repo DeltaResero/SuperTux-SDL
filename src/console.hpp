@@ -22,6 +22,7 @@
 
 #include <list>
 #include <map>
+#include <memory>
 #include <vector>
 #include <string>
 #include <sstream>

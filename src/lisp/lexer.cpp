@@ -22,6 +22,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
+#include <string.h>
 
 #include "lexer.hpp"
 

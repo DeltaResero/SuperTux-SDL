@@ -77,7 +77,7 @@ void DumpLiteral(SQObjectPtr &o)
 	switch(type(o)){
 		case OT_STRING:	scprintf(_SC("\"%s\""),_stringval(o));break;
 		case OT_FLOAT: scprintf(_SC("{%f}"),_float(o));break;
-		case OT_INTEGER: scprintf(_SC("{%d}"),_integer(o));break;
+		case OT_INTEGER: scprintf(_SC("{" _SC_INT_FMT "}"),_integer(o));break;
 		default: assert(0); break; //shut up compiler
 	}
 }
