@@ -39,6 +39,7 @@
 #include <stdexcept>
 #include "random_generator.hpp"
 #include "scripting/squirrel_util.hpp"
+#include <cstdio>
 
 RandomGenerator systemRandom;               // global random number generator
 
