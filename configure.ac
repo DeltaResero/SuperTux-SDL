@@ -1,22 +1,22 @@
 dnl ===========================================================================
-dnl    "configure.in"
+dnl     "configure.ac"
 dnl
 dnl current contact:
-dnl          SuperTux development team
+dnl           SuperTux development team
 dnl
 dnl original author:
-dnl          Duong-Khang NGUYEN
-dnl          neoneurone@users.sf.net
+dnl           Duong-Khang NGUYEN
+dnl           neoneurone@users.sf.net
 dnl ===========================================================================
 
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ([2.54])
-AC_INIT(supertux, 0.3.0)
+AC_PREREQ([2.69])
+AC_INIT([supertux], [0.3.0])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([mk/autoconf])
 AC_CANONICAL_TARGET
 
-AC_CONFIG_HEADERS(config.h)
+AC_CONFIG_HEADERS([config.h])
 
 # we don't want the stupid autoconf default -g -O2
 test ".$CXXFLAGS" = "." && CXXFLAGS=" "
@@ -26,7 +26,7 @@ CXXFLAGS="$CXXFLAGS -ffast-math"
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
-AC_PATH_PROG(AR, ar)
+AC_PATH_PROG([AR], [ar])
 if test "$AR" = "" ; then
   AC_MSG_ERROR([Couldn't find ar])
 fi
@@ -34,13 +34,13 @@ AR="$AR ru"
 
 AC_C_BIGENDIAN
 
-AC_CHECK_PROGS(XGETTEXT, [xgettext xgettext.exe])
+AC_CHECK_PROGS([XGETTEXT], [xgettext xgettext.exe])
 if test -n "$XGETTEXT" ; then
     AC_MSG_CHECKING([if xgettext supports lisp])
     if echo '(gettext "test")' | xgettext -o - -L Lisp - >& /dev/null; then
-        AC_MSG_RESULT(yes)
+        AC_MSG_RESULT([yes])
     else
-        AC_MSG_RESULT(no)
+        AC_MSG_RESULT([no])
         AC_MSG_WARN([It seems your gettext installation is too old, try updating it])
         XGETTEXT=""
     fi
@@ -54,8 +54,8 @@ AC_SUBST([BISON])
 
 dnl Checks for header files.
 AC_HEADER_DIRENT
-AC_HEADER_STDC
-AC_CHECK_HEADERS(unistd.h)
+dnl AC_HEADER_STDC is obsolete and removed
+AC_CHECK_HEADERS([unistd.h])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -73,15 +73,15 @@ dnl Give advanced users some options to play with
 VARIANT=optimize
 AC_MSG_CHECKING([for build variant])
 
-AC_ARG_ENABLE(gprof,
-              AC_HELP_STRING([--enable-gprof], [enable GNU profiling support]),
+AC_ARG_ENABLE([gprof],
+              [AS_HELP_STRING([--enable-gprof], [enable GNU profiling support])],
               [enable_gprof=$enableval], [enable_gprof=no])
 if test "$enable_gprof" = "yes"; then
     VARIANT=profile
 fi
 
-AC_ARG_ENABLE(debug,
-              AC_HELP_STRING([--enable-debug], [enable debugging mode]),
+AC_ARG_ENABLE([debug],
+              [AS_HELP_STRING([--enable-debug], [enable debugging mode])],
               [enable_debug=$enableval], [enable_debug=no])
 if test "$enable_debug" = "yes"; then
     AC_DEFINE([DEBUG], 1, [define to compile in debug checks])
@@ -92,8 +92,8 @@ fi
 AC_SUBST([VARIANT])
 AC_MSG_RESULT([$VARIANT])
 
-AC_ARG_ENABLE(sqdbg,
-              AC_HELP_STRING([--enable-sqdbg], [enable squirrel remote debugger]),
+AC_ARG_ENABLE([sqdbg],
+              [AS_HELP_STRING([--enable-sqdbg], [enable squirrel remote debugger])],
               [enable_sqdbg=$enableval], [enable_sqdbg=no])
 if test "$enable_sqdbg" = "yes"; then
     AC_DEFINE([ENABLE_SQDBG], 1, [define if sqdbg should be enabled])
@@ -111,7 +111,7 @@ dnl Check for SDL
 SDL_VERSION=1.2.4
 AM_PATH_SDL($SDL_VERSION,
             :,
-	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!]))
+        AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!]))
 
 XIPH_PATH_VORBIS(, [AC_MSG_ERROR([Please install libvorbis])])
 XIPH_PATH_OGG(, [AC_MSG_ERROR([Please install libogg])])
@@ -138,17 +138,17 @@ dnl ===========================================================================
 dnl Audio Backend Selection
 
 AC_ARG_ENABLE([openal],
-              AC_HELP_STRING([--disable-openal], [disable OpenAL support and use SDL_mixer instead]),
+              [AS_HELP_STRING([--disable-openal], [disable OpenAL support and use SDL_mixer instead])],
               [enable_openal=$enableval], [enable_openal=yes])
 
 if test "$enable_openal" = "yes"; then
     NP_FINDLIB([OPENAL], [OpenAL], [OpenAL],
-         NP_LANG_PROGRAM([#include <AL/al.h>],
-           [alcOpenDevice(0);]),
-         [], [-lopenal],
-         [],
-         [AC_MSG_ERROR([Please intall OpenAL])],
-         [], [])
+          NP_LANG_PROGRAM([#include <AL/al.h>],
+            [alcOpenDevice(0);]),
+          [], [-lopenal],
+          [],
+          [AC_MSG_ERROR([Please intall OpenAL])],
+          [], [])
     AC_DEFINE([HAVE_OPENAL], 1, [Define if OpenAL is available])
 else
     NP_FINDLIB([SDLMIXER], [SDL_mixer], [SDL_mixer >= 1.2],
@@ -175,7 +175,7 @@ if test "$no_gl" = "yes"; then
 fi
 
 dnl Checks for library functions.
-AC_CHECK_FUNCS(mkdir strdup strstr)
+AC_CHECK_FUNCS([mkdir strdup strstr])
 
 AC_INIT_JAM
 AC_CONFIG_FILES([Jamconfig])
@@ -183,7 +183,7 @@ AC_CONFIG_FILES([Jamconfig])
 AC_OUTPUT
 
 echo ""
-echo "       NOTE: This project uses jam (and not make) as build tool"
+echo "        NOTE: This project uses jam (and not make) as build tool"
 echo ""
 
 dnl EOF

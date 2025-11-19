@@ -59,6 +59,7 @@
 
 # --- Autotools / GNU Build System ---
 # Generated files that shouldn't be tracked
+Jamconfig.in
 Makefile
 Makefile.in
 .deps
