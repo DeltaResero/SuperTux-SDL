@@ -143,12 +143,15 @@ AC_ARG_ENABLE([openal],
 
 if test "$enable_openal" = "yes"; then
     NP_FINDLIB([OPENAL], [OpenAL], [OpenAL],
-          NP_LANG_PROGRAM([#include <AL/al.h>],
-            [alcOpenDevice(0);]),
-          [], [-lopenal],
-          [],
-          [AC_MSG_ERROR([Please intall OpenAL])],
-          [], [])
+         NP_LANG_PROGRAM([
+           #include <AL/al.h>
+           #include <AL/alc.h>
+         ],
+           [alcOpenDevice(0);]),
+         [], [-lopenal],
+         [],
+         [AC_MSG_ERROR([Please install OpenAL])],
+         [], [])
     AC_DEFINE([HAVE_OPENAL], 1, [Define if OpenAL is available])
 else
     NP_FINDLIB([SDLMIXER], [SDL_mixer], [SDL_mixer >= 1.2],
