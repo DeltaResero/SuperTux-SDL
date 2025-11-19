@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/moving_sprite.cpp
 //
 //  SuperTux - MovingSprite Base Class
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -16,6 +16,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
 #include <config.h>
 
 #include <stdexcept>
@@ -147,3 +148,5 @@ MovingSprite::set_action(const std::string& action, int loops, AnchorPoint ancho
   set_pos(get_anchor_pos(old_bbox, w, h, anchorPoint));
 }
 
+
+// EOF

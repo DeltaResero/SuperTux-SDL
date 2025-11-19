@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdaux.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <squirrel.h>
 #include <sqstdaux.h>
@@ -127,3 +129,5 @@ void sqstd_seterrorhandlers(HSQUIRRELVM v)
 	sq_newclosure(v,_sqstd_aux_printerror,0);
 	sq_seterrorhandler(v);
 }
+
+// EOF

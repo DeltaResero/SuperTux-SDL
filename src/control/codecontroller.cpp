@@ -1,4 +1,4 @@
-//  $Id$
+//  src/control/codecontroller.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -41,3 +41,5 @@ CodeController::update()
   for(int i = 0; i < CONTROLCOUNT; ++i)
     controls[i] = false;
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/bullet.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -106,3 +106,5 @@ Bullet::collision(GameObject& , const CollisionHit& )
 {
   return FORCE_MOVE;
 }
+
+// EOF

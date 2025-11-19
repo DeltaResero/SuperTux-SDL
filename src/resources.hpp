@@ -1,4 +1,4 @@
-//  $Id$
+//  src/resources.hpp
 //
 //  SuperTux
 //  Copyright (C) 2003 Tobias Glaesser <tobi.web@gmx.de>
@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
 #ifndef SUPERTUX_RESOURCES_H
 #define SUPERTUX_RESOURCES_H
 
@@ -36,3 +37,5 @@ void load_shared();
 void unload_shared();
 
 #endif
+
+// EOF

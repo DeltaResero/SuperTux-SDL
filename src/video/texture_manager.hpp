@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/texture_manager.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -76,3 +76,5 @@ private:
 extern TextureManager* texture_manager;
 
 #endif
+
+// EOF

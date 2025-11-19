@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/snail.cpp
 //
 //  SuperTux - Badguy "Snail"
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -246,3 +246,5 @@ Snail::collision_squished(GameObject& object)
 }
 
 IMPLEMENT_FACTORY(Snail, "snail")
+
+// EOF

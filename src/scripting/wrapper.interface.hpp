@@ -1,3 +1,5 @@
+//  src/scripting/wrapper.interface.hpp
+//
 /* This file is processed by miniswig to produce the scripting API */
 #include "display_effect.hpp"
 #include "camera.hpp"
@@ -15,3 +17,5 @@
 #include "thunderstorm.hpp"
 #include "tilemap.hpp"
 #include "ssector.hpp"
+
+// EOF

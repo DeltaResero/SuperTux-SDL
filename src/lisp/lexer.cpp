@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/lexer.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -218,3 +218,5 @@ Lexer::getNextToken()
 }
 
 } // end of namespace lisp
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/audio/sound_file.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -42,3 +42,5 @@ public:
 SoundFile* load_sound_file(const std::string& filename);
 
 #endif
+
+// EOF

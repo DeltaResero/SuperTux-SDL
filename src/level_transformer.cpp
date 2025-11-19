@@ -1,4 +1,4 @@
-//  $Id$
+//  src/level_transformer.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -34,3 +34,5 @@ LevelTransformer::transform(Level* level)
     transform_sector(level->get_sector(i));
   }
 }
+
+// EOF

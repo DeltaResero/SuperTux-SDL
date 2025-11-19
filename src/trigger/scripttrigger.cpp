@@ -1,4 +1,4 @@
-//  $Id$
+//  src/trigger/scripttrigger.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -90,3 +90,5 @@ ScriptTrigger::event(Player& , EventType type)
 }
 
 IMPLEMENT_FACTORY(ScriptTrigger, "scripttrigger");
+
+// EOF

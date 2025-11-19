@@ -1,4 +1,4 @@
-//  $Id: stumpy.cpp 3980 2006-07-10 19:55:56Z sommer $
+//  src/badguy/stumpy.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -165,3 +165,5 @@ Stumpy::collision_badguy(BadGuy& badguy, const CollisionHit& hit)
 }
 
 IMPLEMENT_FACTORY(Stumpy, "stumpy")
+
+// EOF

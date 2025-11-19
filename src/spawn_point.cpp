@@ -1,4 +1,4 @@
-//  $Id$
+//  src/spawn_point.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -56,3 +56,5 @@ SpawnPoint::SpawnPoint(const lisp::Lisp* slisp)
     if(pos.x < 0 || pos.y < 0)
         throw std::runtime_error("Invalid coordinates for spawnpoint");
 }
+
+// EOF

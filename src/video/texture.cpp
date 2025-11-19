@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/texture.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -107,3 +107,5 @@ Texture::set_texture_params()
 
   assert_gl("set texture params");
 }
+
+// EOF

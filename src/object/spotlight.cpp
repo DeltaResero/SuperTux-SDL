@@ -1,4 +1,4 @@
-//  $Id: light.cpp 3327 2006-04-13 15:02:40Z ravu_al_hemio $
+//  src/object/spotlight.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Ingo Ruhnke <grumbel@gmx.de>
@@ -96,3 +96,5 @@ Spotlight::draw(DrawingContext& context)
 }
 
 IMPLEMENT_FACTORY(Spotlight, "spotlight");
+
+// EOF

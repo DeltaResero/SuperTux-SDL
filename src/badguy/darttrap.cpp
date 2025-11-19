@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/darttrap.cpp
 //
 //  DartTrap - Shoots a Dart at regular intervals
 //  Copyright (C) 2006 Christoph Sommer <supertux@2006.expires.deltadevelopment.de>
@@ -105,3 +105,5 @@ DartTrap::fire()
 }
 
 IMPLEMENT_FACTORY(DartTrap, "darttrap")
+
+// EOF

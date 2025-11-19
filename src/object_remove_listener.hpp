@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object_remove_listener.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -33,3 +33,5 @@ public:
 };
 
 #endif
+
+// EOF

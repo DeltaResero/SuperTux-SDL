@@ -1,4 +1,4 @@
-//  $Id: wind.cpp 3719 2006-06-24 13:27:29Z anmaster $
+//  src/scripting/wind.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -48,3 +48,5 @@ namespace Scripting
   }
 
 }
+
+// EOF

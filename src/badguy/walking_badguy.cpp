@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/walking_badguy.cpp
 //
 //  SuperTux - WalkingBadguy
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -137,3 +137,5 @@ WalkingBadguy::set_velocity_y(float vy)
 }
 
 
+
+// EOF

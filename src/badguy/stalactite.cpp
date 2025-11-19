@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/stalactite.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -151,3 +151,5 @@ Stalactite::deactivate()
 }
 
 IMPLEMENT_FACTORY(Stalactite, "stalactite")
+
+// EOF

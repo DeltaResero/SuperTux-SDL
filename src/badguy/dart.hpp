@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/dart.hpp
 //
 //  Dart - Your average poison dart
 //  Copyright (C) 2006 Christoph Sommer <supertux@2006.expires.deltadevelopment.de>
@@ -54,3 +54,5 @@ protected:
 };
 
 #endif
+
+// EOF

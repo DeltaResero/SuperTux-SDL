@@ -1,4 +1,4 @@
-//  $Id$
+//  src/sprite/sprite_manager.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -84,3 +84,5 @@ SpriteManager::load(const std::string& filename)
 
   return sprites[filename];
 }
+
+// EOF

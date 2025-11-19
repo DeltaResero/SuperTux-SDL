@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/texture_manager.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -236,3 +236,5 @@ TextureManager::reload_textures()
 
   saved_textures.clear();
 }
+
+// EOF

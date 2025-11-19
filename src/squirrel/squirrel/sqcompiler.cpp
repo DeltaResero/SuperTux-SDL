@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqcompiler.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -1212,3 +1214,5 @@ bool Compile(SQVM *vm,SQLEXREADFUNC rg, SQUserPointer up, const SQChar *sourcena
 	SQCompiler p(vm, rg, up, sourcename, raiseerror, lineinfo);
 	return p.Compile(out);
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/direction.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -17,9 +17,12 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #ifndef SUPERTUX_DIRECTION_H
 #define SUPERTUX_DIRECTION_H
 
 enum Direction { AUTO, LEFT, RIGHT };
 
 #endif
+
+// EOF

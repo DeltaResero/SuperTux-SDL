@@ -1,4 +1,4 @@
-//  $Id$
+//  src/trigger/door.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -161,3 +161,5 @@ Door::collision(GameObject& other, const CollisionHit& hit)
 }
 
 IMPLEMENT_FACTORY(Door, "door");
+
+// EOF

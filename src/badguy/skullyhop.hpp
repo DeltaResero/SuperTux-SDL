@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/skullyhop.hpp
 //
 //  SkullyHop - A Hopping Skull
 //  Copyright (C) 2006 Christoph Sommer <supertux@2006.expires.deltadevelopment.de>
@@ -55,3 +55,5 @@ protected:
 };
 
 #endif
+
+// EOF

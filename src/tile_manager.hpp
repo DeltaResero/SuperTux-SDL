@@ -1,4 +1,4 @@
-//  $Id$
+//  src/tile_manager.hpp
 //
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -100,3 +100,5 @@ public:
 extern TileManager* tile_manager;
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/gui/menu.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -828,3 +828,5 @@ Menu::set_active_item(int id)
     }
   }
 }
+
+// EOF

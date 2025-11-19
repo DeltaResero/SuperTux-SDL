@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/specialriser.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -56,3 +56,5 @@ SpecialRiser::draw(DrawingContext& context)
   child->draw(context);
   context.pop_transform();
 }
+
+// EOF

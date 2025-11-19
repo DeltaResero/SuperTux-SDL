@@ -1,4 +1,4 @@
-//  $Id$
+//  src/level.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -79,3 +79,5 @@ private:
 };
 
 #endif /*SUPERTUX_LEVEL_H*/
+
+// EOF

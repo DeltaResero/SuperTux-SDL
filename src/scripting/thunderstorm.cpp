@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/thunderstorm.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -70,3 +70,5 @@ namespace Scripting
   }
 
 }
+
+// EOF

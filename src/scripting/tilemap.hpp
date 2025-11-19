@@ -1,4 +1,4 @@
-//  $Id: tilemap.hpp 4063 2006-07-21 21:05:23Z anmaster $
+//  src/scripting/tilemap.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -53,3 +53,5 @@ public:
 }
 
 #endif
+
+// EOF

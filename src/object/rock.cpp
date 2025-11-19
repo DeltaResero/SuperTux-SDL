@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/rock.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -126,3 +126,5 @@ Rock::ungrab(MovingObject& , Direction dir)
 }
 
 IMPLEMENT_FACTORY(Rock, "rock");
+
+// EOF

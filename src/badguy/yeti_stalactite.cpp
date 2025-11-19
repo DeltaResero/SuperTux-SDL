@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/yeti_stalactite.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -62,3 +62,5 @@ YetiStalactite::active_update(float elapsed_time)
 }
 
 IMPLEMENT_FACTORY(YetiStalactite, "yeti_stalactite")
+
+// EOF

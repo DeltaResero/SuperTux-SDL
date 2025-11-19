@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/particles.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -102,3 +102,5 @@ Particles::draw(DrawingContext& context)
     context.draw_filled_rect((*i)->pos, Vector(size,size), color,drawing_layer);
   }
 }
+
+// EOF

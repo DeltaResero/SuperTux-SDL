@@ -1,4 +1,4 @@
-//  $Id$
+//  src/control/controller.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -77,3 +77,5 @@ Controller::update()
   for(int i = 0; i < CONTROLCOUNT; ++i)
     oldControls[i] = controls[i];
 }
+
+// EOF

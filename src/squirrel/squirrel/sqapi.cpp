@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqapi.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -1201,3 +1203,5 @@ void sq_free(void *p,SQUnsignedInteger size)
 {
 	SQ_FREE(p,size);
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/bouncing_snowball.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -88,3 +88,5 @@ BouncingSnowball::collision_badguy(BadGuy& , const CollisionHit& hit)
 }
 
 IMPLEMENT_FACTORY(BouncingSnowball, "bouncingsnowball")
+
+// EOF

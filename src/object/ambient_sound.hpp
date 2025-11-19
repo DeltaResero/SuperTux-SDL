@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/ambient_sound.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -102,3 +102,5 @@ private:
 };
 
 #endif
+
+// EOF

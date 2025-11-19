@@ -1,4 +1,4 @@
-// src/audio/sdl_sound_source.hpp
+//  src/audio/sdl_sound_source.hpp
 //
 //  SuperTux
 //  Copyright (C) 2025 DeltaResero

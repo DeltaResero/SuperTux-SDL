@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/ambient_sound.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -240,3 +240,5 @@ AmbientSound::get_pos_y() const
 }
 
 IMPLEMENT_FACTORY(AmbientSound, "ambient_sound");
+
+// EOF

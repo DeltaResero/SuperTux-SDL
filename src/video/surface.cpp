@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/surface.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -229,3 +229,5 @@ Surface::draw_part(float src_x, float src_y, float dst_x, float dst_y,
               dst_x + width, dst_y + height,
               uv_left, uv_top, uv_right, uv_bottom, effect);
 }
+
+// EOF

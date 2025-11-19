@@ -1,4 +1,4 @@
-//  $Id$
+//  src/gui/mousecursor.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -84,3 +84,5 @@ void MouseCursor::draw(DrawingContext& context)
   context.draw_surface_part(cursor, Vector(0, h*cur_state),
           Vector(w, h), Vector(x-mid_x, y-mid_y), LAYER_GUI+100);
 }
+
+// EOF

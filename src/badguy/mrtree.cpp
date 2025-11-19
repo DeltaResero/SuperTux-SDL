@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/mrtree.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -100,3 +100,5 @@ MrTree::collision_squished(GameObject& object)
 }
 
 IMPLEMENT_FACTORY(MrTree, "mrtree")
+
+// EOF

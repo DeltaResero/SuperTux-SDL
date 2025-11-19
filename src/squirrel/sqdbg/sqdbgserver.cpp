@@ -1,3 +1,5 @@
+//  src/squirrel/sqdbg/sqdbgserver.cpp
+//
 #include <squirrel.h>
 #include <assert.h>
 #include <sqstdblob.h>
@@ -632,3 +634,5 @@ const SQChar *SQDbgServer::escape_xml(const SQChar *s)
 	return temp;
 
 }
+
+// EOF

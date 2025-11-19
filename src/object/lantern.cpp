@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/lantern.cpp
 //
 //  SuperTux - Lantern
 //  Copyright (C) 2006 Wolfgang Becker <uafr@gmx.de>
@@ -67,3 +67,5 @@ Lantern::draw(DrawingContext& context){
 }
 
 IMPLEMENT_FACTORY(Lantern, "lantern");
+
+// EOF

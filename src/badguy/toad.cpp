@@ -1,4 +1,4 @@
-//  $Id: toad.cpp 4192 2006-08-16 23:25:39Z sommer $
+//  src/badguy/toad.cpp
 //
 //  Toad - A jumping toad
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #include <config.h>
 
 #include "toad.hpp"
@@ -162,3 +163,5 @@ Toad::active_update(float elapsed_time)
 }
 
 IMPLEMENT_FACTORY(Toad, "toad")
+
+// EOF

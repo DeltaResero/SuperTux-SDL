@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/path_walker.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -150,3 +150,5 @@ PathWalker::goback_node()
   next_node_nr = 0;
   walking_speed = 0;
 }
+
+// EOF

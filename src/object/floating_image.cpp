@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/floating_image.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -73,3 +73,5 @@ FloatingImage::draw(DrawingContext& context)
 
   context.pop_transform();
 }
+
+// EOF

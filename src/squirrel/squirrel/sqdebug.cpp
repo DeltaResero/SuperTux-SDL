@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqdebug.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -97,3 +99,5 @@ void SQVM::Raise_ParamTypeError(SQInteger nparam,SQInteger typemask,SQInteger ty
 	}
 	Raise_Error(_SC("parameter %d has an invalid type '%s' ; expected: '%s'"), nparam, IdType2Name((SQObjectType)type), _stringval(exptypes));
 }
+
+// EOF

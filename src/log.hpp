@@ -1,4 +1,4 @@
-//  $Id$
+//  src/log.hpp
 //
 //  SuperTux Debug Helper Functions
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #ifndef __SUPERTUX_MSG_H__
 #define __SUPERTUX_MSG_H__
 
@@ -85,3 +86,5 @@ class Rect;
 std::ostream& operator<< (std::ostream& str, const Rect& rect);
 
 #endif
+
+// EOF

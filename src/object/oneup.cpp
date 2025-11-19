@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/oneup.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -52,3 +52,5 @@ OneUp::collision(GameObject& other, const CollisionHit& )
   }
   return FORCE_MOVE;
 }
+
+// EOF

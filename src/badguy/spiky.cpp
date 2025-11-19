@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/spiky.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -50,3 +50,5 @@ Spiky::is_freezable() const
 }
 
 IMPLEMENT_FACTORY(Spiky, "spiky")
+
+// EOF

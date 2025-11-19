@@ -1,3 +1,5 @@
+//  src/tinygettext/findlocale.cpp
+//
 /*
  findlocale-0.46.tar.gz from http://icculus.org/~aspirin/findlocale/
 
@@ -520,3 +522,5 @@ FL_FreeLocale(FL_Locale **locale) {
     }
   }
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/infoblock.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -60,3 +60,5 @@ InfoBlock::hit(Player& )
 }
 
 IMPLEMENT_FACTORY(InfoBlock, "infoblock")
+
+// EOF

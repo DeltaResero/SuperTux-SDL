@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/flower.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -77,3 +77,5 @@ Flower::collision(GameObject& other, const CollisionHit& )
   remove_me();
   return ABORT_MOVE;
 }
+
+// EOF

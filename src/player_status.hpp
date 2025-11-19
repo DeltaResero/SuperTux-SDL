@@ -1,4 +1,4 @@
-//  $Id$
+//  src/player_status.hpp
 //
 //  SuperTux
 //  Copyright (C) 2003 Tobias Glaesser <tobi.web@gmx.de>
@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
 #ifndef SUPERTUX_PLAYERSTATUS_H
 #define SUPERTUX_PLAYERSTATUS_H
 
@@ -77,3 +78,5 @@ private:
 extern PlayerStatus* player_status;
 
 #endif
+
+// EOF

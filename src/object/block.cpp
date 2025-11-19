@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/block.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -355,3 +355,5 @@ Brick::try_break(bool playerhit)
 }
 
 //IMPLEMENT_FACTORY(Brick, "brick");
+
+// EOF

@@ -1,3 +1,5 @@
+//  src/gettext.hpp
+//
 /*
    This program is free software; you can redistribute it and/or modify it
    under the terms of the GNU Library General Public License as published
@@ -36,3 +38,5 @@ static inline const char* N_(const char* id, const char* id2, int num)
 }
 
 #endif /* _LIBGETTEXT_H */
+
+// EOF

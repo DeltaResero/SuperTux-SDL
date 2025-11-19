@@ -1,4 +1,4 @@
-//  $Id$
+//  src/gui/button.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -255,3 +255,5 @@ bool ButtonGroup::is_hover()
 {
 return mouse_hover;
 }
+
+// EOF

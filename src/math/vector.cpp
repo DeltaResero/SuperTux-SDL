@@ -1,4 +1,4 @@
-//  $Id$
+//  src/math/vector.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -32,3 +32,5 @@ float Vector::norm() const
 {
   return sqrt(x*x + y*y);
 }
+
+// EOF

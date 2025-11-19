@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/gradient.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -101,3 +101,5 @@ Gradient::draw(DrawingContext& context)
 }
 
 IMPLEMENT_FACTORY(Gradient, "gradient");
+
+// EOF

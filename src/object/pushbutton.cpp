@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/pushbutton.cpp
 //
 //  SuperTux - PushButton running a script
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -81,3 +81,5 @@ PushButton::collision(GameObject& other, const CollisionHit& hit)
 
 IMPLEMENT_FACTORY(PushButton, "pushbutton");
 
+
+// EOF

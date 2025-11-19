@@ -1,3 +1,5 @@
+//  src/squirrel/sqdbg/sqrdbg.cpp
+//
 /*
 	see copyright notice in sqrdbg.h
 */
@@ -164,3 +166,5 @@ SQRESULT sq_rdbg_shutdown(HSQREMOTEDBG rdbg)
 #endif
 	return SQ_OK;
 }
+
+// EOF

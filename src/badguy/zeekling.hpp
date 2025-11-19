@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/zeekling.hpp
 //
 //  Zeekling - flyer that swoops down when she spots the player
 //  Copyright (C) 2005 Matthias Braun <matze@braunis.de>
@@ -61,3 +61,5 @@ private:
 };
 
 #endif
+
+// EOF

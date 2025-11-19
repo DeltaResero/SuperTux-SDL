@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqobject.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -512,3 +514,5 @@ void SQUserData::Mark(SQCollectable **chain){
 void SQCollectable::UnMark() { _uiRef&=~MARK_FLAG; }
 
 #endif
+
+// EOF

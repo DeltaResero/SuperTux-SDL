@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/coin.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -35,3 +35,5 @@ public:
 };
 
 #endif
+
+// EOF

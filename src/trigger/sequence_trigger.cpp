@@ -1,4 +1,4 @@
-//  $Id$
+//  src/trigger/sequence_trigger.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -73,3 +73,5 @@ SequenceTrigger::event(Player& , EventType type)
 }
 
 IMPLEMENT_FACTORY(SequenceTrigger, "sequencetrigger")
+
+// EOF

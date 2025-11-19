@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/candle.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -115,3 +115,5 @@ Candle::set_burning(bool burning)
 }
 
 IMPLEMENT_FACTORY(Candle, "candle");
+
+// EOF

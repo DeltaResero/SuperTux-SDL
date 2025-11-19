@@ -1,4 +1,4 @@
-//  $Id$
+//  src/tinygettext/tinygettext.cpp
 //
 //  TinyGetText
 //  Copyright (C) 2006 Ingo Ruhnke <grumbel@gmx.de>
@@ -771,3 +771,5 @@ void read_po_file(Dictionary& dict_, std::istream& in)
 } // namespace TinyGetText
 
 /* EOF */
+
+// EOF

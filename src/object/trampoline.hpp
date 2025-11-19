@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/trampoline.hpp
 //
 //  SuperTux - Trampolin
 //  Copyright (C) 2006 Wolfgang Becker <uafr@gmx.de>
@@ -47,3 +47,5 @@ private:
 };
 
 #endif
+
+// EOF

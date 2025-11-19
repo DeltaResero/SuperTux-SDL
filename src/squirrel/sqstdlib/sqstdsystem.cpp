@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdsystem.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <squirrel.h>
 #include <time.h>
@@ -145,3 +147,5 @@ SQInteger sqstd_register_systemlib(HSQUIRRELVM v)
 	}
 	return 1;
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/magicblock.hpp
 //
 //  SuperTux - MagicBlock
 // 
@@ -53,3 +53,5 @@ private:
 };
 
 #endif
+
+// EOF

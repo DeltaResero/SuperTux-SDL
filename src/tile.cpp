@@ -1,4 +1,4 @@
-//  $Id$
+//  src/tile.cpp
 //
 //  SuperTux
 //  Copyright (C) 2004 Tobias Glaesser <tobi.web@gmx.de>
@@ -18,6 +18,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #include <config.h>
 
 #include <cmath>
@@ -168,3 +169,5 @@ Tile::draw(DrawingContext& context, const Vector& pos, int z_pos) const
     context.draw_surface(images[0], pos, z_pos);
   }
 }
+
+// EOF

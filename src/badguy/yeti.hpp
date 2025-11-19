@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/yeti.hpp
 //
 //  SuperTux - Boss "Yeti"
 //  Copyright (C) 2005 Matthias Braun <matze@braunis.de>
@@ -66,3 +66,5 @@ private:
 };
 
 #endif
+
+// EOF

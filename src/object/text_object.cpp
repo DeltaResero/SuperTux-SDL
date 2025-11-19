@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/text_object.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -151,3 +151,5 @@ TextObject::update(float elapsed_time)
     }
   }
 }
+
+// EOF

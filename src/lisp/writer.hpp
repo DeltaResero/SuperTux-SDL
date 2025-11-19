@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/writer.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -63,3 +63,5 @@ namespace lisp
 } //namespace lisp
 
 #endif //SUPERTUX_LISPWRITER_H
+
+// EOF

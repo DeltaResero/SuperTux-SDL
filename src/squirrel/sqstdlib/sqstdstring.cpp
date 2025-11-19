@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdstring.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <squirrel.h>
 #include <sqstdstring.h>
@@ -348,3 +350,5 @@ SQInteger sqstd_register_stringlib(HSQUIRRELVM v)
 	}
 	return 1;
 }
+
+// EOF

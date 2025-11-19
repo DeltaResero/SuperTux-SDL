@@ -1,4 +1,4 @@
-//  $Id$
+//  src/trigger/secretarea_trigger.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -111,3 +111,5 @@ SecretAreaTrigger::event(Player& , EventType type)
 }
 
 IMPLEMENT_FACTORY(SecretAreaTrigger, "secretarea");
+
+// EOF

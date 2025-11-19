@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdio.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <new>
 #include <stdio.h>
@@ -408,3 +410,5 @@ SQRESULT sqstd_register_iolib(HSQUIRRELVM v)
 	sq_settop(v,top);
 	return SQ_OK;
 }
+
+// EOF

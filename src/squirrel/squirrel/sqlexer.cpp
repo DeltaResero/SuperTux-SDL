@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqlexer.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -444,3 +446,5 @@ SQInteger SQLexer::ReadID()
 	}
 	return res;
 }
+
+// EOF

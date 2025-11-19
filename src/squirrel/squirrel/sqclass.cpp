@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqclass.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -190,3 +192,5 @@ bool SQInstance::InstanceOf(SQClass *trg)
 	}
 	return false;
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/rocketexplosion.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -70,3 +70,5 @@ void
 RocketExplosion::kill_fall()
 {
 }
+
+// EOF

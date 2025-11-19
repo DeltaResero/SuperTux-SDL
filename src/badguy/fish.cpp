@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/fish.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -160,3 +160,5 @@ Fish::is_freezable() const
 }
 
 IMPLEMENT_FACTORY(Fish, "fish")
+
+// EOF

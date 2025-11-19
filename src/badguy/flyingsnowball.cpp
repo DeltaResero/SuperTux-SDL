@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/flyingsnowball.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -125,3 +125,5 @@ FlyingSnowBall::active_update(float elapsed_time)
 }
 
 IMPLEMENT_FACTORY(FlyingSnowBall, "flyingsnowball")
+
+// EOF

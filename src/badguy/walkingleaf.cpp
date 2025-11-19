@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/walkingleaf.cpp
 //
 //  SuperTux - Walking Leaf
 //  Copyright (C) 2006 Wolfgang Becker <uafr@gmx.de>
@@ -46,3 +46,5 @@ WalkingLeaf::collision_squished(GameObject& object)
 }
 
 IMPLEMENT_FACTORY(WalkingLeaf, "walkingleaf")
+
+// EOF

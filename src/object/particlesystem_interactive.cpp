@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/particlesystem_interactive.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -302,3 +302,5 @@ void CometParticleSystem::update(float elapsed_time)
     }
 #endif
 }
+
+// EOF

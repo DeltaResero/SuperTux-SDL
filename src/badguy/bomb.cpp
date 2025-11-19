@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/bomb.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -129,3 +129,5 @@ Bomb::kill_fall()
   if (state != STATE_EXPLODING)  // we don't want it exploding again
     explode();
 }
+
+// EOF

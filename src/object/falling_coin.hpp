@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/falling_coin.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Ondrej Hosek <ondra.hosek@gmail.com>
@@ -41,3 +41,5 @@ private:
 };
 
 #endif
+
+// EOF

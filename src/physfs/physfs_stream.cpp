@@ -1,4 +1,4 @@
-//  $Id$
+//  src/physfs/physfs_stream.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -170,3 +170,5 @@ OFileStream::~OFileStream()
 {
     delete rdbuf();
 }
+
+// EOF

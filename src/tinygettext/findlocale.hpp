@@ -1,3 +1,5 @@
+//  src/tinygettext/findlocale.hpp
+//
 /*
  findlocale-0.46.tar.gz from http://icculus.org/~aspirin/findlocale/
 
@@ -61,3 +63,5 @@ FL_Success FL_FindLocale(FL_Locale **locale, FL_Domain domain);
 void FL_FreeLocale(FL_Locale **locale);
 
 #endif /*__findlocale_h_*/
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/coin.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -138,3 +138,5 @@ Coin::collision(GameObject& other, const CollisionHit& )
 }
 
 IMPLEMENT_FACTORY(Coin, "coin");
+
+// EOF

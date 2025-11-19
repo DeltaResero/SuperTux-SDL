@@ -1,4 +1,4 @@
-//  $Id$
+//  src/sprite/sprite.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -226,3 +226,5 @@ Sprite::get_blend() const
 }
 
 /* EOF */
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/writer.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -184,3 +184,5 @@ Writer::indent()
 }
 
 } // end of namespace lisp
+
+// EOF

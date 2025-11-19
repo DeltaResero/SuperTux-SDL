@@ -1,4 +1,4 @@
-//  $Id: tilemap.cpp 4063 2006-07-21 21:05:23Z anmaster $
+//  src/scripting/tilemap.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -53,3 +53,5 @@ namespace Scripting
   }
 
 }
+
+// EOF

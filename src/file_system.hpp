@@ -1,4 +1,4 @@
-//  $Id$
+//  src/file_system.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -41,3 +41,5 @@ namespace FileSystem
 }
 
 #endif
+
+// EOF

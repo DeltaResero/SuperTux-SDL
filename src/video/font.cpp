@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/font.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -284,3 +284,5 @@ Font::draw_chars(Surface* pchars, const std::string& text, const Vector& pos,
     p.x += w;
   }
 }
+
+// EOF

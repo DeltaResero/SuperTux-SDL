@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/tilemap.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -334,3 +334,5 @@ TileMap::fade(float alpha, float seconds)
 }
 
 IMPLEMENT_FACTORY(TileMap, "tilemap");
+
+// EOF

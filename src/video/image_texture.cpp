@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/image_texture.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -36,3 +36,5 @@ ImageTexture::release()
 {
   texture_manager->release(this);
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/anchor_points.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -36,3 +36,5 @@ static const int ANCHOR_BOTTOM_RIGHT = 0x0022;
 }
 
 #endif
+
+// EOF

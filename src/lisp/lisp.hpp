@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/lisp.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -193,3 +193,5 @@ private:
 } // end of namespace lisp
 
 #endif
+
+// EOF

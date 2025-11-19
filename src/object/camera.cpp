@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/camera.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -329,3 +329,5 @@ Camera::update_scroll_to(float elapsed_time)
 
   translation = scroll_from + (scroll_goal - scroll_from) * scroll_to_pos;
 }
+
+// EOF

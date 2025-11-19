@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/rainsplash.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -50,3 +50,5 @@ RainSplash::draw(DrawingContext& context)
 {
    sprite->draw(context, position, LAYER_OBJECTS);
 }
+
+// EOF

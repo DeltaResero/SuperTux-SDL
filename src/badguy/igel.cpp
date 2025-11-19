@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/igel.cpp
 //
 //  SuperTux - Badguy "Igel"
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -125,3 +125,5 @@ Igel::collision_squished(GameObject& )
 }
 
 IMPLEMENT_FACTORY(Igel, "igel")
+
+// EOF

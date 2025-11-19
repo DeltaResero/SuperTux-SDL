@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/flame.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -84,3 +84,5 @@ Flame::kill_fall()
 }
 
 IMPLEMENT_FACTORY(Flame, "flame")
+
+// EOF

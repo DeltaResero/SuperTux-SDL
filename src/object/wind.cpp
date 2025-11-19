@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/wind.cpp
 //
 //  SuperTux - Wind
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -120,3 +120,5 @@ Wind::stop()
 }
 
 IMPLEMENT_FACTORY(Wind, "wind");
+
+// EOF

@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqstate.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -560,3 +562,5 @@ void StringTable::Remove(SQString *bs)
 	}
 	assert(0);//if this fail something is wrong
 }
+
+// EOF

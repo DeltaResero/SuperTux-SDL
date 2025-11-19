@@ -1,4 +1,4 @@
-//  $Id$
+//  src/options_menu.hpp
 //
 //  SuperTux
 //  Copyright (C) 2004 Tobas Glaesser <tobi.web@gmx.de>
@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
 #ifndef __OPTIONS_MENU_HPP__
 #define __OPTIONS_MENU_HPP__
 
@@ -25,3 +26,5 @@ Menu* get_options_menu();
 void free_options_menu();
 
 #endif
+
+// EOF

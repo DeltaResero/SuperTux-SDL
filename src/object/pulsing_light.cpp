@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/pulsing_light.cpp
 //
 //  SuperTux - Pulsing Light
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -57,3 +57,5 @@ PulsingLight::draw(DrawingContext& context)
   color = old_color;
 }
 
+
+// EOF

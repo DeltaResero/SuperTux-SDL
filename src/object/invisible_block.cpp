@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/invisible_block.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -74,3 +74,5 @@ InvisibleBlock::hit(Player& )
 }
 
 //IMPLEMENT_FACTORY(InvisibleBlock, "invisible_block");
+
+// EOF

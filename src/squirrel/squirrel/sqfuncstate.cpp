@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqfuncstate.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -542,3 +544,5 @@ SQFuncState::~SQFuncState()
 		PopChildState();
 	}
 }
+
+// EOF

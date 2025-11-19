@@ -1,4 +1,4 @@
-//  $Id$
+//  src/control/joystickkeyboardcontroller.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -738,3 +738,5 @@ JoystickKeyboardController::JoystickMenu::update()
   get_item_by_id((int) Controller::PEEK_RIGHT).change_input(get_button_name(
     controller->reversemap_joybutton(Controller::PEEK_RIGHT)));
 }
+
+// EOF

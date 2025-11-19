@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/dart.cpp
 //
 //  Dart - Your average poison dart
 //  Copyright (C) 2006 Christoph Sommer <supertux@2006.expires.deltadevelopment.de>
@@ -134,3 +134,5 @@ Dart::collision_player(Player& player, const CollisionHit& hit)
 }
 
 IMPLEMENT_FACTORY(Dart, "dart")
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/mrbomb.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -140,3 +140,5 @@ MrBomb::is_portable() const
 }
 
 IMPLEMENT_FACTORY(MrBomb, "mrbomb")
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/powerup.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -93,3 +93,5 @@ PowerUp::update(float elapsed_time)
 }
 
 IMPLEMENT_FACTORY(PowerUp, "powerup");
+
+// EOF

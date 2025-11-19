@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/list_iterator.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -54,3 +54,5 @@ ListIterator::next()
 }
 
 }
+
+// EOF

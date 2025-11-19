@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/scripted_object.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -55,3 +55,5 @@ public:
 }
 
 #endif
+
+// EOF

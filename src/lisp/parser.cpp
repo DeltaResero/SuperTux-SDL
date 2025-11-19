@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/parser.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -197,3 +197,5 @@ Parser::read()
 }
 
 } // end of namespace lisp
+
+// EOF

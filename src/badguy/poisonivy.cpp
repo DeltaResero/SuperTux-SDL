@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/poisonivy.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -64,3 +64,5 @@ PoisonIvy::collision_squished(GameObject& object)
 }
 
 IMPLEMENT_FACTORY(PoisonIvy, "poisonivy")
+
+// EOF

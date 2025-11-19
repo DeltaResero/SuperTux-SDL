@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/anchor_point.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -47,3 +47,5 @@ Vector get_anchor_pos(const Rect& destrect, float width, float height,
                       AnchorPoint point);
 
 #endif
+
+// EOF

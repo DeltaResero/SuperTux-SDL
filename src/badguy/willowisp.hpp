@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/willowisp.hpp
 //
 //  SuperTux - "Will-O-Wisp" Badguy
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -53,3 +53,5 @@ private:
 };
 
 #endif
+
+// EOF

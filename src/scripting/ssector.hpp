@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/ssector.hpp
 //
 //  SuperTux - Sector Scripting
 //  Copyright (C) 2006 Wolfgang Becker <uafr@gmx.de>
@@ -39,3 +39,5 @@ public:
 }
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-// $Id$
+//  src/random_generator.cpp
 //
 // A strong random number generator
 //
@@ -582,3 +582,5 @@ long RandomGenerator::random()
 
   return i;
 }
+
+// EOF

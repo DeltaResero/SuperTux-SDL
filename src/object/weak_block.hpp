@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/weak_block.hpp
 //
 //  SuperTux - Weak Block
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -60,3 +60,5 @@ private:
 };
 
 #endif
+
+// EOF

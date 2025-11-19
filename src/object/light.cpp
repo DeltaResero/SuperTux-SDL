@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/light.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -56,3 +56,5 @@ Light::draw(DrawingContext& context)
   context.pop_target();
 }
 
+
+// EOF

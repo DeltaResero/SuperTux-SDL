@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/platform.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -53,3 +53,5 @@ namespace Scripting
   }
 
 }
+
+// EOF

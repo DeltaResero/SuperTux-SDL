@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/dispenser.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -145,3 +145,5 @@ Dispenser::is_freezable() const
   return true;
 }
 IMPLEMENT_FACTORY(Dispenser, "dispenser")
+
+// EOF

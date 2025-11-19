@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/background.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -130,3 +130,5 @@ Background::draw(DrawingContext& context)
 }
 
 IMPLEMENT_FACTORY(Background, "background");
+
+// EOF

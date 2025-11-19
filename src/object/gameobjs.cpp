@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/gameobjs.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -175,3 +175,5 @@ SmokeCloud::draw(DrawingContext& context)
 {
   sprite->draw(context, position, LAYER_OBJECTS+1);
 }
+
+// EOF

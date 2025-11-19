@@ -1,4 +1,4 @@
-//  $Id$
+//  src/file_system.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -108,3 +108,5 @@ std::string normalize(const std::string& filename)
 }
 
 }
+
+// EOF

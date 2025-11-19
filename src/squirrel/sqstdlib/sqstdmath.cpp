@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdmath.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <squirrel.h>
 #include <math.h>
@@ -103,3 +105,5 @@ SQRESULT sqstd_register_mathlib(HSQUIRRELVM v)
 	sq_createslot(v,-3);
 	return SQ_OK;
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/mriceblock.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -268,3 +268,5 @@ MrIceBlock::is_portable() const
 }
 
 IMPLEMENT_FACTORY(MrIceBlock, "mriceblock")
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/time_scheduler.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #ifndef __TIME_SCHEDULER_HPP__
 #define __TIME_SCHEDULER_HPP__
 
@@ -62,3 +63,5 @@ private:
 }
 
 #endif
+
+// EOF

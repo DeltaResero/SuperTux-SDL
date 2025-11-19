@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqtable.cpp
+//
 /*
 see copyright notice in squirrel.h
 */
@@ -182,3 +184,5 @@ void SQTable::Finalize()
 	for(SQInteger i = 0;i < _numofnodes; i++) { _nodes[i].key = _null_; _nodes[i].val = _null_; }
 		SetDelegate(NULL);
 }
+
+// EOF

@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdrex.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <squirrel.h>
 #include <string.h>
@@ -630,3 +632,5 @@ SQBool sqstd_rex_getsubexp(SQRex* exp, SQInteger n, SQRexMatch *subexp)
 	*subexp = exp->_matches[n];
 	return SQTrue;
 }
+
+// EOF

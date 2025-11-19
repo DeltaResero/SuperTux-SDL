@@ -1,3 +1,5 @@
+//  src/scripting/ambient_sound.hpp
+//
 #ifndef __SCRIPTING_AMBIENT_SOUND_H__
 #define __SCRIPTING_AMBIENT_SOUND_H__
 
@@ -20,3 +22,5 @@ public:
 }
 
 #endif
+
+// EOF

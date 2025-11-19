@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/unstable_tile.hpp
 //
 //  SuperTux - Unstable Tile
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -50,3 +50,5 @@ private:
 };
 
 #endif
+
+// EOF

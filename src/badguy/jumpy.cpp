@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/jumpy.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -117,3 +117,5 @@ Jumpy::is_freezable() const
 }
 
 IMPLEMENT_FACTORY(Jumpy, "jumpy")
+
+// EOF

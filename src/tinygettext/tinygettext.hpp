@@ -1,4 +1,4 @@
-//  $Id$
+//  src/tinygettext/tinygettext.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -157,3 +157,5 @@ LanguageDef& get_language_def(const std::string& name);
 #endif
 
 /* EOF */
+
+// EOF

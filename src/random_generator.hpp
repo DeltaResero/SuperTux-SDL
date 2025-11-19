@@ -1,4 +1,4 @@
-// $Id$
+//  src/random_generator.hpp
 //
 // A strong random number generator
 //
@@ -127,3 +127,5 @@ public:
 extern RandomGenerator systemRandom;
 
 #endif //__RANDOM_GENERATOR__
+
+// EOF

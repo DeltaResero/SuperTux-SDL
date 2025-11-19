@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/firefly.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -86,3 +86,5 @@ Firefly::collision(GameObject& other, const CollisionHit& )
 }
 
 IMPLEMENT_FACTORY(Firefly, "firefly");
+
+// EOF

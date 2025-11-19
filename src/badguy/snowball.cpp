@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/snowball.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -50,3 +50,5 @@ SnowBall::collision_squished(GameObject& object)
 }
 
 IMPLEMENT_FACTORY(SnowBall, "snowball")
+
+// EOF

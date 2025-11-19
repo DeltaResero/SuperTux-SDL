@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/magicblock.cpp
 //
 //  SuperTux - MagicBlock
 //
@@ -155,3 +155,5 @@ MagicBlock::collision(GameObject& /*other*/, const CollisionHit& /*hit*/)
 }
 
 IMPLEMENT_FACTORY(MagicBlock, "magicblock");
+
+// EOF

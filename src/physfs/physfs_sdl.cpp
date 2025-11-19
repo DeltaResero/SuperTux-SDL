@@ -1,4 +1,4 @@
-//  $Id$
+//  src/physfs/physfs_sdl.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -94,3 +94,5 @@ SDL_RWops* get_physfs_SDLRWops(const std::string& filename)
     ops->close = funcClose;
     return ops;
 }
+
+// EOF

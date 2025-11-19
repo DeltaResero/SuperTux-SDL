@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/sprite_particle.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -75,3 +75,5 @@ SpriteParticle::draw(DrawingContext& context)
 {
    sprite->draw(context, position, drawing_layer);
 }
+
+// EOF

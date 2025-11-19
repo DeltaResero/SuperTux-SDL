@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/darttrap.hpp
 //
 //  DartTrap - Shoots a Dart at regular intervals
 //  Copyright (C) 2006 Christoph Sommer <supertux@2006.expires.deltadevelopment.de>
@@ -55,3 +55,5 @@ protected:
 };
 
 #endif
+
+// EOF

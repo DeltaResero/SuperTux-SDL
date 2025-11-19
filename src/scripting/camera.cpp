@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/camera.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -66,3 +66,5 @@ namespace Scripting
     camera->scroll_to(Vector(x, y), scrolltime);
   }
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/sspiky.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -48,3 +48,5 @@ protected:
 };
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/particlesystem.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -251,3 +251,5 @@ void CloudParticleSystem::update(float elapsed_time)
     particle->pos.x += particle->speed * elapsed_time;
   }
 }
+
+// EOF

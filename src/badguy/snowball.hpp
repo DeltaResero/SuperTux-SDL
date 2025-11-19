@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/snowball.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -37,3 +37,5 @@ protected:
 };
 
 #endif
+
+// EOF

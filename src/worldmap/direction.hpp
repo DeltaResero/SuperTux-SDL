@@ -1,4 +1,4 @@
-//  $Id$
+//  src/worldmap/direction.hpp
 //
 //  SuperTux - Worldmap Direction
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -16,6 +16,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
 #ifndef __WORLDMAP_DIRECTION_HPP__
 #define __WORLDMAP_DIRECTION_HPP__
 
@@ -26,3 +27,5 @@ enum Direction { D_NONE, D_WEST, D_EAST, D_NORTH, D_SOUTH };
 }
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/trampoline.cpp
 //
 //  SuperTux - Trampoline
 //  Copyright (C) 2006 Wolfgang Becker <uafr@gmx.de>
@@ -125,3 +125,5 @@ Trampoline::is_portable() const
 }
 
 IMPLEMENT_FACTORY(Trampoline, "trampoline");
+
+// EOF

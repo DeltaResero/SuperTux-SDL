@@ -1,4 +1,4 @@
-//  $Id$
+//  src/game_object.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -39,3 +39,5 @@ GameObject::~GameObject()
   }
 }
 
+
+// EOF

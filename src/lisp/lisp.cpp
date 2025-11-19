@@ -1,4 +1,4 @@
-//  $Id$
+//  src/lisp/lisp.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -97,3 +97,5 @@ Lisp::print(int indent) const
 }
 
 } // end of namespace lisp
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/zeekling.cpp
 //
 //  Zeekling - flyer that swoops down when she spots the player
 //  Copyright (C) 2005 Matthias Braun <matze@braunis.de>
@@ -194,3 +194,5 @@ Zeekling::active_update(float elapsed_time) {
 }
 
 IMPLEMENT_FACTORY(Zeekling, "zeekling")
+
+// EOF

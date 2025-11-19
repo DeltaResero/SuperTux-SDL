@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/path.hpp
 //
 //  SuperTux Path
 //  Copyright (C) 2005 Philipp <balinor@pnxs.de>
@@ -19,6 +19,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #ifndef __PATH_HPP__
 #define __PATH_HPP__
 
@@ -66,3 +67,5 @@ private:
 };
 
 #endif
+
+// EOF

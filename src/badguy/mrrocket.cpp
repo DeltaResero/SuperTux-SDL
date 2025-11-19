@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/mrrocket.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -87,3 +87,5 @@ MrRocket::collision_solid(const CollisionHit& hit)
 }
 
 IMPLEMENT_FACTORY(MrRocket, "mrrocket")
+
+// EOF

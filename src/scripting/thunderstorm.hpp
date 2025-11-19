@@ -1,4 +1,4 @@
-//  $Id: player.hpp 3962 2006-07-09 10:32:59Z matzebraun $
+//  src/scripting/thunderstorm.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -74,3 +74,5 @@ public:
 }
 
 #endif
+
+// EOF

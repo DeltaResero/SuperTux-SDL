@@ -1,3 +1,5 @@
+//  src/squirrel/sqstdlib/sqstdstream.cpp
+//
 /* see copyright notice in squirrel.h */
 #include <new>
 #include <stdio.h>
@@ -328,3 +330,5 @@ SQRESULT declare_stream(HSQUIRRELVM v,const SQChar* name,SQUserPointer typetag,c
 	sq_settop(v,top);
 	return SQ_ERROR;
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/star.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -66,3 +66,5 @@ Star::collision(GameObject& other, const CollisionHit& )
 
   return FORCE_MOVE;
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/mole_rock.cpp
 //
 //  MoleRock - Rock thrown by "Mole" Badguy
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -112,3 +112,5 @@ MoleRock::collision_player(Player& player, const CollisionHit& hit)
 }
 
 IMPLEMENT_FACTORY(MoleRock, "mole_rock")
+
+// EOF

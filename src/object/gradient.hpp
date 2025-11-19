@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/gradient.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -59,3 +59,5 @@ private:
 };
 
 #endif /*SUPERTUX_BACKGROUND_H*/
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/walkingleaf.hpp
 //
 //  SuperTux - Walking Leaf
 //  Copyright (C) 2006 Wolfgang Becker <uafr@gmx.de>
@@ -39,3 +39,5 @@ protected:
 };
 
 #endif
+
+// EOF

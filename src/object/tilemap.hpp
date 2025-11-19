@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/tilemap.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -159,3 +159,5 @@ private:
 };
 
 #endif /*SUPERTUX_TILEMAP_H*/
+
+// EOF

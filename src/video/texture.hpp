@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/texture.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -61,3 +61,5 @@ private:
 };
 
 #endif
+
+// EOF

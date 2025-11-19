@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/gameobjs.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -99,3 +99,5 @@ private:
 /* Local Variables: */
 /* mode:c++ */
 /* End: */
+
+// EOF

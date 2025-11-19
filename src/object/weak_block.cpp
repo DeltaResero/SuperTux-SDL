@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/weak_block.cpp
 //
 //  SuperTux - Weak Block
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -119,3 +119,5 @@ WeakBlock::spreadHit()
 
 
 IMPLEMENT_FACTORY(WeakBlock, "weak_block");
+
+// EOF

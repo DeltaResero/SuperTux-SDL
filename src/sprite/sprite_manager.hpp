@@ -1,4 +1,4 @@
-//  $Id$
+//  src/sprite/sprite_manager.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -46,3 +46,5 @@ private:
 extern SpriteManager* sprite_manager;
 
 #endif
+
+// EOF

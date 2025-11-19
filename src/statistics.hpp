@@ -1,4 +1,4 @@
-//  $Id$
+//  src/statistics.hpp
 //
 //  SuperTux (Statistics module)
 //  Copyright (C) 2004 Ricardo Cruz <rick2@aeiou.pt>
@@ -68,3 +68,5 @@ private:
 };
 
 #endif /*SUPERTUX_STATISTICS_H*/
+
+// EOF

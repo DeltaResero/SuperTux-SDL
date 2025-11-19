@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/path.cpp
 //
 //  SuperTux Path
 //  Copyright (C) 2005 Philipp <balinor@pnxs.de>
@@ -19,6 +19,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #include <config.h>
 
 #include "path.hpp"
@@ -133,3 +134,5 @@ Path::get_base() const
 
   return nodes[0].position;
 }
+
+// EOF

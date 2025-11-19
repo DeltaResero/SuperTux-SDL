@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/serialize.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -34,3 +34,5 @@ namespace Scripting
 }
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/falling_coin.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Ondrej Hosek <ondra.hosek@gmail.com>
@@ -51,3 +51,5 @@ FallingCoin::update(float elapsed_time)
   if (pos.y > SCREEN_HEIGHT)
     remove_me();
 }
+
+// EOF

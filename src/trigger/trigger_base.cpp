@@ -1,4 +1,4 @@
-//  $Id$
+//  src/trigger/trigger_base.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -61,3 +61,5 @@ TriggerBase::collision(GameObject& other, const CollisionHit& )
 
   return ABORT_MOVE;
 }
+
+// EOF

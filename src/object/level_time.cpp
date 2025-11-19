@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/level_time.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -94,3 +94,5 @@ LevelTime::stop()
 }
 
 IMPLEMENT_FACTORY(LevelTime, "leveltime");
+
+// EOF

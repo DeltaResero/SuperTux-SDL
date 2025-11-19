@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/level.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -66,3 +66,5 @@ namespace Scripting
     GameSession::current()->toggle_pause();
   }
 }
+
+// EOF

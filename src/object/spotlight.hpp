@@ -1,4 +1,4 @@
-//  $Id: light.hpp 3327 2006-04-13 15:02:40Z ravu_al_hemio $
+//  src/object/spotlight.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -49,3 +49,5 @@ private:
 };
 
 #endif
+
+// EOF

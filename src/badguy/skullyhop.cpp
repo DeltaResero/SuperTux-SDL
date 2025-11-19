@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/skullyhop.cpp
 //
 //  SkullyHop - A Hopping Skull
 //  Copyright (C) 2006 Christoph Sommer <supertux@2006.expires.deltadevelopment.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 //  02111-1307, USA.
+
 #include <config.h>
 
 #include "skullyhop.hpp"
@@ -148,3 +149,5 @@ SkullyHop::active_update(float elapsed_time)
 }
 
 IMPLEMENT_FACTORY(SkullyHop, "skullyhop")
+
+// EOF

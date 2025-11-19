@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/unstable_tile.cpp
 //
 //  SuperTux - Unstable Tile
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -78,3 +78,5 @@ UnstableTile::update(float elapsed_time)
 }
 
 IMPLEMENT_FACTORY(UnstableTile, "unstable_tile");
+
+// EOF

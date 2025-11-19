@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/display_effect.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -194,3 +194,5 @@ DisplayEffect::four_to_three(float fadetime)
     border_fading = border_fadetime;
   }
 }
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object/platform.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -105,3 +105,5 @@ Platform::unexpose(HSQUIRRELVM vm, SQInteger table_idx)
 }
 
 IMPLEMENT_FACTORY(Platform, "platform");
+
+// EOF

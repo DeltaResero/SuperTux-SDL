@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqbaselib.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -858,3 +860,5 @@ SQRegFunction SQSharedState::_weakref_default_delegate_funcz[] = {
 	{_SC("tostring"),default_delegate_tostring,1, _SC(".")},
 	{0,0}
 };
+
+// EOF

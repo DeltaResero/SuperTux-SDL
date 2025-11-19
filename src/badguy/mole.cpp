@@ -1,4 +1,4 @@
-//  $Id$
+//  src/badguy/mole.cpp
 //
 //  SuperTux - Mole Badguy
 //  Copyright (C) 2006 Christoph Sommer <christoph.sommer@2006.expires.deltadevelopment.de>
@@ -167,3 +167,5 @@ Mole::set_state(MoleState new_state)
 
 IMPLEMENT_FACTORY(Mole, "mole")
 
+
+// EOF

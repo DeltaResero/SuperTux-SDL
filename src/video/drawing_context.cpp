@@ -1,4 +1,4 @@
-//  $Id$
+//  src/video/drawing_context.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -537,3 +537,5 @@ DrawingContext::set_ambient_color( Color new_color )
 {
   ambient_color = new_color;
 }
+
+// EOF

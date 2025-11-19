@@ -1,3 +1,5 @@
+//  src/squirrel/squirrel/sqvm.cpp
+//
 /*
 	see copyright notice in squirrel.h
 */
@@ -1465,3 +1467,5 @@ void SQVM::dumpstack(SQInteger stackbase,bool dumpall)
 
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/worldmap/spawn_point.cpp
 //
 //  SuperTux - Worldmap Spawnpoint
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -62,3 +62,5 @@ SpawnPoint::SpawnPoint(const lisp::Lisp* slisp) : auto_dir(D_NONE)
 
 }
 
+
+// EOF

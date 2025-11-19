@@ -1,4 +1,4 @@
-//  $Id$
+//  src/scripting/functions.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -272,3 +272,5 @@ int rand()
 }
 
 }
+
+// EOF

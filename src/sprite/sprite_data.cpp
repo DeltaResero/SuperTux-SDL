@@ -1,4 +1,4 @@
-//  $Id$
+//  src/sprite/sprite_data.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -143,3 +143,5 @@ SpriteData::get_action(std::string act)
   }
   return i->second;
 }
+
+// EOF

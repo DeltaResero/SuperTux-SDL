@@ -1,4 +1,4 @@
-//  $Id$
+//  src/object_factory.cpp
 //
 //  SuperTux
 //  Copyright (C) 2004 Ricardo Cruz <rick2@aeiou.pt>
@@ -17,6 +17,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
 #include <config.h>
 
 #include <sstream>
@@ -52,3 +53,5 @@ GameObject* create_object(const std::string& name, const Vector& pos)
   std::auto_ptr<lisp::Lisp> lisp (parser.parse(lisptext));
   return create_object(name, *lisp);
 }
+
+// EOF
