@@ -24,6 +24,7 @@
 #include <list>
 #include <memory>
 #include <squirrel.h>
+#include <stdint.h>
 
 #include "direction.hpp"
 #include "math/vector.hpp"
