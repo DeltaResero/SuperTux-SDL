@@ -134,13 +134,40 @@ NP_FINDLIB([PHYSFS], [physfs], [physfs >= 1.0.0],
         [],
         [AC_MSG_ERROR([Please install physfs >= 1.0])])
 
-NP_FINDLIB([OPENAL], [OpenAL], [OpenAL],
+dnl ===========================================================================
+dnl Audio Backend Selection
+
+AC_ARG_ENABLE([openal],
+              AC_HELP_STRING([--disable-openal], [disable OpenAL support and use SDL_mixer instead]),
+              [enable_openal=$enableval], [enable_openal=yes])
+
+if test "$enable_openal" = "yes"; then
+    NP_FINDLIB([OPENAL], [OpenAL], [OpenAL],
          NP_LANG_PROGRAM([#include <AL/al.h>],
            [alcOpenDevice(0);]),
          [], [-lopenal],
          [],
          [AC_MSG_ERROR([Please intall OpenAL])],
          [], [])
+    AC_DEFINE([HAVE_OPENAL], 1, [Define if OpenAL is available])
+else
+    NP_FINDLIB([SDLMIXER], [SDL_mixer], [SDL_mixer >= 1.2],
+        NP_LANG_PROGRAM([#include <SDL_mixer.h>
+#if MIX_MAJOR_VERSION < 1
+# error SDLMix too old
+#else
+# if MIX_MAJOR_VERSION == 1
+#  if MIX_MINOR_VERSION < 2
+#   error SDLMix too old
+#  endif
+# endif
+#endif], [Mix_OpenAudio(0, 0, 0, 0);]),
+        [], [-lSDL_mixer],
+        [],
+        [AC_MSG_ERROR([Please install SDLMixer >=1.2.2])],
+        [$SDL_CFLAGS], [$SDL_LIBS])
+    AC_DEFINE([USE_SDL_MIXER], 1, [Define if SDL_mixer is used])
+fi
 
 AX_CHECK_GL
 if test "$no_gl" = "yes"; then
@@ -159,3 +186,4 @@ echo ""
 echo "       NOTE: This project uses jam (and not make) as build tool"
 echo ""
 
+dnl EOF
