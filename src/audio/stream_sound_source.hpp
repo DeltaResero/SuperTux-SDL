@@ -1,4 +1,4 @@
-//  $Id$
+//  src/audio/stream_sound_source.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -19,6 +19,10 @@
 
 #ifndef __STREAM_SOUND_SOURCE_H__
 #define __STREAM_SOUND_SOURCE_H__
+
+#include <config.h>
+
+#ifdef HAVE_OPENAL
 
 #include <stdio.h>
 #include <SDL.h>
@@ -69,3 +73,7 @@ private:
 };
 
 #endif
+
+#endif
+
+// EOF

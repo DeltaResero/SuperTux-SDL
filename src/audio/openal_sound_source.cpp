@@ -1,4 +1,4 @@
-//  $Id$
+//  src/audio/openal_sound_source.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -17,6 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <config.h>
+
+#ifdef HAVE_OPENAL
 
 #include "openal_sound_source.hpp"
 #include "sound_manager.hpp"
@@ -103,3 +105,7 @@ OpenALSoundSource::set_rollof_factor(float factor)
 {
   alSourcef(source, AL_ROLLOFF_FACTOR, factor);
 }
+
+#endif
+
+// EOF

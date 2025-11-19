@@ -1,7 +1,8 @@
-//  $Id$
+//  src/audio/sound_manager.hpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
+//  Copyright (C) 2025 DeltaResero
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -23,8 +24,15 @@
 #include <vector>
 #include <map>
 
+#ifdef HAVE_OPENAL
 #include <AL/alc.h>
 #include <AL/al.h>
+#endif
+
+#ifdef USE_SDL_MIXER
+#include <SDL_mixer.h>
+#endif
+
 #include "math/vector.hpp"
 
 class SoundFile;
@@ -69,9 +77,7 @@ public:
   bool is_music_enabled() { return music_enabled; }
   bool is_sound_enabled() { return sound_enabled; }
 
-  bool is_audio_enabled() {
-			return device != 0 && context != 0;
-  }
+  bool is_audio_enabled();
 
   void update();
 
@@ -84,10 +90,25 @@ public:
    */
   void remove_from_update( StreamSoundSource* sss );
 
+#ifdef USE_SDL_MIXER
+  // Needed by MusicRef
+  struct MusicResource {
+      ~MusicResource();
+      SoundManager* manager;
+      Mix_Music* music;
+      int refcount;
+  };
+  void free_music(MusicResource* music);
+#endif
+
 private:
   friend class OpenALSoundSource;
   friend class StreamSoundSource;
+#ifdef USE_SDL_MIXER
+  friend class MusicRef;
+#endif
 
+#ifdef HAVE_OPENAL
   static ALuint load_file_into_buffer(SoundFile* file);
   static ALenum get_sample_format(SoundFile* file);
 
@@ -97,22 +118,37 @@ private:
 
   ALCdevice* device;
   ALCcontext* context;
-  bool sound_enabled;
 
   typedef std::map<std::string, ALuint> SoundBuffers;
   SoundBuffers buffers;
-  typedef std::vector<OpenALSoundSource*> SoundSources;
+
+  StreamSoundSource* music_source;
+#endif
+
+#ifdef USE_SDL_MIXER
+  typedef std::map<std::string, Mix_Chunk*> SoundChunks;
+  SoundChunks sound_chunks;
+
+  typedef std::map<std::string, MusicResource> Musics;
+  Musics musics;
+
+  MusicResource* current_music_resource;
+#endif
+
+  bool sound_enabled;
+  bool music_enabled;
+  std::string current_music;
+
+  // Changed from OpenALSoundSource* to SoundSource* to support polymorphism
+  typedef std::vector<SoundSource*> SoundSources;
   SoundSources sources;
 
   typedef std::vector<StreamSoundSource*> StreamSoundSources;
   StreamSoundSources update_list;
-
-  StreamSoundSource* music_source;
-
-  bool music_enabled;
-  std::string current_music;
 };
 
 extern SoundManager* sound_manager;
 
 #endif
+
+// EOF

@@ -1,4 +1,4 @@
-//  $Id$
+//  src/audio/stream_sound_source.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
@@ -18,6 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <config.h>
+
+#ifdef HAVE_OPENAL
+
 #include <assert.h>
 
 #include <SDL.h>
@@ -142,3 +145,7 @@ StreamSoundSource::fillBufferAndQueue(ALuint buffer)
   // return false if there aren't more buffers to fill
   return bytesread >= STREAMFRAGMENTSIZE;
 }
+
+#endif
+
+// EOF

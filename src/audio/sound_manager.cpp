@@ -1,7 +1,8 @@
-//  $Id$
+//  src/audio/sound_manager.cpp
 //
 //  SuperTux
 //  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
+//  Copyright (C) 2025 DeltaResero
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -29,18 +30,30 @@
 
 #include "sound_file.hpp"
 #include "sound_source.hpp"
-#include "openal_sound_source.hpp"
-#include "stream_sound_source.hpp"
 #include "dummy_sound_source.hpp"
 #include "log.hpp"
 #include "timer.hpp"
 
+#ifdef HAVE_OPENAL
+#include "openal_sound_source.hpp"
+#include "stream_sound_source.hpp"
+#endif
+
+#ifdef USE_SDL_MIXER
+#include "sdl_sound_source.hpp"
+#include "physfs/physfs_sdl.hpp"
+#include <physfs.h>
+#endif
+
 SoundManager* sound_manager = 0;
 
 SoundManager::SoundManager()
-  : device(0), context(0), sound_enabled(false), music_source(0),
-    music_enabled(false)
+  : sound_enabled(false), music_enabled(false)
 {
+#ifdef HAVE_OPENAL
+  device = 0;
+  context = 0;
+  music_source = 0;
   try {
     device = alcOpenDevice(0);
     if (device == NULL) {
@@ -66,15 +79,29 @@ SoundManager::SoundManager()
     log_warning << "Couldn't initialize audio device: " << e.what() << std::endl;
     print_openal_version();
   }
+#endif
+
+#ifdef USE_SDL_MIXER
+  current_music_resource = 0;
+  if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+    log_warning << "Couldn't initialize SDL Audio: " << Mix_GetError() << std::endl;
+    sound_enabled = false;
+  } else {
+    Mix_AllocateChannels(32);
+    sound_enabled = true;
+    music_enabled = true;
+  }
+#endif
 }
 
 SoundManager::~SoundManager()
 {
-  delete music_source;
-
   for(SoundSources::iterator i = sources.begin(); i != sources.end(); ++i) {
     delete *i;
   }
+
+#ifdef HAVE_OPENAL
+  delete music_source;
 
   for(SoundBuffers::iterator i = buffers.begin(); i != buffers.end(); ++i) {
     ALuint buffer = i->second;
@@ -87,8 +114,26 @@ SoundManager::~SoundManager()
   if(device != NULL) {
     alcCloseDevice(device);
   }
+#endif
+
+#ifdef USE_SDL_MIXER
+  Mix_HaltMusic();
+  // Free chunks
+  for(SoundChunks::iterator i = sound_chunks.begin(); i != sound_chunks.end(); ++i) {
+    Mix_FreeChunk(i->second);
+  }
+  sound_chunks.clear();
+  // Free music
+  if(current_music_resource) {
+      current_music_resource->refcount--;
+      if(current_music_resource->refcount == 0)
+          free_music(current_music_resource);
+  }
+  Mix_CloseAudio();
+#endif
 }
 
+#ifdef HAVE_OPENAL
 ALuint
 SoundManager::load_file_into_buffer(SoundFile* file)
 {
@@ -111,6 +156,7 @@ SoundManager::load_file_into_buffer(SoundFile* file)
 
   return buffer;
 }
+#endif
 
 SoundSource*
 SoundManager::create_sound_source(const std::string& filename)
@@ -118,6 +164,7 @@ SoundManager::create_sound_source(const std::string& filename)
   if(!sound_enabled)
     return create_dummy_sound_source();
 
+#ifdef HAVE_OPENAL
   std::auto_ptr<OpenALSoundSource> source;
   try {
     source.reset(new OpenALSoundSource());
@@ -153,6 +200,27 @@ SoundManager::create_sound_source(const std::string& filename)
 
   alSourcei(source->source, AL_BUFFER, buffer);
   return source.release();
+#endif
+
+#ifdef USE_SDL_MIXER
+  Mix_Chunk* chunk = 0;
+  SoundChunks::iterator i = sound_chunks.find(filename);
+  if(i != sound_chunks.end()) {
+    chunk = i->second;
+  } else {
+    // Load new chunk
+    chunk = Mix_LoadWAV_RW(get_physfs_SDLRWops(filename), 1);
+    if(chunk) {
+      sound_chunks.insert(std::make_pair(filename, chunk));
+    } else {
+      log_warning << "Couldn't load sound '" << filename << "': " << Mix_GetError() << std::endl;
+      return create_dummy_sound_source();
+    }
+  }
+  return new SDLSoundSource(chunk);
+#endif
+
+  return create_dummy_sound_source();
 }
 
 void
@@ -161,6 +229,7 @@ SoundManager::preload(const std::string& filename)
   if(!sound_enabled)
     return;
 
+#ifdef HAVE_OPENAL
   SoundBuffers::iterator i = buffers.find(filename);
   // already loaded?
   if(i != buffers.end())
@@ -173,6 +242,16 @@ SoundManager::preload(const std::string& filename)
 
   ALuint buffer = load_file_into_buffer(file.get());
   buffers.insert(std::make_pair(filename, buffer));
+#endif
+
+#ifdef USE_SDL_MIXER
+  if(sound_chunks.find(filename) == sound_chunks.end()) {
+      Mix_Chunk* chunk = Mix_LoadWAV_RW(get_physfs_SDLRWops(filename), 1);
+      if(chunk) {
+          sound_chunks.insert(std::make_pair(filename, chunk));
+      }
+  }
+#endif
 }
 
 void
@@ -182,8 +261,8 @@ SoundManager::play(const std::string& filename, const Vector& pos)
     return;
 
   try {
-    std::auto_ptr<OpenALSoundSource> source
-      (static_cast<OpenALSoundSource*> (create_sound_source(filename)));
+    SoundSource* source = create_sound_source(filename);
+    if(source == 0) return;
 
     if(pos == Vector(-1, -1)) {
       source->set_rollof_factor(0);
@@ -191,7 +270,7 @@ SoundManager::play(const std::string& filename, const Vector& pos)
       source->set_position(pos);
     }
     source->play();
-    sources.push_back(source.release());
+    manage_source(source);
   } catch(std::exception& e) {
     log_warning << "Couldn't play sound " << filename << ": " << e.what() << std::endl;
   }
@@ -201,11 +280,7 @@ void
 SoundManager::manage_source(SoundSource* source)
 {
   assert(source != NULL);
-
-  OpenALSoundSource* openal_source = dynamic_cast<OpenALSoundSource*> (source);
-  if(openal_source != NULL) {
-    sources.push_back(openal_source);
-  }
+  sources.push_back(source);
 }
 
 void
@@ -232,32 +307,30 @@ SoundManager::remove_from_update( StreamSoundSource* sss  ){
 void
 SoundManager::enable_sound(bool enable)
 {
-  if(device == NULL)
-    return;
-
+#ifdef HAVE_OPENAL
+  if(device == NULL) return;
+#endif
   sound_enabled = enable;
 }
 
 void
 SoundManager::enable_music(bool enable)
 {
-  if(device == NULL)
-    return;
-
+#ifdef HAVE_OPENAL
+  if(device == NULL) return;
+#endif
   music_enabled = enable;
   if(music_enabled) {
     play_music(current_music);
   } else {
-    if(music_source) {
-      delete music_source;
-      music_source = 0;
-    }
+    stop_music();
   }
 }
 
 void
 SoundManager::stop_music(float fadetime)
 {
+#ifdef HAVE_OPENAL
   if(fadetime > 0) {
     if(music_source
         && music_source->get_fade_state() != StreamSoundSource::FadingOff)
@@ -266,24 +339,39 @@ SoundManager::stop_music(float fadetime)
     delete music_source;
     music_source = NULL;
   }
+#endif
+
+#ifdef USE_SDL_MIXER
+  if(fadetime > 0)
+    Mix_FadeOutMusic(static_cast<int>(fadetime * 1000));
+  else
+    Mix_HaltMusic();
+
+  if(current_music_resource) {
+      current_music_resource->refcount--;
+      if(current_music_resource->refcount == 0)
+          free_music(current_music_resource);
+      current_music_resource = 0;
+  }
+#endif
   current_music = "";
 }
 
 void
 SoundManager::play_music(const std::string& filename, bool fade)
 {
-  if(filename == current_music && music_source != NULL)
+  if(filename == current_music)
     return;
   current_music = filename;
   if(!music_enabled)
     return;
 
   if(filename == "") {
-    delete music_source;
-    music_source = NULL;
+    stop_music();
     return;
   }
 
+#ifdef HAVE_OPENAL
   try {
     std::auto_ptr<StreamSoundSource> newmusic (new StreamSoundSource());
     alSourcef(newmusic->source, AL_ROLLOFF_FACTOR, 0);
@@ -298,11 +386,49 @@ SoundManager::play_music(const std::string& filename, bool fade)
   } catch(std::exception& e) {
     log_warning << "Couldn't play music file '" << filename << "': " << e.what() << std::endl;
   }
+#endif
+
+#ifdef USE_SDL_MIXER
+  // Release old music
+  if(current_music_resource) {
+      current_music_resource->refcount--;
+      if(current_music_resource->refcount == 0)
+          free_music(current_music_resource);
+      current_music_resource = 0;
+  }
+
+  // Find or load new music
+  Musics::iterator i = musics.find(filename);
+  if(i != musics.end()) {
+      current_music_resource = &(i->second);
+  } else {
+      Mix_Music* song = Mix_LoadMUS( (std::string(PHYSFS_getRealDir(filename.c_str())) + "/" + filename).c_str() );
+      if(song) {
+          std::pair<Musics::iterator, bool> result = musics.insert(std::make_pair(filename, MusicResource()));
+          current_music_resource = &(result.first->second);
+          current_music_resource->manager = this;
+          current_music_resource->music = song;
+          current_music_resource->refcount = 0;
+      } else {
+          log_warning << "Couldn't load music '" << filename << "': " << Mix_GetError() << std::endl;
+          return;
+      }
+  }
+
+  if(current_music_resource) {
+      current_music_resource->refcount++;
+      if(fade)
+          Mix_FadeInMusic(current_music_resource->music, -1, 500);
+      else
+          Mix_PlayMusic(current_music_resource->music, -1);
+  }
+#endif
 }
 
 void
 SoundManager::set_listener_position(const Vector& pos)
 {
+#ifdef HAVE_OPENAL
   static Uint32 lastticks = SDL_GetTicks();
 
   Uint32 current_ticks = SDL_GetTicks();
@@ -311,12 +437,15 @@ SoundManager::set_listener_position(const Vector& pos)
   lastticks = current_ticks;
 
   alListener3f(AL_POSITION, pos.x, pos.y, 0);
+#endif
 }
 
 void
 SoundManager::set_listener_velocity(const Vector& vel)
 {
+#ifdef HAVE_OPENAL
   alListener3f(AL_VELOCITY, vel.x, vel.y, 0);
+#endif
 }
 
 void
@@ -331,9 +460,13 @@ SoundManager::update()
 
   // update and check for finished sound sources
   for(SoundSources::iterator i = sources.begin(); i != sources.end(); ) {
-    OpenALSoundSource* source = *i;
+    SoundSource* source = *i;
 
-    source->update();
+    // OpenAL sources need explicit update, SDL ones don't but it's harmless
+#ifdef HAVE_OPENAL
+    OpenALSoundSource* al_source = dynamic_cast<OpenALSoundSource*>(source);
+    if(al_source) al_source->update();
+#endif
 
     if(!source->playing()) {
       delete source;
@@ -342,6 +475,8 @@ SoundManager::update()
       ++i;
     }
   }
+
+#ifdef HAVE_OPENAL
   // check streaming sounds
   if(music_source) {
     music_source->update();
@@ -359,8 +494,40 @@ SoundManager::update()
     (*s)->update();
     s++;
   }
+#endif
 }
 
+bool
+SoundManager::is_audio_enabled() {
+#ifdef HAVE_OPENAL
+    return device != 0 && context != 0;
+#endif
+#ifdef USE_SDL_MIXER
+    return sound_enabled; // Rough approximation
+#endif
+    return false;
+}
+
+#ifdef USE_SDL_MIXER
+SoundManager::MusicResource::~MusicResource()
+{
+    // Mix_FreeMusic(music); // Handled in free_music
+}
+
+void
+SoundManager::free_music(MusicResource* res)
+{
+    if(res->music) {
+        Mix_FreeMusic(res->music);
+        res->music = 0;
+    }
+    // Note: We don't erase from map here to avoid iterator invalidation issues
+    // if called during iteration, but ideally we should clean up the map.
+    // For now, we just free the SDL resource.
+}
+#endif
+
+#ifdef HAVE_OPENAL
 ALenum
 SoundManager::get_sample_format(SoundFile* file)
 {
@@ -415,3 +582,6 @@ SoundManager::check_al_error(const char* message)
     throw std::runtime_error(msg.str());
   }
 }
+#endif
+
+// EOF

@@ -1,7 +1,7 @@
-//  src/physfs/physfs_sdl.hpp
+//  src/audio/musicref.hpp
 //
 //  SuperTux
-//  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
+//  Copyright (C) 2025 DeltaResero
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,14 +17,36 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef __PHYSFSSDL_HPP__
-#define __PHYSFSSDL_HPP__
+#ifndef __SUPERTUX_MUSICREF_HPP__
+#define __SUPERTUX_MUSICREF_HPP__
 
-#include <SDL.h>
-#include <string>
+#ifdef USE_SDL_MIXER
 
-SDL_RWops* get_physfs_SDLRWops(const std::string& filename);
+#include "sound_manager.hpp"
 
-#endif
+/** This class holds a reference to a music file and maintains a correct
+ * refcount for that file.
+ */
+class MusicRef
+{
+public:
+  MusicRef();
+  MusicRef(const MusicRef& other);
+  ~MusicRef();
+
+  MusicRef& operator= (const MusicRef& other);
+
+private:
+  friend class SoundManager;
+  // Note: SoundManager::MusicResource must be defined in sound_manager.h
+  // when USE_SDL_MIXER is active.
+  MusicRef(SoundManager::MusicResource* music);
+
+  SoundManager::MusicResource* music;
+};
+
+#endif // USE_SDL_MIXER
+
+#endif /*SUPERTUX_MUSICREF_H*/
 
 // EOF

@@ -1,7 +1,7 @@
-//  src/audio/openal_sound_source.hpp
+// src/audio/sdl_sound_source.hpp
 //
 //  SuperTux
-//  Copyright (C) 2006 Matthias Braun <matze@braunis.de>
+//  Copyright (C) 2025 DeltaResero
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -16,41 +16,40 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-#ifndef __OPENAL_SOUND_SOURCE_H__
-#define __OPENAL_SOUND_SOURCE_H__
+
+#ifndef __SDL_SOUND_SOURCE_HPP__
+#define __SDL_SOUND_SOURCE_HPP__
 
 #include <config.h>
 
-#ifdef HAVE_OPENAL
+#ifdef USE_SDL_MIXER
 
-#include <AL/al.h>
-#include "math/vector.hpp"
+#include <SDL_mixer.h>
 #include "sound_source.hpp"
 
-class OpenALSoundSource : public SoundSource
+class SDLSoundSource : public SoundSource
 {
 public:
-  OpenALSoundSource();
-  virtual ~OpenALSoundSource();
+  SDLSoundSource(Mix_Chunk* chunk);
+  virtual ~SDLSoundSource();
 
   virtual void play();
   virtual void stop();
   virtual bool playing();
 
-  virtual void update();
-
   virtual void set_looping(bool looping);
   virtual void set_gain(float gain);
   virtual void set_pitch(float pitch);
   virtual void set_position(const Vector& position);
-  virtual void set_velocity(const Vector& position);
+  virtual void set_velocity(const Vector& velocity);
   virtual void set_reference_distance(float distance);
   virtual void set_rollof_factor(float factor);
 
-protected:
-  friend class SoundManager;
-
-  ALuint source;
+private:
+  Mix_Chunk* chunk;
+  int channel;
+  bool looping;
+  float gain;
 };
 
 #endif
