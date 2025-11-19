@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <algorithm>
+#include <cstring>
 #include <stdexcept>
 #include <sstream>
 #include <assert.h>

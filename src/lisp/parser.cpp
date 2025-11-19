@@ -24,6 +24,7 @@
 #include <fstream>
 #include <cassert>
 #include <iostream>
+#include <cstring>
 
 #include "tinygettext/tinygettext.hpp"
 #include "physfs/physfs_stream.hpp"

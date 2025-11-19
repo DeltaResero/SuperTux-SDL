@@ -23,6 +23,7 @@
 #include <cstdlib>
 #include <string>
 #include <stdexcept>
+#include <memory>
 
 #include "lisp/parser.hpp"
 #include "lisp/lisp.hpp"

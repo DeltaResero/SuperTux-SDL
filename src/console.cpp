@@ -19,6 +19,7 @@
 #include <config.h>
 
 #include <iostream>
+#include <algorithm>
 #include "console.hpp"
 #include "video/drawing_context.hpp"
 #include "video/surface.hpp"
