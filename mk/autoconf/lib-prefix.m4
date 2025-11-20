@@ -1,3 +1,5 @@
+dnl mk/autoconf/lib-prefix.m4
+
 # lib-prefix.m4 serial 3 (gettext-0.13)
 dnl Copyright (C) 2001-2003 Free Software Foundation, Inc.
 dnl This file is free software, distributed under the terms of the GNU
@@ -153,3 +155,5 @@ AC_DEFUN([AC_LIB_WITH_FINAL_PREFIX],
   exec_prefix="$acl_save_exec_prefix"
   prefix="$acl_save_prefix"
 ])
+
+dnl EOF

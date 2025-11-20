@@ -1,3 +1,5 @@
+dnl mk/autoconf/initjamfile.m4
+
 #----------------------------------------------------------------------------
 #  AC_INIT_JAM
 #    This rule fixes several issues related to autoconf being make centric
@@ -22,3 +24,4 @@ AC_DEFUN([AC_INIT_JAMFILE],
 	 echo "top_builddir ?= . ;" >> Jamfile
 	 echo "include \$(TOP)/Jamfile ;" >> Jamfile])])])
 
+dnl EOF

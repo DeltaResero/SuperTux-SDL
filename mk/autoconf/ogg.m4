@@ -1,3 +1,5 @@
+dnl mk/autoconf/ogg.m4
+
 # Configure paths for libogg
 # Jack Moffitt <jack@icecast.org> 10-21-2000
 # Shamelessly stolen from Owen Taylor and Manish Singh
@@ -6,7 +8,7 @@ dnl XIPH_PATH_OGG([ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND]])
 dnl Test for libogg, and define OGG_CFLAGS and OGG_LIBS
 dnl
 AC_DEFUN([XIPH_PATH_OGG],
-[dnl 
+[dnl
 dnl Get the cflags and libraries
 dnl
 AC_ARG_WITH(ogg,[  --with-ogg=PFX   Prefix where libogg is installed (optional)], ogg_prefix="$withval", ogg_prefix="")
@@ -45,7 +47,7 @@ dnl
 dnl Now check if the installed Ogg is sufficiently new.
 dnl
       rm -f conf.oggtest
-      AC_TRY_RUN([
+      AC_RUN_IFELSE([AC_LANG_SOURCE([
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,14 +59,14 @@ int main ()
   return 0;
 }
 
-],, no_ogg=yes,[echo $ac_n "cross compiling; assumed OK... $ac_c"])
+])],, no_ogg=yes,[echo $ac_n "cross compiling; assumed OK... $ac_c"])
        CFLAGS="$ac_save_CFLAGS"
        LIBS="$ac_save_LIBS"
   fi
 
   if test "x$no_ogg" = "x" ; then
      AC_MSG_RESULT(yes)
-     ifelse([$1], , :, [$1])     
+     ifelse([$1], , :, [$1])
   else
      AC_MSG_RESULT(no)
      if test -f conf.oggtest ; then
@@ -73,10 +75,10 @@ int main ()
        echo "*** Could not run Ogg test program, checking why..."
        CFLAGS="$CFLAGS $OGG_CFLAGS"
        LIBS="$LIBS $OGG_LIBS"
-       AC_TRY_LINK([
+       AC_LINK_IFELSE([AC_LANG_PROGRAM([
 #include <stdio.h>
 #include <ogg/ogg.h>
-],     [ return 0; ],
+],     [ return 0; ])],
        [ echo "*** The test program compiled, but did not run. This usually means"
        echo "*** that the run-time linker is not finding Ogg or finding the wrong"
        echo "*** version of Ogg. If it is not finding Ogg, you'll need to set your"
@@ -100,3 +102,5 @@ int main ()
   AC_SUBST(OGG_LIBS)
   rm -f conf.oggtest
 ])
+
+dnl EOF

@@ -1,3 +1,4 @@
+dnl mk/autoconf/pkg.m4
 
 dnl PKG_CHECK_MODULES(GSTUFF, gtk+-2.0 >= 1.3 glib = 1.3.4, action-if, action-not)
 dnl defines GSTUFF_LIBS, GSTUFF_CFLAGS, see pkg-config man page
@@ -54,4 +55,4 @@ AC_DEFUN([PKG_CHECK_MODULES], [
   fi
 ])
 
-
+dnl EOF

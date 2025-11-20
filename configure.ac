@@ -14,6 +14,7 @@ AC_PREREQ([2.69])
 AC_INIT([supertux], [0.3.0])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([mk/autoconf])
+AC_CONFIG_MACRO_DIR([mk/autoconf])
 AC_CANONICAL_TARGET
 
 AC_CONFIG_HEADERS([config.h])
@@ -26,8 +27,8 @@ CXXFLAGS="$CXXFLAGS -ffast-math"
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
-AC_PATH_PROG([AR], [ar])
-if test "$AR" = "" ; then
+AC_CHECK_TOOL([AR], [ar])
+if test -z "$AR"; then
   AC_MSG_ERROR([Couldn't find ar])
 fi
 AR="$AR ru"
@@ -46,7 +47,7 @@ if test -n "$XGETTEXT" ; then
     fi
 fi
 
-AC_PROG_LEX
+AC_PROG_LEX([noyywrap])
 LEX_LIBS=$LEXLIB
 AC_SUBST([LEX_LIBS])
 AC_CHECK_PROGS([BISON], [bison bison.exe])
@@ -58,8 +59,6 @@ dnl AC_HEADER_STDC is obsolete and removed
 AC_CHECK_HEADERS([unistd.h])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-AC_C_CONST
-AC_C_BIGENDIAN
 AC_CHECK_SIZEOF([void *])
 AH_BOTTOM([
 #if SIZEOF_VOID_P == 8

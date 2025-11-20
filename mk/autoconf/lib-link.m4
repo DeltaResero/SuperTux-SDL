@@ -1,3 +1,5 @@
+dnl mk/autoconf/lib-link.m4
+
 # lib-link.m4 serial 4 (gettext-0.12)
 dnl Copyright (C) 2001-2003 Free Software Foundation, Inc.
 dnl This file is free software, distributed under the terms of the GNU
@@ -549,3 +551,5 @@ AC_DEFUN([AC_LIB_APPENDTOVAR],
     fi
   done
 ])
+
+dnl EOF

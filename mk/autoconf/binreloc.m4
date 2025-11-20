@@ -1,3 +1,5 @@
+dnl mk/autoconf/binreloc.m4
+
 # Check for binary relocation support
 # Hongli Lai
 #   slightly modified by Matze (don't enable automatically)
@@ -76,3 +78,5 @@ AC_DEFUN([AM_BINRELOC],
 	AC_SUBST(BINRELOC_CFLAGS)
 	AC_SUBST(BINRELOC_LIBS)
 ])
+
+dnl EOF

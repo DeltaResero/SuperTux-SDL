@@ -1,3 +1,5 @@
+dnl mk/autoconf/ax_check_gl.m4
+
 dnl @synopsis AX_CHECK_GL
 dnl
 dnl Check for an OpenGL implementation. If GL is found, the required
@@ -24,7 +26,7 @@ AC_REQUIRE([ACX_PTHREAD])dnl
 # alternative GL implementation (e.g., Mesa), which may or may not depend on X.
 #
 AC_ARG_WITH([apple-opengl-framework],
-            [AC_HELP_STRING([--with-apple-opengl-framework],
+            [AS_HELP_STRING([--with-apple-opengl-framework],
                             [use Apple OpenGL framework (Mac OS X only)])])
 if test "X$with_apple_opengl_framework" = "Xyes"; then
   AC_DEFINE([HAVE_APPLE_OPENGL_FRAMEWORK], [1],
@@ -93,3 +95,5 @@ fi
 AC_SUBST([GL_CFLAGS])
 AC_SUBST([GL_LIBS])
 ])dnl
+
+dnl EOF

@@ -1,3 +1,5 @@
+dnl mk/autoconf/vorbis.m4
+
 # Configure paths for libvorbis
 # Jack Moffitt <jack@icecast.org> 10-21-2000
 # Shamelessly stolen from Owen Taylor and Manish Singh
@@ -7,7 +9,7 @@ dnl XIPH_PATH_VORBIS([ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND]])
 dnl Test for libvorbis, and define VORBIS_CFLAGS and VORBIS_LIBS
 dnl
 AC_DEFUN([XIPH_PATH_VORBIS],
-[dnl 
+[dnl
 dnl Get the cflags and libraries
 dnl
 AC_ARG_WITH(vorbis,[  --with-vorbis=PFX   Prefix where libvorbis is installed (optional)], vorbis_prefix="$withval", vorbis_prefix="")
@@ -49,7 +51,7 @@ dnl
 dnl Now check if the installed Vorbis is sufficiently new.
 dnl
       rm -f conf.vorbistest
-      AC_TRY_RUN([
+      AC_RUN_IFELSE([AC_LANG_SOURCE([
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -73,14 +75,14 @@ int main ()
     return 0;
 }
 
-],, no_vorbis=yes,[echo $ac_n "cross compiling; assumed OK... $ac_c"])
+])],, no_vorbis=yes,[echo $ac_n "cross compiling; assumed OK... $ac_c"])
        CFLAGS="$ac_save_CFLAGS"
        LIBS="$ac_save_LIBS"
   fi
 
   if test "x$no_vorbis" = "x" ; then
      AC_MSG_RESULT(yes)
-     ifelse([$1], , :, [$1])     
+     ifelse([$1], , :, [$1])
   else
      AC_MSG_RESULT(no)
      if test -f conf.vorbistest ; then
@@ -89,10 +91,10 @@ int main ()
        echo "*** Could not run Vorbis test program, checking why..."
        CFLAGS="$CFLAGS $VORBIS_CFLAGS"
        LIBS="$LIBS $VORBIS_LIBS $OGG_LIBS"
-       AC_TRY_LINK([
+       AC_LINK_IFELSE([AC_LANG_PROGRAM([
 #include <stdio.h>
 #include <vorbis/codec.h>
-],     [ return 0; ],
+],     [ return 0; ])],
        [ echo "*** The test program compiled, but did not run. This usually means"
        echo "*** that the run-time linker is not finding Vorbis or finding the wrong"
        echo "*** version of Vorbis. If it is not finding Vorbis, you'll need to set your"
@@ -120,3 +122,5 @@ int main ()
   AC_SUBST(VORBISENC_LIBS)
   rm -f conf.vorbistest
 ])
+
+dnl EOF

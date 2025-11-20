@@ -1,3 +1,5 @@
+dnl mk/autoconf/lib-ld.m4
+
 # lib-ld.m4 serial 3 (gettext-0.13)
 dnl Copyright (C) 1996-2003 Free Software Foundation, Inc.
 dnl This file is free software, distributed under the terms of the GNU
@@ -110,3 +112,5 @@ fi
 test -z "$LD" && AC_MSG_ERROR([no acceptable ld found in \$PATH])
 AC_LIB_PROG_LD_GNU
 ])
+
+dnl EOF

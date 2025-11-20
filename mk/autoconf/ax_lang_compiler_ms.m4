@@ -1,3 +1,5 @@
+dnl mk/autoconf/ax_lang_compiler_ms.m4
+
 dnl @synopsis AX_LANG_COMPILER_MS
 dnl
 dnl Check whether the compiler for the current language is Microsoft.
@@ -21,3 +23,5 @@ AC_DEFUN([AX_LANG_COMPILER_MS],
                    [ax_compiler_ms=no])
 ax_cv_[]_AC_LANG_ABBREV[]_compiler_ms=$ax_compiler_ms
 ])])
+
+dnl EOF

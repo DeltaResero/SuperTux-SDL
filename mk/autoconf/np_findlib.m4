@@ -1,10 +1,12 @@
+dnl mk/autoconf/np_findlib.m4
+
 #  NP_FINDLIB(VARNAME, NAME, STRING, TESTAPP, CFLAGS, LIBS, ACTION_IF_FOUND,
 #             ACTION_IF_NOT_FOUND, EXTRACFLAGS, EXTRALIBS)
 AC_DEFUN([NP_FINDLIB], [
-    AC_ARG_WITH([lib$2], [AC_HELP_STRING([--with-lib$2=dir],
+    AC_ARG_WITH([lib$2], [AS_HELP_STRING([--with-lib$2=dir],
         [specify location of lib$2 if not detected automatically; uses
         dir, dir/include and dir/lib])])
-            
+
     save_CFLAGS="$CFLAGS"
     save_CPPFLAGS="$CPPFLAGS"
     save_LIBS="$LIBS"
@@ -40,7 +42,7 @@ AC_DEFUN([NP_FINDLIB], [
 	 $1_AVAILABLE=no
 	 $1_CFLAGS=""
 	 $1_LIBS=""])
-    
+
     AC_SUBST([$1_AVAILABLE])
     AC_SUBST([$1_CFLAGS])
     AC_SUBST([$1_LIBS])
@@ -49,3 +51,5 @@ AC_DEFUN([NP_FINDLIB], [
  	[ifelse([$7], , :, [$7])],
  	[ifelse([$8], , :, [$8])])
 ])
+
+dnl EOF

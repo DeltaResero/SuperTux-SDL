@@ -1,3 +1,5 @@
+dnl mk/autoconf/installdirs.m4
+
 #-----------------------------------------------------------------------------
 # installdirs.m4 (c) Matze Braun <matze@braunis.de>
 # Macros for outputing the installation paths which autoconf gathers into the
@@ -91,3 +93,4 @@ dnl We need all the strange \\\\ quoting here, because the command will be
 dnl inserted into a "" block and sed needs quoting as well
 [`echo "$1" | sed -e 's/\${\([[a-zA-Z_][a-zA-Z_]]*\)}/$(\1)/g' -e 's/\\\\/\\\\\\\\/g'`])
 
+dnl EOF
