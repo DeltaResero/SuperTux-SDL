@@ -45,7 +45,8 @@ static inline int next_po2(int val)
 }
 
 DrawingContext::DrawingContext()
-  : ambient_color( 1.0f, 1.0f, 1.0f, 1.0f )
+  : ambient_color( 1.0f, 1.0f, 1.0f, 1.0f ),
+    target(NORMAL)
 {
   screen = SDL_GetVideoSurface();
 
@@ -440,7 +441,7 @@ DrawingContext::handle_drawing_requests(DrawingRequests& requests)
       case SURFACE:
       {
         const Surface* surface = (const Surface*) i->request_data;
-        if (i->angle == 0.0f && 
+        if (i->angle == 0.0f &&
             i->color.red == 1.0f && i->color.green == 1.0f  &&
             i->color.blue == 1.0f &&  i->color.alpha == 1.0f  )
           surface->draw(i->pos.x, i->pos.y, i->alpha, i->drawing_effect);

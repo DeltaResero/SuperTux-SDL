@@ -134,7 +134,7 @@ public:
   void push_target();
   void pop_target();
   void set_target(Target target);
-  
+
   void set_ambient_color( Color new_color );
 
 private:
@@ -208,8 +208,14 @@ private:
     void* request_data;
 
     DrawingRequest()
-      : angle(0.0f),
-        color(1.0f, 1.0f, 1.0f, 1.0f)
+      : type(SURFACE),
+        pos(0, 0),
+        layer(0),
+        drawing_effect(NO_EFFECT),
+        alpha(1.0f),
+        angle(0.0f),
+        color(1.0f, 1.0f, 1.0f, 1.0f),
+        request_data(0)
     {}
 
     bool operator<(const DrawingRequest& other) const
@@ -222,7 +228,7 @@ private:
   {
     Color* color_ptr;
   };
-  
+
   typedef std::vector<DrawingRequest> DrawingRequests;
 
   void handle_drawing_requests(DrawingRequests& requests);
