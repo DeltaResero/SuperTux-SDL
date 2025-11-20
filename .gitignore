@@ -113,6 +113,19 @@ bin/
 gen/
 jam0.log
 
+# --- CMake ---
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+install_manifest.txt
+
+# --- Build Directory ---
+# Ignores the entire build folder where you run cmake
+build/
+build*/
+
 # --- IDE / Tooling ---
 # General IDE folders (optional, but good practice)
 .vscode/
