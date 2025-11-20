@@ -19,6 +19,7 @@
 #include <iomanip>
 #include <iostream>
 #include <physfs.h>
+#include <sstream>
 
 #include "video/drawing_request.hpp"
 #include "video/sdl/sdl_surface_data.hpp"

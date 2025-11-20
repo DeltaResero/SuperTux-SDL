@@ -17,6 +17,23 @@
 #ifndef HEADER_SUPERTUX_VIDEO_GL_TEXTURE_HPP
 #define HEADER_SUPERTUX_VIDEO_GL_TEXTURE_HPP
 
+#include <config.h>
+
+#ifdef HAVE_OPENGL
+#  if defined(MACOSX)
+#    include <OpenGL/gl.h>
+#    include <OpenGL/glext.h>
+#  elif defined(GL_VERSION_ES_CM_1_0)
+#    include <GLES/gl.h>
+#    include <GLES/glext.h>
+#  else
+#    include <GL/gl.h>
+#    include <GL/glext.h>
+#  endif
+#else
+typedef unsigned int GLuint;
+#endif
+
 #include "video/texture.hpp"
 
 /**

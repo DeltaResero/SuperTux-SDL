@@ -23,6 +23,7 @@
 #include "supertux/sector.hpp"
 #include "supertux/tile.hpp"
 
+#include <sstream>
 #include <math.h>
 
 static const float SQUISH_TIME = 2;

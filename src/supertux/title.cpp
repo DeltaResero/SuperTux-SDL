@@ -21,6 +21,7 @@
 
 #include <algorithm>
 #include <physfs.h>
+#include <sstream>
 
 #include "addon/addon_manager.hpp"
 #include "audio/sound_manager.hpp"

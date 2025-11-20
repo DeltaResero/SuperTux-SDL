@@ -16,6 +16,7 @@
 
 #include <config.h>
 #include <stdexcept>
+#include <sstream>
 
 #include "audio/sound_manager.hpp"
 #include "sprite/sprite.hpp"

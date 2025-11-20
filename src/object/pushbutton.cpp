@@ -20,6 +20,7 @@
 #include "sprite/sprite.hpp"
 #include "supertux/object_factory.hpp"
 #include "supertux/sector.hpp"
+#include <sstream>
 
 namespace {
 const std::string BUTTON_SOUND = "sounds/switch.ogg";

@@ -16,6 +16,7 @@
 
 #include "sprite/sprite_manager.hpp"
 
+#include <sstream>
 #include "lisp/parser.hpp"
 #include "sprite/sprite.hpp"
 #include "util/file_system.hpp"

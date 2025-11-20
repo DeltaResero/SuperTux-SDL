@@ -18,22 +18,11 @@
 #define HEADER_SUPERTUX_VIDEO_GLUTIL_HPP
 
 #include <config.h>
-
-#ifdef HAVE_OPENGL
-
+#include <SDL_opengl.h>
 #include <sstream>
 #include <stdexcept>
 
-#if defined(MACOSX)
-#  include <OpenGL/gl.h>
-#  include <OpenGL/glext.h>
-#elif defined(GL_VERSION_ES_CM_1_0)
-#  include <GLES/gl.h>
-#  include <GLES/glext.h>
-#else
-#  include <GL/gl.h>
-#  include <GL/glext.h>
-#endif
+#ifdef HAVE_OPENGL
 
 static inline void check_gl_error(const char* message)
 {
@@ -88,15 +77,6 @@ static inline void assert_gl(const char* message)
   (void) message;
 #endif
 }
-
-#else
-
-#define GLenum int
-#define GLint int
-#define GL_SRC_ALPHA 0
-#define GL_ONE_MINUS_SRC_ALPHA 1
-#define GL_RGBA 2
-#define GL_ONE 3
 
 #endif
 

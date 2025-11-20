@@ -31,10 +31,10 @@ Parser::Parser(bool translate)
   : lexer(0), dictionary_manager(0), dictionary(0)
 {
   if(translate) {
-    dictionary_manager = new TinyGetText::DictionaryManager();
+    dictionary_manager = new tinygettext::DictionaryManager();
     dictionary_manager->set_charset("UTF-8");
     if (g_config && (g_config->locale != "")) 
-      dictionary_manager->set_language(g_config->locale);
+      dictionary_manager->set_language(tinygettext::Language::from_spec(g_config->locale));
   }
 
   obstack_init(&obst);

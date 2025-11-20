@@ -22,6 +22,7 @@
 #include <stdexcept>
 #include <SDL_image.h>
 #include <physfs.h>
+#include <sstream>
 
 #include "physfs/physfs_sdl.hpp"
 

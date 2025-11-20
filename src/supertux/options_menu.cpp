@@ -23,6 +23,7 @@
 #include "supertux/profile_menu.hpp"
 #include "util/gettext.hpp"
 #include "video/renderer.hpp"
+#include <sstream>
 
 Menu* options_menu   = 0;
 
@@ -45,17 +46,11 @@ public:
     add_entry(0, std::string("<")+_("auto-detect")+">");
     add_entry(1, "English");
 
-    int mnid = 10;    
-    std::set<std::string> languages = dictionary_manager.get_languages();
-    for (std::set<std::string>::iterator i = languages.begin(); i != languages.end(); i++) {
-      std::string locale_name = *i;
-      TinyGetText::LanguageDef ldef = TinyGetText::get_language_def(locale_name);
-      std::string locale_fullname = locale_name;
-      if (std::string(ldef.code) == locale_name) {
-        locale_fullname = ldef.name;
-      }
-      add_entry(mnid++, locale_fullname);
-    } 
+    int mnid = 10;
+    std::set<tinygettext::Language> languages = dictionary_manager.get_languages();
+    for (std::set<tinygettext::Language>::iterator i = languages.begin(); i != languages.end(); i++) {
+      add_entry(mnid++, i->get_name());
+    }
 
     add_hl();
     add_back(_("Back"));
@@ -64,23 +59,22 @@ public:
   virtual void menu_action(MenuItem* item) {
     if (item->id == 0) {
       g_config->locale = "";
-      dictionary_manager.set_language(g_config->locale);
+      dictionary_manager.set_language(tinygettext::Language::from_spec(g_config->locale));
       g_config->save();
       Menu::pop_current();
     }
     else if (item->id == 1) {
       g_config->locale = "en";
-      dictionary_manager.set_language(g_config->locale);
+      dictionary_manager.set_language(tinygettext::Language::from_spec(g_config->locale));
       g_config->save();
       Menu::pop_current();
     }
-    int mnid = 10;    
-    std::set<std::string> languages = dictionary_manager.get_languages();
-    for (std::set<std::string>::iterator i = languages.begin(); i != languages.end(); i++) {
-      std::string locale_name = *i;
+    int mnid = 10;
+    std::set<tinygettext::Language> languages = dictionary_manager.get_languages();
+    for (std::set<tinygettext::Language>::iterator i = languages.begin(); i != languages.end(); i++) {
       if (item->id == mnid++) {
-        g_config->locale = locale_name;
-        dictionary_manager.set_language(g_config->locale);
+        g_config->locale = i->str();
+        dictionary_manager.set_language(*i);
         g_config->save();
         Menu::pop_current();
       }
@@ -98,7 +92,7 @@ public:
 
 protected:
   std::auto_ptr<LanguageMenu> language_menu;
-  
+
 };
 
 OptionsMenu::OptionsMenu()
@@ -118,7 +112,7 @@ OptionsMenu::OptionsMenu()
 
   add_toggle(MNID_PROFILES, _("Profile on Startup"), g_config->sound_enabled)
     ->set_help(_("Select your profile immediately after start-up"));
-  
+
   add_toggle(MNID_FULLSCREEN,_("Fullscreen"), g_config->use_fullscreen)
     ->set_help(_("Fill the entire screen"));
 
@@ -143,11 +137,11 @@ OptionsMenu::OptionsMenu()
 
   SDL_Rect** modes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_OPENGL);
 
-  if (modes == (SDL_Rect **)0) 
+  if (modes == (SDL_Rect **)0)
   { // No resolutions at all available, bad
 
   }
-  else if(modes == (SDL_Rect **)-1) 
+  else if(modes == (SDL_Rect **)-1)
   { // All resolutions should work, so we fall back to hardcoded defaults
     fullscreen_res->list.push_back("640x480");
     fullscreen_res->list.push_back("800x600");
@@ -161,11 +155,11 @@ OptionsMenu::OptionsMenu()
     fullscreen_res->list.push_back("1920x1080");
     fullscreen_res->list.push_back("1920x1200");
   }
-  else 
+  else
   {
     for(int i = 0; modes[i]; ++i)
     {
-      std::ostringstream out;          
+      std::ostringstream out;
       out << modes[i]->w << "x" << modes[i]->h;
       fullscreen_res->list.push_back(out.str());
     }
@@ -173,7 +167,7 @@ OptionsMenu::OptionsMenu()
 
   MenuItem* aspect = add_string_select(MNID_ASPECTRATIO, _("Aspect Ratio"));
   aspect->set_help(_("Adjust the aspect ratio"));
-  
+
   aspect->list.push_back("auto");
   aspect->list.push_back("5:4");
   aspect->list.push_back("4:3");
@@ -201,7 +195,7 @@ OptionsMenu::OptionsMenu()
       aspect->list.push_back(aspect_ratio);
     }
   }
-  
+
   if (sound_manager->is_audio_enabled()) {
     add_toggle(MNID_SOUND, _("Sound"), g_config->sound_enabled)
       ->set_help(_("Disable all sound effects"));
@@ -211,7 +205,7 @@ OptionsMenu::OptionsMenu()
     add_inactive(MNID_SOUND, _("Sound (disabled)"));
     add_inactive(MNID_MUSIC, _("Music (disabled)"));
   }
-  
+
   add_submenu(_("Setup Keyboard"), g_main_controller->get_key_options_menu())
     ->set_help(_("Configure key-action mappings"));
 
@@ -230,7 +224,7 @@ OptionsMenu::menu_action(MenuItem* item)
 {
   switch (item->id) {
     case MNID_ASPECTRATIO:
-    { 
+    {
       if (item->list[item->selected] == "auto")
       {
         g_config->aspect_width  = 0; // Magic values
@@ -253,7 +247,7 @@ OptionsMenu::menu_action(MenuItem* item)
     case MNID_MAGNIFICATION:
       if (item->list[item->selected] == "auto")
       {
-        g_config->magnification = 0.0f; // Magic value 
+        g_config->magnification = 0.0f; // Magic value
       }
       else if(sscanf(item->list[item->selected].c_str(), "%f", &g_config->magnification) == 1)
       {
@@ -267,7 +261,7 @@ OptionsMenu::menu_action(MenuItem* item)
       if(sscanf(item->list[item->selected].c_str(), "%dx%d", &g_config->fullscreen_width, &g_config->fullscreen_height) == 2)
       {
         // do nothing, changes are only applied when toggling fullscreen mode
-      }      
+      }
       break;
 
     case MNID_FULLSCREEN:

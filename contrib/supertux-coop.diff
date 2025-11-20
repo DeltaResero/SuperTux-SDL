@@ -129,7 +129,7 @@ index fedbe0c..af6dfb6 100644
  SDL_Surface *screen;
  JoystickKeyboardController* main_controller = 0;
 +JoystickKeyboardController* secondary_controller = 0;
- TinyGetText::DictionaryManager dictionary_manager;
+ tinygettext::DictionaryManager dictionary_manager;
  
  int SCREEN_WIDTH;
 @@ -541,6 +542,7 @@ int main(int argc, char** argv)

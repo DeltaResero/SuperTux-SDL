@@ -16,6 +16,7 @@
 
 #include "supertux/level.hpp"
 
+#include <sstream>
 #include "lisp/list_iterator.hpp"
 #include "lisp/parser.hpp"
 #include "object/block.hpp"

@@ -16,6 +16,7 @@
 
 #include "supertux/levelintro.hpp"
 
+#include <sstream>
 #include "control/joystickkeyboardcontroller.hpp"
 #include "math/random_generator.hpp"
 #include "sprite/sprite_manager.hpp"

@@ -19,8 +19,9 @@
 
 #include "lisp/lexer.hpp"
 #include "obstack/obstack.h"
+#include "tinygettext/tinygettext.hpp"
 
-namespace TinyGetText {
+namespace tinygettext {
 class Dictionary;
 class DictionaryManager;
 }
@@ -54,8 +55,8 @@ private:
 
   Lexer* lexer;
   std::string filename;
-  TinyGetText::DictionaryManager* dictionary_manager;
-  TinyGetText::Dictionary* dictionary;
+  tinygettext::DictionaryManager* dictionary_manager;
+  tinygettext::Dictionary* dictionary;
   Lexer::TokenType token;
 
   struct obstack obst;

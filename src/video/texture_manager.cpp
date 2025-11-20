@@ -18,6 +18,7 @@
 
 #include <SDL_image.h>
 #include <iostream>
+#include <sstream>
 
 #include "physfs/physfs_sdl.hpp"
 #include "util/file_system.hpp"

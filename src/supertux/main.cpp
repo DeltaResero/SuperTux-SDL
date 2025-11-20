@@ -20,6 +20,7 @@
 #include <SDL_image.h>
 #include <physfs.h>
 #include <iostream>
+#include <sstream>
 
 #ifdef MACOSX
 namespace supertux_apple {
@@ -46,7 +47,7 @@ namespace { DrawingContext *context_pointer; }
 
 SDL_Surface* g_screen;
 JoystickKeyboardController* g_main_controller = 0;
-TinyGetText::DictionaryManager dictionary_manager;
+tinygettext::DictionaryManager dictionary_manager;
 
 int SCREEN_WIDTH;
 int SCREEN_HEIGHT;
@@ -68,7 +69,7 @@ static void init_tinygettext()
 
   // Config setting "locale" overrides language detection
   if (g_config->locale != "") {
-    dictionary_manager.set_language( g_config->locale );
+    dictionary_manager.set_language( tinygettext::Language::from_spec(g_config->locale) );
   }
 }
 
@@ -196,7 +197,7 @@ static void init_physfs(const char* argv0)
 
 static void print_usage(const char* argv0)
 {
-  fprintf(stderr, _("Usage: %s [OPTIONS] [LEVELFILE]\n\n"), argv0);
+  fprintf(stderr, _("Usage: %s [OPTIONS] [LEVELFILE]\n\n").c_str(), argv0);
   fprintf(stderr,
           _("Options:\n"
             "  -f, --fullscreen             Run in fullscreen mode\n"
@@ -216,7 +217,7 @@ static void print_usage(const char* argv0)
             "  --record-demo FILE LEVEL     Record a demo to FILE\n"
             "  --play-demo FILE LEVEL       Play a recorded demo\n"
             "  -s, --debug-scripts          Enable script debugger.\n"
-            "%s\n"), "");
+            "%s\n").c_str(), "");
 }
 
 /**

@@ -16,6 +16,7 @@
 
 #include "supertux/textscroller.hpp"
 
+#include <sstream>
 #include "audio/sound_manager.hpp"
 #include "control/joystickkeyboardcontroller.hpp"
 #include "lisp/lisp.hpp"

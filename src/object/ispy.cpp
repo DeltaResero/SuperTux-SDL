@@ -16,6 +16,7 @@
 
 #include "object/ispy.hpp"
 
+#include <sstream>
 #include "object/player.hpp"
 #include "object/tilemap.hpp"
 #include "sprite/sprite.hpp"

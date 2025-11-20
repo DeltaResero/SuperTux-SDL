@@ -17,9 +17,10 @@
 #include "gui/menu.hpp"
 #include "supertux/gameconfig.hpp"
 #include "util/gettext.hpp"
+#include <sstream>
 
 enum ProfileMenuIDs {
-  
+
 };
 
 class ProfileMenu : public Menu

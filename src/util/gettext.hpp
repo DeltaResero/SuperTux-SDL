@@ -19,9 +19,9 @@
 
 #include "tinygettext/tinygettext.hpp"
 
-extern TinyGetText::DictionaryManager dictionary_manager;
+extern tinygettext::DictionaryManager dictionary_manager;
 
-static inline const char* _(const char* message)
+static inline std::string _(const char* message)
 {
   return dictionary_manager.get_dictionary().translate(message);
 }
@@ -31,9 +31,9 @@ static inline std::string _(const std::string& message)
   return dictionary_manager.get_dictionary().translate(message);
 }
 
-static inline const char* N_(const char* id, const char* id2, int num)
+static inline std::string N_(const char* id, const char* id2, int num)
 {
-  return dictionary_manager.get_dictionary().translate(id, id2, num).c_str();
+  return dictionary_manager.get_dictionary().translate_plural(id, id2, num);
 }
 
 #endif /* _LIBGETTEXT_H */

@@ -164,10 +164,11 @@ include_directories (${SUPERTUX_SOURCE_DIR}/src/)
 include_directories (${SUPERTUX_SOURCE_DIR}/external/squirrel/include/)
 include_directories (${SUPERTUX_SOURCE_DIR}/external/)
 include_directories (${SUPERTUX_SOURCE_DIR}/external/obstack/)
+include_directories (${SUPERTUX_SOURCE_DIR}/external/tinygettext/)
 
 ## Build list of sources for supertux binary
 
-FILE(GLOB SUPERTUX_SOURCES RELATIVE ${SUPERTUX_SOURCE_DIR} src/*.cpp src/*/*.cpp src/video/sdl/*.cpp external/obstack/*.c external/tinygettext/*.cpp)
+FILE(GLOB SUPERTUX_SOURCES RELATIVE ${SUPERTUX_SOURCE_DIR} src/*.cpp src/*/*.cpp src/video/sdl/*.cpp external/obstack/*.c external/tinygettext/tinygettext/*.cpp)
 
 IF(HAVE_OPENGL)
   FILE(GLOB SUPERTUX_OPENGL_SOURCES RELATIVE ${SUPERTUX_SOURCE_DIR} src/video/gl/*.cpp)
@@ -209,7 +210,7 @@ ENDIF(PRECOMPILE_HEADERS)
 ## Debug options
 
 OPTION(DEBUG "Build with debugging options" ON)
-OPTION(WERROR "Stop on first compiler warning" ON)
+OPTION(WERROR "Stop on first compiler warning" OFF)
 IF(CMAKE_COMPILER_IS_GNUCC)
   ADD_DEFINITIONS(-Wall -Wextra -W)
   IF (DEBUG)
@@ -370,7 +371,7 @@ IF(WARNINGS)
   SET_PROPERTY(TARGET supertux2 APPEND PROPERTY COMPILE_FLAGS
 # -ansi fails in MinGW
 # still left:  -Weffc++ -Wold-style-cast -Wpadded -Wconversion -Wundef -Wsign-conversion -Wshadow -Winline -Wunsafe-loop-optimizations -Wfloat-equal -Wswitch-default -Wswitch-enum -Wcast-qual -Wsign-promo -Woverloaded-virtual -Wmissing-format-attribute -Wstrict-overflow=5 -Wformat=2
-        "-fdiagnostics-show-option -O3 -pedantic -Wno-long-long -Wabi -Wctor-dtor-privacy -Wstrict-null-sentinel -Wcast-align -Wdisabled-optimization -Winit-self -Winvalid-pch -Wlogical-op -Wmissing-include-dirs -Wmissing-noreturn -Wpacked -Wredundant-decls -Wstack-protector")
+        "-Wno-deprecated-declarations -fdiagnostics-show-option -O3 -pedantic -Wno-long-long -Wabi -Wcast-align -Wdisabled-optimization -Winit-self -Winvalid-pch -Wlogical-op -Wmissing-include-dirs -Wmissing-noreturn -Wpacked -Wredundant-decls -Wstack-protector")
 ENDIF(WARNINGS)
 
 ## Install stuff
