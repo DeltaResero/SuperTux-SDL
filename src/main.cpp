@@ -143,7 +143,7 @@ static void init_physfs(const char* argv0)
 
   // when started from source dir...
   std::string dir = PHYSFS_getBaseDir();
-  dir += "/data";
+  dir += "data";
   std::string testfname = dir;
   testfname += "/credits.txt";
   bool sourcedir = false;
