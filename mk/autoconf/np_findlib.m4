@@ -27,7 +27,9 @@ AC_DEFUN([NP_FINDLIB], [
 
     AC_MSG_CHECKING([for $3])
 
-    AC_LINK_IFELSE([$4], [buildok=yes], [buildok=no])
+    dnl Use AC_LANG_DEFINES_PROVIDED to silence the warning.
+    dnl Use AC_LANG_SOURCE to explicitly wrap the code in the cat heredoc.
+    AC_LINK_IFELSE([AC_LANG_DEFINES_PROVIDED AC_LANG_SOURCE([$4])], [buildok=yes], [buildok=no])
 
     LIBS=$save_LIBS
     CPPFLAGS=$save_CPPFLAGS
