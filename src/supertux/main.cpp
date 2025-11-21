@@ -68,7 +68,7 @@ Main::init_tinygettext()
 {
   dictionary_manager = new tinygettext::DictionaryManager();
   tinygettext::Log::set_log_info_callback(0);
-  dictionary_manager->set_filesystem(std::auto_ptr<tinygettext::FileSystem>(new PhysFSFileSystem));
+  dictionary_manager->set_filesystem(std::unique_ptr<tinygettext::FileSystem>(new PhysFSFileSystem));
 
   dictionary_manager->add_directory("locale");
   dictionary_manager->set_charset("UTF-8");
@@ -589,7 +589,7 @@ Main::run(int argc, char** argv)
 
     timelog(0);
 
-    const std::auto_ptr<PlayerStatus> default_playerstatus(new PlayerStatus());
+    const std::unique_ptr<PlayerStatus> default_playerstatus(new PlayerStatus());
 
     g_screen_manager = new ScreenManager();
 
@@ -607,7 +607,7 @@ Main::run(int argc, char** argv)
         g_screen_manager->push_screen(new worldmap::WorldMap(
                                  FileSystem::basename(g_config->start_level), default_playerstatus.get()));
       } else {
-        std::auto_ptr<GameSession> session (
+        std::unique_ptr<GameSession> session (
           new GameSession(FileSystem::basename(g_config->start_level), default_playerstatus.get()));
 
         g_config->random_seed =session->get_demo_random_seed(g_config->start_demo);

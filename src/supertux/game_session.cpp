@@ -44,32 +44,32 @@
 #include "worldmap/worldmap.hpp"
 
 GameSession::GameSession(const std::string& levelfile_, PlayerStatus* player_status, Statistics* statistics) :
-  level(0), 
+  level(nullptr),
   statistics_backdrop(),
   scripts(),
-  currentsector(0),
+  currentsector(nullptr),
   levelnb(),
   pause_menu_frame(),
-  end_sequence(0),
+  end_sequence(nullptr),
   game_pause(),
   speed_before_pause(),
-  levelfile(levelfile_), 
+  levelfile(levelfile_),
   reset_sector(),
   reset_pos(),
   newsector(),
   newspawnpoint(),
   best_level_statistics(statistics),
   player_status(player_status),
-  capture_demo_stream(0), 
+  capture_demo_stream(nullptr),
   capture_file(),
-  playback_demo_stream(0), 
-  demo_controller(0),
+  playback_demo_stream(nullptr),
+  demo_controller(nullptr),
   game_menu(),
-  play_time(0), 
-  edit_mode(false), 
+  play_time(0),
+  edit_mode(false),
   levelintro_shown(false)
 {
-  currentsector = NULL;
+  currentsector = nullptr;
 
   game_pause = false;
   speed_before_pause = g_screen_manager->get_speed();

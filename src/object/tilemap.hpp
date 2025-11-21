@@ -163,8 +163,8 @@ private:
   float current_alpha; /**< current tilemap opacity */
   float remaining_fade_time; /**< seconds until requested tilemap opacity is reached */
 
-  std::auto_ptr<Path> path;
-  std::auto_ptr<PathWalker> walker;
+  std::unique_ptr<Path> path;
+  std::unique_ptr<PathWalker> walker;
 
   DrawingContext::Target draw_target; /**< set to LIGHTMAP to draw to lightmap */
 
