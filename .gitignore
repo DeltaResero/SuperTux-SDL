@@ -16,6 +16,7 @@ install_manifest.txt
 Makefile
 config.h
 version.h
+version.cmake
 supertux
 supertux.exe
 supertux2
