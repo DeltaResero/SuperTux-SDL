@@ -353,7 +353,7 @@ ScreenManager::handle_screen_switch()
         }
       }
 
-      if (current_screen != m_screen_stack.back().get())
+      if (!m_screen_stack.empty() && current_screen != m_screen_stack.back().get())
       {
         if(current_screen != nullptr) {
           current_screen->leave();
