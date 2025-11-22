@@ -1,37 +1,75 @@
-# Build Files
+#
+# NOTE! Please use 'git ls-files -i --exclude-standard'
+# command after changing this file, to see if there are
+# any tracked files which get ignored after the change.
+#
+
+# --- Build & CMake Artifacts ---
 build/
-build.*/
-supertux2
-# Windows build files
-Debug/
-Release/
-tools/innosetup/Output
-
-# Version file
+build*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+install_manifest.txt
+Makefile
+config.h
+version.h
 version.cmake
+supertux
+supertux.exe
+supertux2
+supertux2.exe
 
-# Doxygen related files
-Doxyfile
-docs/doxygen/
+# --- Wii / Console Build Artifacts ---
+*.elf
+*.dol
+*.map
+*.elf.map
+*.bin
+*.d
 
-# Qt Creator project file
-CMakeLists.txt.user
+# --- Compiled Object Files & Libraries ---
+*.o
+*.obj
+*.a
+*.la
+*.lo
+*.so
+*.so.*
+*.dll
+*.dylib
+*.lib
 
-# Windows build dependencies
-dependencies*/
-
-# Additional Repos/Translations
-supertux.*
-.tx/
-#translations
-
-# Useful Customization Files
-data/levels/more/
-*.patch
+# --- Archives ---
+*.7z
+*.bz2
+*.gz
+*.lzma
+*.lzo
+*.lz4
+*.rar
+*.tar
+*.tgz
+*.xz
 *.zip
-*.diff
 
-# Annoying OS Generated Files
+# --- IDE & Tooling ---
+.vscode/
+.idea/
+*.kdevelop
+*.kdev4
+CMakeLists.txt.user
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
+\#*#
+
+# --- OS Generated ---
 .DS_Store
 .DS_Store?
 ._*
@@ -40,4 +78,10 @@ data/levels/more/
 ehthumbs.db
 Thumbs.db
 .directory
-*~
+
+# --- Patch Files ---
+*.patch
+*.diff
+
+# --- Translations (Generated) ---
+*.pot
