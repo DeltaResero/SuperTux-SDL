@@ -88,7 +88,6 @@ IF(WIN32)
   SET(ENV{LIB} "${DEPENDENCY_FOLDER}/lib")
   SET(ENV{OPENALDIR} "${DEPENDENCY_FOLDER}")
 
-  SET_PROPERTY(DIRECTORY PROPERTY COMPILE_DEFINITIONS_DEBUG DEBUG)
   ## Enable multi-processor compilation (faster)
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
   ## And shut up about unsafe stuff
