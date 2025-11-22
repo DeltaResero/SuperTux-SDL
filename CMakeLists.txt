@@ -343,24 +343,27 @@ IF(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/external/tinygettext/CMakeLists.txt)
   message(FATAL_ERROR "tinygettext submodule is not checked out or ${CMAKE_CURRENT_SOURCE_DIR}/external/tinygettext/CMakeLists.txt is missing")
 ENDIF()
 
-set(TINYGETTEXT_PREFIX ${CMAKE_BINARY_DIR}/tinygettext/)
-ExternalProject_Add(tinygettext
-  SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/tinygettext/"
-  CMAKE_ARGS
-  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-  -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-  -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
-  -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
-  -DBUILD_SHARED_LIBS=OFF
-  -DHAVE_SDL=ON
-  -DCMAKE_INSTALL_PREFIX=${TINYGETTEXT_PREFIX}
-  -DSDL2_INCLUDE_DIRS=${SDL2_INCLUDE_DIRS}
-  -DLIB_SUFFIX=${LIB_SUFFIX})
+# Build tinygettext directly as a subdirectory.
+# This allows it to see our SDL2_INCLUDE_DIRS variable automatically.
 
-ADD_LIBRARY(tinygettext_lib STATIC IMPORTED)
-SET_TARGET_PROPERTIES(tinygettext_lib PROPERTIES IMPORTED_LOCATION "${TINYGETTEXT_PREFIX}/lib${LIB_SUFFIX}/${CMAKE_STATIC_LIBRARY_PREFIX}tinygettext${CMAKE_STATIC_LIBRARY_SUFFIX}")
+# Configure tinygettext options before adding it
+SET(HAVE_SDL ON CACHE BOOL "Use SDL_iconv" FORCE)
+SET(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static library" FORCE)
 
-INCLUDE_DIRECTORIES(SYSTEM ${TINYGETTEXT_PREFIX}/include)
+# Force CMake to accept the legacy cmake_minimum_required(VERSION 2.4) inside tinygettext
+SET(CMAKE_POLICY_VERSION_MINIMUM "3.5")
+
+# Add the subdirectory
+ADD_SUBDIRECTORY(external/tinygettext)
+
+# Clean up the variable so it doesn't affect anything else (good practice)
+UNSET(CMAKE_POLICY_VERSION_MINIMUM)
+
+# Create an alias so the rest of the build can link to 'tinygettext_lib'
+ADD_LIBRARY(tinygettext_lib ALIAS tinygettext)
+
+# Add the include directory to the system path
+INCLUDE_DIRECTORIES(SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/external/tinygettext/include)
 
 ## Some additional include paths
 
