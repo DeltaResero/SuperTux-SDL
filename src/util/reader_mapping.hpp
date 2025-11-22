@@ -18,6 +18,7 @@
 #define HEADER_SUPERTUX_UTIL_READER_MAPPING_HPP
 
 #include "util/reader_iterator.hpp"
+#include <cstdint>
 
 namespace sexp {
 class Value;
